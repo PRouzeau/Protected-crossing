@@ -20,16 +20,21 @@ All car lanes within a road segment shall have the same width (yet).
 This application need to have prealably installed OpenSCAD (a free parametric 3D modeler), see here:
 * http://www.openscad.org/downloads.html#snapshots
 Only snapshot versions of OpenScad works with Customizer, use the last version (yet 1 June 2018)
+*The complete path of the directory where you install this application (Protected crossing or any other) shall only use ASCII characters, without spaces, accented letters, any diacritic, umlaut or other character set.
 You NEED to validate Customizer:
 *In [Edit] menu, select [Preferences] then open tab [Features], tick [Customizer], then close the window when tick is shown.
-*In View menu, you shall now have an option [Hide customizer], than you shall untick
-*In Customizer screen, on first line, select [Description only], which will clean up the Interface 
-*You may want to hide the programming editor, which can be done with menu [View][Hide editor].
+*In [View] menu, you shall now have an option [Hide customizer], than you shall untick
+*In same [View] menu, you may want to hide the programming editor with ticking [Hide editor].
 *Interface use local language (as configured on your machine) by default. To deactivate: menu [Edit][Preferences] tab [Advanced], untick the option (in the bottom) [Enable user interface localization (requires restart of openSCAD)]. 
+*After program loading, Customizer is not activated, you need first to do a preview, either with [F5] key or by clicking the first icon below the view.
+*In Customizer screen, on first line, select [Description only], which will give a much cleaner interface. 
+*In the application 'protected crossing', by default each preview reposition the view at its original position, which is pretty boring, so you shall first deactivate this imposed position in [Camera] tab, by unticking [Dictate the camera position].
  
 When happy with a design, customizer can record it in a dataset, use the button [+] to create a new dataset then [save preset] to save further modifications, which can be recalled by selecting a dataset in the dropdown menu. NOTHING is saved automatically.
+If you don't see the examples in the dataset pull-down menu, come back to the note about the directory character sets.
 
 Note that for variables with spinboxes (small box with top/down arrows), when you click in the value box, you can then use the mouse scroll wheel to modify the value. 
+
 Yet (August 2018) there is some trouble with automated recalculation when updating data, you can untick [Automatic preview], then force recalculation with [F5] key.
  
 Note a few conventions
@@ -39,18 +44,15 @@ Note a few conventions
 Tagging:
  Road X is left-right 
  Road Y is south-north 
- For each road there is to branches, A and B, but there can be common parameters (see below) 
+ For each road there is two branches, A and B, but there can be common parameters (see below) 
  
 Right and left are considered for each branch when running TO the crossroad (but FROM the crossroad for left hand drive)
 
-Dimensions are in m 
- 
-Usage: 
- The very first thing you may want is to allow 3D manipulation without going back to same view at each run, so open the tab [Camera] and untick [Dictate camera position].
+Dimensions are in m(eters), except for ground marking where they are in mm. 
  
 After that, you are free to modify any variable to adjust your road crossing. Remember that nothing is saved till you record a dataset 
   
-Ground signalling dimensions not accessible in customizer (values set in 'Hidden' group) as it shall be imposed, however, you still can modify them in the program.
+Ground signalling dimensions not all accessible in customizer (values set in 'Hidden' group) as it shall be imposed, however, you still can modify them in the program.
  
 As a general philosophy, while there are many parameters, some things are not modifiable on purpose. This is a design decision because what initiated this program was the absolute lack of standardization and huge incoherences in existing road infrastructure in my country (France), and I got the idea that a program may help to improve the compliance with rules, being official rules, recommendations or simply good practice. In France, many infrastructures design points are only 'recommended' and not compulsory and that did open a wide door to poor design. The absence of stop line at pedestrian crossing is one of these problems, while it was recommended in Vienna convention in 1973, so more than fourty years ago. However nowadays we found a stop line to set a bike box, but it is not designed properly with way insufficient thicknesses to be well noticeable and there may be half of the drivers which does not comply, which should have driven to thorougly question the design.
 

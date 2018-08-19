@@ -131,8 +131,8 @@ cfu_line=1;
 //===================================
 /*fr:[Caméra]*/ 
 /*[Camera]*/
-//fr:Utilise la position de la caméra définie ci-dessous - peut être inactivé pour les animations
-//Use the camera position defined below - could be unactivated for animations
+//fr:Imposer la position de la caméra
+//Dictate the camera position
 Dictate_camera_position=true; 
 // The camera variables shall NOT be included in a module - a module CANNOT export variables
 //fr:Vue de dessus

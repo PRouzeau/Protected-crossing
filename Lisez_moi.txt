@@ -20,19 +20,22 @@ Mais cette application permet de réaliser des ronds-points! Définissez un diamèt
 
 Cette application nécessite d’avoir installé ‘Openscad’ (un modeleur 3D paramétrique gratuit), voir ici:
 * http://www.openscad.org/downloads.html#snapshots
-Seuls les versions de développement 'snapshot versions' d'OpenScad comportent Customizer, utilisez la dernière version (actuellemrnt le 1 Juin 2018)
+Seuls les versions de développement 'snapshot versions' d'OpenScad comportent Customizer, utilisez la dernière version (actuellement celle du 1 Juin 2018)
+*Le chemin complet du répertoire ou vous installez votre application (Protected crossing ou tout autre application) ne doit comporter que des lettres ASCII, ni espaces ni lettres accentuées, pas de diacritiques et pas d'autre jeu de caractères.
 Vous DEVEZ activer Customizer:
-*Menu [Edition], selectionner [Préférences] puis ouvrir l'onglet [Fonctionnalités], cocher [Customizer], puis fermer la fenêtre.
+*Menu [Edition], sélectionner [Préférences] puis ouvrir l'onglet [Fonctionnalités], cocher [Customizer], puis fermer la fenêtre.
 *Dans le menu [Vues], vous devez désormais avoir une option [Hide customizer], que vous devez décocher.
-*Dans l'écran de Customizer (pas encore traduit), sur la première ligne, sélectionner [Description only], ce qui fera une interface nettement plus sobre.
-*Éventuellement vous fermerez la fenêtre d'édition avec le menu [Vues], option [Cacher l'éditeur].
-*L'interface d’OpenScad est par défaut dans le lagage local (tel que configuré sur votrre ordinateur). Pour désactiver: menu [Edition][Préférences], onglet [Avancé], décocher l'option (en bas) [Activer la localisation de l'interface utilisateur (nécessite un redémarrage d'openSCAD)]. 
- 
-Quand vous êtes content de votre conception, voous pouvez l'enregister comme un 'dataset', utilisez le bouton [+] pour créer un nouveau datset, puis [save preset] pour sauvegarder les modifications ultérieures, que vous pourrez rappeler plus tard en la sélectionnant dans le menu déroulant. RIEN n'est sauvegardé automatiquement.
+*Dans le même menu [Vues] Vous préfererez cacher la fenêtre d'édition en cochant l'option [Cacher l'éditeur].
+*L'interface d’OpenScad est par défaut dans le langage local (tel que configuré sur votrre ordinateur). Pour désactiver: menu [Edition][Préférences], onglet [Avancé], décocher l'option (en bas) [Activer la localisation de l'interface utilisateur (nécessite un redémarrage d'openSCAD)]. 
+*Après avoir chargé un programme, Customizer n'est pas encore disponible, vous devez d'abord faire un "aperçu" de votre modèle avec la touche [F5] ou en cliquant la première icone sous la fenêtre de visualisation.
+*Dans l'écran de Customizer (pas encore traduit), sur la première ligne, sélectionner [Description only], ce qui fera une interface nettement plus sobre. 
+*Dans l'application 'protected crossing', chaque aperçu repositionne la vue a sa position originale, ce qui est pénible, et vous allez d'abord désactiver cette vue imposée dans le menu [Caméra] en décochant [Imposer la position de la caméra].
 
-Notez que pour les variables avec des flèches de modifications, quand vous cliquez sur le champ, vous pouvez alors modifier la valeur avec la roulette de la souris.
+Quand vous êtes content de votre conception, vous pouvez l'enregistrer comme un 'dataset', utilisez le bouton [+] pour créer un nouveau dataset, puis [save preset] pour sauvegarder les modifications ultérieures, que vous pourrez rappeler plus tard en la sélectionnant dans le menu déroulant. RIEN n'est sauvegardé automatiquement. Si vous ne voyez pas les exemples dans les datasets, voir plus haut la note sur les caractères des répertoires.
 
-Il y a actuellement (Aout 21018) sur OpenSCAD custimizer des problèmes avec le recalcul automatique lorsque vous mettez a jour les données, aussi vous pouvez décocher [Automatic Preview], et faire les mises a jour ultérieures avec la touche [F5].
+Notez que pour les variables avec des flèches de modifications ('spinboxes'), quand vous cliquez sur le champ, vous pouvez alors modifier la valeur avec la roulette de la souris.
+
+Il y a actuellement (Aout 2018) sur OpenSCAD customizer des problèmes avec le recalcul automatique lorsque vous mettez a jour les données, aussi vous pouvez décocher [Automatic Preview], et faire les mises a jour ultérieures avec la touche [F5] ou la première icone.
  
 Notez les conventions
 * 0 neutralise les équipments
@@ -42,15 +45,13 @@ Notez les conventions
  Route X gauche droite
  Route Y nord-sud
  Pour chaque route il y a deux branches, A et B, mais il peut y avoir des paramètres communs a ces branches (voir plus loin).
+ La droite et la gauche de chaque branche s'entendent quand on va VERS le carrefour.
 
- Les dimensions sont en m
+ Les dimensions sont en m, sauf le marquage au sol défini en mm
  
- Utilisation: 
- La toute première chose que vous souhaitez, c'est de pouvoir manipuler l'image en trois dimensions sans voir celle-ci revenir à sa position par défaut a chaque calcul, ouvrez (dans customizer) l'onglet [Caméra] et décocher [Imposer la position de la caméra].
- 
- Après ceci, vous êtes libre de modifier toute variable pour ajuster votre conception de croisement. Souvenez-vous que rien n'est sauvegardé tant que vous n'avez pas enregistré de 'dataset'.
+ Vous êtes libre de modifier toute variable pour ajuster votre conception de croisement. Souvenez-vous que rien n'est sauvegardé tant que vous n'avez pas enregistré de 'dataset'.
 
- Les dimensions du marquage au sol ne sont pas accessibles dans l’interface (valeurs dans le groupe 'Hidden') car elles sont imposées (par la règlementation), cependant vous pouvez toujours les modifier dans le programme.
+ Les dimensions du marquage au sol ne sont pas toutes accessibles dans l’interface (valeurs dans le groupe 'Hidden') car elles sont imposées (par la règlementation), cependant vous pouvez toujours les modifier dans le programme, mais les modifications du programme seront effacées à la prochaine mise à jour.
  
 D'un point de vue général, bien qu'il y ait beaucoup de paramètres, un certain nombre de choses ne sont pas modifiables à dessein. C'est une décision de conception car ce programme a été crééé pour lutter contre le manque total de standardisation et les grandes incohérences de l'existant en France. J'ai pensé qu'un programme pouvait améliorer la conformité aux règles officielles et aux bonnes pratiques. En France, beaucoup d'éléments sont de simples recommandations non obligatoires et ceci laisse la porte grande ouverte a des conceptions déficientes. L'absence de ligne de stop aux passages piétons est un de ces exemples, bien qu'il soit recommandé depuis 1973 dans la convention de Vienne, soit depuis plus de quarante ans. Cependant de nos jour on trouve beaucoup de sas vélos qui sont envahis par les voitures et scoooters du fait d'un marquage insuffisant. L'épaisseur standard internationale des lignes de stop est de 50cm, pourquoi ne pas la respecter alors qu'il est évident que les lignes de stop des sas cyclable ne servent à rien, ce qui aurait dû conduire a de sérieux questionnements sur leur conception.
 
@@ -79,7 +80,7 @@ Bases pour les dimensions:
 L'aspect général de la piste cyclable est plus 'rond' que ce que l'on voit souvent. Ceci donne plus d'espace pour stocker les véhicules motorisés et permet une meilleure mise en place des îlots. C'est plus adapté aux emprises assez faibles mais c'est bénéfique en toutes tailles.
 
 BOGUES CONNUS:
- Voir le readme en anglais
+ Voir le fichier Readme_first.txt en anglais
 
 Copyright Pierre ROUZEAU AKA PRZ
 Program license GPL 3.0
