@@ -1,0 +1,88 @@
+CROISEMENTS PROTÉGÉS
+Conception de croisement protégés 'à la néerlandaise', comme il s’en construit depuis près de cinquante ans aux pays-bas.
+ Pour une explication de l'état de l'art, voyez le lien (en anglais):
+	https://bicycledutch.wordpress.com/2011/04/07/state-of-the-art-bikeway-design-or-is-it/
+
+Cette application a été conçue comme un outil pour tenter d'influencer les planificateurs urbains au sujet des infrastructures cyclistes, car dans mon pays (la France), mis a part les infrastructures touristiques, les infrastructures urbaines sont généralement mal conçues, tout particulièrement aux carrefours, ce qui ruine l'intérêt d'ensemble des infrastructures et présente des dangers.
+ J'ai utilisé mon vélo pour aller au travail pendant quelques années et bien que j'ai trouvé ceci très efficace, j'ai trouvé cela relativement difficile (dans un contexte urbain plutôt hostile).
+ J'ai une expérience limitée du vélo aux pays-bas en tant que touriste, et c'est vraiment un autre monde. Quand vous roulez sur les pistes néerlandaises, vous ne réalisez pas vraiment la quantité de travail nécessaire et la multitude de détail qui rend ces infrastructures efficaces et sûres.
+ J'ai aussi ajouté à cette application des éléments non liés au cyclisme qui manquent dans les infrastructures routières françaises, dérivées de l'impressionnant travail de Jacques Robin sur la sécurité routière (site en Français):
+	http://www.securite-routiere-plus.com/
+ Les exemples sont pour des endroits relativement étroits, car c'est la situation la plus courante là ou je vis et nous avons à y faire face. La majorité des pistes cyclables ne sont pas conformes à la largeur minimum requise et la plupart des infrastructures cyclables sont un ajout après-coup et beaucoup de planificateurs s'imaginent que l'infrastructure cyclable ne se fait qu'a la peinture!
+ Il reste de la route à faire...
+ Si l'emprise disponible est suffisante, les carrefours protégés ne sont pas la meilleure solution, qui est les 'rond-points Néerlandais' :https://bicycledutch.wordpress.com/2015/10/13/explaining-the-dutch-roundabout-abroad/
+Mais cette application permet de réaliser des ronds-points! Définissez un diamètre intérieur et c’est bon.
+ 
+ Utilisation:  
+ Actuellement, ce programme est limité aux routes perpendiculaires, avec des trottoirs et files de parking alignés, mais on peut redistribuer les voies principales. Il y tant de combinaisons possible qu'il est difficile de concevoir un programme répondant à tous les cas de figure. Ce programme doit être vu comme un outil pédagogique ou d'avant projet. 
+
+	Toutes les voies d'une branche du carrefour ont la même largeur (pour le moment).
+
+Cette application nécessite d’avoir installé ‘Openscad’ (un modeleur 3D paramétrique gratuit), voir ici:
+* http://www.openscad.org/downloads.html#snapshots
+Seuls les versions de développement 'snapshot versions' d'OpenScad comportent Customizer, utilisez la dernière version (actuellemrnt le 1 Juin 2018)
+Vous DEVEZ activer Customizer:
+*Menu [Edition], selectionner [Préférences] puis ouvrir l'onglet [Fonctionnalités], cocher [Customizer], puis fermer la fenêtre.
+*Dans le menu [Vues], vous devez désormais avoir une option [Hide customizer], que vous devez décocher.
+*Dans l'écran de Customizer (pas encore traduit), sur la première ligne, sélectionner [Description only], ce qui fera une interface nettement plus sobre.
+*Éventuellement vous fermerez la fenêtre d'édition avec le menu [Vues], option [Cacher l'éditeur].
+*L'interface d’OpenScad est par défaut dans le lagage local (tel que configuré sur votrre ordinateur). Pour désactiver: menu [Edition][Préférences], onglet [Avancé], décocher l'option (en bas) [Activer la localisation de l'interface utilisateur (nécessite un redémarrage d'openSCAD)]. 
+ 
+Quand vous êtes content de votre conception, voous pouvez l'enregister comme un 'dataset', utilisez le bouton [+] pour créer un nouveau datset, puis [save preset] pour sauvegarder les modifications ultérieures, que vous pourrez rappeler plus tard en la sélectionnant dans le menu déroulant. RIEN n'est sauvegardé automatiquement.
+
+Notez que pour les variables avec des flèches de modifications, quand vous cliquez sur le champ, vous pouvez alors modifier la valeur avec la roulette de la souris.
+
+Il y a actuellement (Aout 21018) sur OpenSCAD custimizer des problèmes avec le recalcul automatique lorsque vous mettez a jour les données, aussi vous pouvez décocher [Automatic Preview], et faire les mises a jour ultérieures avec la touche [F5].
+ 
+Notez les conventions
+* 0 neutralise les équipments
+* n un nombre donne une valeur
+ 
+ Repérage (conforme au repère OpenScad):
+ Route X gauche droite
+ Route Y nord-sud
+ Pour chaque route il y a deux branches, A et B, mais il peut y avoir des paramètres communs a ces branches (voir plus loin).
+
+ Les dimensions sont en m
+ 
+ Utilisation: 
+ La toute première chose que vous souhaitez, c'est de pouvoir manipuler l'image en trois dimensions sans voir celle-ci revenir à sa position par défaut a chaque calcul, ouvrez (dans customizer) l'onglet [Caméra] et décocher [Imposer la position de la caméra].
+ 
+ Après ceci, vous êtes libre de modifier toute variable pour ajuster votre conception de croisement. Souvenez-vous que rien n'est sauvegardé tant que vous n'avez pas enregistré de 'dataset'.
+
+ Les dimensions du marquage au sol ne sont pas accessibles dans l’interface (valeurs dans le groupe 'Hidden') car elles sont imposées (par la règlementation), cependant vous pouvez toujours les modifier dans le programme.
+ 
+D'un point de vue général, bien qu'il y ait beaucoup de paramètres, un certain nombre de choses ne sont pas modifiables à dessein. C'est une décision de conception car ce programme a été crééé pour lutter contre le manque total de standardisation et les grandes incohérences de l'existant en France. J'ai pensé qu'un programme pouvait améliorer la conformité aux règles officielles et aux bonnes pratiques. En France, beaucoup d'éléments sont de simples recommandations non obligatoires et ceci laisse la porte grande ouverte a des conceptions déficientes. L'absence de ligne de stop aux passages piétons est un de ces exemples, bien qu'il soit recommandé depuis 1973 dans la convention de Vienne, soit depuis plus de quarante ans. Cependant de nos jour on trouve beaucoup de sas vélos qui sont envahis par les voitures et scoooters du fait d'un marquage insuffisant. L'épaisseur standard internationale des lignes de stop est de 50cm, pourquoi ne pas la respecter alors qu'il est évident que les lignes de stop des sas cyclable ne servent à rien, ce qui aurait dû conduire a de sérieux questionnements sur leur conception.
+
+Les marquages sols sont conformes à la règlementation Française (largeurs de lignes, flèches, etc.). 
+
+Les routes X et Y sont supposées être de largeur constante. Ainsi que la largeur des trottoirs.
+ Les trottoirs de séparation de voies sont de largeur constante le long d'une voie.
+ NOTE IMPORTANTE: Les voies peuvent être redistribuées d'une branche à l'autre dans l'onglet [Nombre de voies principales].
+
+Vous pouvez faire une projection en séléctionnant l'option [projection] dans l'onglet [Affichage] tab. Notez que c'est une opération qui peut être assez longue suivant la puissance de votre machine. L' advantage est qu'une fois projetée, l' image peut être exportée au format vectoriel dxf, utilisable par tout programme de CAO. Cette image va nécessiter un peu de nettoyage.
+
+Il y a beaucoup d'options de conception et elles ne sont pas toutes prises en compte dans ce programme. Aussi il pourra parfois être utilisé uniquement pour un avant projet ou pour des études pédagogiques, ce qui est important.
+ 
+Bases pour les dimensions:
+*La largeur des voies de parking et des bandes cyclables est définie à l'extérieur de la ligne de délimitation, cependant la largeur minimum règlementaire à considérer est à l'intérieur de la ligne.
+*La largeur des pistes cyclables est celle entre trottoirs, et les lignes de bord (quand il n'y a pas de trottoir) sont à l'extérieur de cette largeur.
+*La largeur des lignes de stop (500 ou 600mm) est conforme à la convention de Vienne, même si ce n'est jamais le cas en France sauf expérimentation.
+*La couleur rouge pour les voies cyclable est uniquement obligatoire aux pays-bas, mais c'est clairement la meilleure solution aussi il n'y a pas d'option.
+*Actuellement rien n'est prévu pour une voie de présélection à l'arrivée dans le carrefour (cependant la conception n'est que pour la partie proche du carrefour)
+*Les voies cyclables sont élargies à la traversée du carrefour d'une valeur donnée (paramétrable dans [Réglages fins]), fixée par défaut à 250mm.
+*Les voies sont toujours déviées vers le centre du carrefour en mordant sur les voies de stationnement car c'est ce qui préserve au mieux les îlots et l'espace pour les véhicule motorisés. On peut cependant interdire ces déviations, mais le résultat est généralement assez malheureux.
+*Une déviation de la piste cyclable (à ne pas confondre avec la déviation des voies principales) 'mange' le trottoir de séparation entre la piste et la route principale, aussi ce trottoir doit être élargi en conséquence.
+*Les îlots sont positionnés automatiquement mais leur rayon est paramétrable. Dans les grands carrefours, l'îlot 'voiture' est surbaissé et un îlot 'camion/bus' est ajouté.
+*S'il y a au moins deux voies de chaque coté, un îlot de séparation s'installe automatiquement. Sa largeur se définit en réduisant les voies centrales à une largeur de 2.7m. Cette réduction des voies se fait aussi s'il existe un trottoir central (pour ralentir les véhicules par effet d'écluse). 
+
+L'aspect général de la piste cyclable est plus 'rond' que ce que l'on voit souvent. Ceci donne plus d'espace pour stocker les véhicules motorisés et permet une meilleure mise en place des îlots. C'est plus adapté aux emprises assez faibles mais c'est bénéfique en toutes tailles.
+
+BOGUES CONNUS:
+ Voir le readme en anglais
+
+Copyright Pierre ROUZEAU AKA PRZ
+Program license GPL 3.0
+documentation licence cc BY-SA 3 and GFDL 1.2
+Cette application utilise ma librairie OpenSCAD, livrée avec le programme mais si vous êtes curieux vous pouvez vous renseigner ici:
+https://github.com/PRouzeau/OpenScad-Library

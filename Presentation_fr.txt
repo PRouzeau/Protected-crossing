@@ -1,0 +1,49 @@
+Croisements ‘à la néerlandaise’:
+
+Introduction:
+La tendance pour les infrastructures cyclistes est, quand on dispose d’une emprise suffisante, à la séparation des flux piétons, véhicules motorisés et vélos. Les pistes cyclables, qui doivent être non seulement séparées de la voie principale mais aussi clairement séparées des trottoirs piétons (par un changement de niveau et si possible un changement de couleur) offrent une très bonne protection aux cyclistes roulant sur la voie. La séparation physique évite aussi le stationnement sauvage qui tend à être systématique sur les bandes cyclables.
+Cependant, aux croisements, non seulement la protection disparaît la plupart du temps, mais la moindre visibilité des cyclistes sur piste cyclable augmente grandement le risque et le rend souvent supérieur a celui d’une bande cyclable ou d’une absence d’infrastructure spécifique. Il est donc essentiel de protéger les cyclistes contre les erreurs ou les incivilités aux carrefours.
+Après plusieurs décennies de développement les néerlandais ont développé un ensemble d’infrastructures cyclables qui est de très loin le meilleur du monde et aussi, ainsi que le prouve les statistiques, le plus sûr pour tous. Ils ont pour cela établi des règles qui visent a ralentir les flux aux intersections, favoriser la visibilité et les interactions visuelles, protéger physiquement les usagers les plus fragiles et faire en sorte qu’une erreur ou une violation des règles ne se termina pas catastrophiquement.
+Les carrefours Néerlandais sont un des éléments clés de leur réseau qui n’a malheureusement été repris nulle part ailleurs. Les premiers ont été implantés il y a près de cinquantes ans.
+On trouvera des explications circonstanciées, des vidéos, des schémas et photos sur ce sujet critique sur la page suivante (en anglais) https://bicycledutch.wordpress.com/2014/02/23/junction-design-in-the-netherlands/, sur le site bycycle dutch qui constitue une somme remarquable sur le vélo aux pays-bas.
+Est-ce la meilleure solution? Non, le système plus efficace en terme de débit et de sécurité est le rond-point, mais il faut avoir suffisamment de place. Toujours sur Bicycle dutch, le point sur le rond-points : 
+
+L'application:
+L'application proposée vise a montrer comment on doit construire un carrefour sûr. Bien qu’il y ait baeucoup d’options, un tel programme ne peut s’adapter a tous les cas spécifiques, mais il peut permettre des avant-projets, des discussions et avoir un aspect pédagogique important.
+
+Les principes de conception:
+- Des rayons de virages courts en vue de ralentir les mouvements
+- Une zone de ‘bypass’ permettant aux cyclistes tournant a droite de ne pas s’arrêter
+- La protection physique des piétons et cyclistes par la présences d’ilôts empêchant le passage des véhicules motorisés a certains endroits
+- Une visibilité totale avec absolument aucun obstacle visuel (arbres, panneaux publicitaires, etc.)
+- Aucune barrière contre laquelle on pourrait être écrasé.
+- Quand les véhicules motorisés croisent la piste cyclable et les passages piétons, ils ont les utilisateurs en face, pas sur leur droite ou dans un angle mort.
+- Le maintien d’un écart entre les véhicules motorisés et les cyclistes favorisant une bonne visibilité entre tous les utilisateurs
+- La position avancée des cyclistes dans le carrefour leur permettant la traversée avant que les véhicules motorisés aient le temps de couper les voies. S’il y a des feux de circulations, cette position avancée doit être éqyuipés de feux uniquements destinés aux cyclistes. Ceci peut être renforcé par une temporisation spécifique pour les feux destinées aux cyclistes qui sont séparés des feux destinés aux autres véhicules. Aux pays-bas, il y a même souvent une temporisation spécifique permettant aux cyclistes 
+- Si l’emprise le permet, un espace permettant aux véhicules motorisés de s’arrêter devant la piste cyclable sans gêner le passage des autres véhicules, formant en quelque sorte un ‘sas voiture’. Ceci n’est malheureusement pas toujours possible en espace contraint.
+- Une nette différentiation entre les zones piétonnes et les voies cyclables et l’organisation de la traversées des voies cyclables par les pîétons de la même manière qu’ils traversent les autres voies routières. Ceci passe parfois par des obstacles pour guider les piétons vers les zones de franchissement.
+- Quand il n’y a pas de feux ou une voie prioritaire, les pistes cyclables ont toujours priorité, ce qui est matérialisé par les ‘dents de requin’ devant les pistes. La position des passages piétons doit être reculée pour qu’on puisse les matérialiser. Ceci ce rencontre souvent aux pays-bas mais pas systématiquement, les passages piétons étant souvent jointifs avec la piste mais les Néerlandais sont plus accoutumés à  laisser la priorité aux cyclistes, d’ou une moindre nécessité de matérialiser la priorité par un balisage sol fort. Le recul des passages piétons les embarasse mais améliore leur sécurité car ils sont mieux visibles par les véhicules motorisés.
+
+Les difficultés:
+La seule difficulté particulière de cette infrastructure, si on écarte le fait qu’elle nécessite généralement la reconstruction complète du carrefour, est la difficulté de passage pour les véhicules à grand gabarit (semi-remorques). Il a été suggéré diverses solutions, dont des ilôts construits partiellement en surbaisse pour pouvoir être franchis par les grands véhicules. Sur le programme, la partie centrale de l’ilot débute a seulement 50mm du sol mais l’entrée et la sortie sont a hauteur normale (150 mm).
+
+Particularités:
+- J’ai prévu une ligne d’arrêt de feu de grande épaisseur (50cm) comme cela existe dans la plupart des pays mais rarement en France, comme suggéré par Jacques Robin. Par défaut, J’ai positionné cette ligne d’arrêt de feu à 4m des passages piétons, ceci est paramétrable. Cet espace sera probablement envahi par scooters et motos, mais c’est préférable plutôt que d’avoir des scooters sur les passages piétons comme on le voit régulièrement.
+- Les feux sont installés après le passage piéton, ce qui n’est pas très courant en France, mais améliore leur visibilité depuis toutes les voies, et est impératif si on n’a pas de répéteurs de feux (spécialité française dangereuse car elle pousse les véhicules à se rapprocher des feux). Ceci expose un peu plus les feux à des impacts par les véhicules tournants trop court.
+- L’interdiction de stationner 5m avant les passages piétons est matérialisée par une zone peinte et des petits poteaux ou en option, un ilôt.
+
+Les compromis:
+- Lorsque l’emprise est insuffisante et qu’il y a une file de stationnement d’un seul coté, le programme dévie automatiquement la voie pour préserver l’espace de stockage avancé des vélos, mais ceci réduit l’espace voiture de l’autre coté de la voie, qui de toute façon dans les espaces contraints n’est pas suffisant pour une voiture entière. On peut supprimer cette déviation automatique en supprimant l’autorisation de déviation.
+- Lorsqu’il n’y a pas de piste cyclable mais des bandes cyclables, les ilôts de protection tendent a devenir très petits et leur rayon devient très court et difficile à franchir même par des bus.
+- La gestion des pistes a double sens de circulation est complexe et la position des feux cyclistes de contresens les expose beaucoup a des impacts. Une protection spéciale sera nécessaires.
+
+Quelques principes de base:
+- Les bandes cyclables rejoignent toujours les trottoirs a l’approche du carrefour, il y a donc une déviation vers la droite s’il y a une file de parking. S’il y a un passage piéton, il n’y a pratiquement pas de place perdue car le stationnement étant interdit 5 m avant le passage, c’est cette zone qui est utilisée pour la déviation.
+- Il y a toujours une protection physique des passages piétons aux endroits interdits à la circulation
+
+Bugs et bizarreries.
+- Il y a des bouts de pistes représentés a des endroits inopportuns s’il y a une piste double d’un seul coté de la voie.
+- La gestion d’un carrefour en T est incorrecte avec une piste double coté branche unique
+
+Evolution
+Le programme est prévu pour évoluer vers une possibilité de paramétrer les 4 branches différemment. 
