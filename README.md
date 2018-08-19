@@ -1,6 +1,7 @@
 # Protected-crossing
-Application to design protected crossroads 'dutch style'
-This means (see images)
+Application to design protected crossroads 'dutch style'.
+
+This means (see images):
 - Physical protection of bike path with 'islands'
 - Views on proper angles: motorised vehicles have already engaged their turn before crossing bike path and pedestrian way
 - Car 'storage boxes' to stop before bike path without obstructing main flow
