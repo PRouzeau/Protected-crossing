@@ -78,7 +78,7 @@ Bases for dimensions:
 *Lanes are always deviated toward the center of the road by biting the parking lanes as this is what gives the best results for islands and also the largest space for motorised vehicles. You can forbid these deviations in [General] tab but the results are generally quite poor.
 *A bike path deviation (to not be confused with main lanes deviation) 'eat' the pavement separating the bike path and the main road, so this pavement shall be widened accordingly.
 *Islands are automatically positioned but their radius is adjustable. In large crossroads, the 'car island' is lowered and a 'truck' island is added.
-*If there is at least two lanes on each side, a central separating island is automatically added. It width is established while reducing central lane width to 2.7m. This lane reduction is also done if there is a central separating pavement. 
+*If there is at least two lanes on each side, a central separating island is automatically added. It width is established while reducing central lanes width to 2.7m. This lanes width reduction is also done if there is a central separating pavement. 
 
 The general aspect of the bikeway is more 'round' that what you generally see. This gives more space for motorised vehicles and allow better placement of islands. This is more adapted to low footprint but is beneficial whatever the size. 
 

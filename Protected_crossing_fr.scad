@@ -2,13 +2,16 @@
 
 // Protected crossing design
 // Copyright 2018 Pierre ROUZEAU AKA PRZ
-// Program license GPL 3.0
-// documentation licence cc BY-SA 3 and GFDL 1.2
+// Program license GPL v3
+// documentation licence cc BY-SA 4.0 and GFDL 1.2
 // First version: 0.0 - 19 August 2018
+// V 0.1: 22 August 2018 - bugs, generic vehicles, always bike advanced position, protective poles, precise light positioning.
 //All designs done with this application are free of right
 // This uses my OpenSCAD library, attached, but you can find details here:
 // https://github.com/PRouzeau/OpenScad-Library
+//models from sketchup warehouse
 //Bus 3D model by Anderson Rondon - Marcopolo senior midi, length 11 m.
+//Cyclist model by Digson, modified
 
 /* KNOWN BUGS:
 *When there is an alley and the pavement separation is not sufficiently wide, the main traffic light position may not be correct
@@ -82,7 +85,7 @@ To avoid Openscad artifacts, some elements have levels differentiated by a few m
  include <Road_signs.scad>
 /*[Hidden]*/ 
 $fn=32;
-glass_color = [128,128,128,32]/256;
+glass_color = [128,128,128,180]/256;
 // transparent 
 debug=true;
 
@@ -98,7 +101,7 @@ YBr_pedcross_wd=0;
 //Merci de ne pas modifier les variables de cet onglet
 //_=true;
 //Version
-pcross_version = 0;
+pcross_version = 1;
 //language
 language = "fr";
 //Coefficient d'unités principal, natif en mm, interface en m
@@ -108,7 +111,7 @@ cfu_line=1;
 
 //===================================
 /*[Caméra]*/ 
-//Utilise la position de la caméra définie ci-dessous - peut être inactivé pour les animations
+//Imposer la position de la caméra
 Dictate_camera_position=true; 
 // The camera variables shall NOT be included in a module - a module CANNOT export variables
 //Vue de dessus
@@ -133,59 +136,119 @@ Projection=false;
 Display_road = true;
 //Affiche avertissements dans la console
 inf_text = true;
-//Affiche un bus en train de tourner pour vérification passages
-Display_bus = true;
-//Bus position en X
-X_bus = 5.2; //[-12:0.1:12]
-//Bus position en Y
-Y_bus = -4; //[-12:0.1:12]
-//Angle d'orientation du bus
-Ang_bus = 27;
-//Affiche une voiture en train de tourner pour vérification passages
-Display_car = false;
-//Voiture position en X
-X_car = 2.5; //[-12:0.1:12]
-//Voiture position en Y
-Y_car = 5.5; //[-12:0.1:15]
-//Angle d'orientation de la voiture
-Ang_car = 105;
+
+//== VEHICLES ===================
+//see in vehicle chapter v_color and v_type for color and vehicle association 	
+//Afficher les véhicules
+vh_disp = false;	
+//-- Vehicle 1 -------------------
+//Type du véhicule 1 à afficher
+vh1_type = 1; // [0:"Aucun",1:"Voiture rouge",2:"Voiture bleue",3:"Bus",4:"Cycliste"]
+
+//Éléments accessoires du véhicule 1
+vh1_acc = 1; // [0:"None",1:"Vehicle line limit X (for cars)",2:"Vehicle line limit Y (for cars)",3:"Arrow",4:"Views angles"]
+//::vh1_acc = 0; // [0:"Sans",1:"Limite du véhicule ligne X",2:"Limite du véhicule ligne Y",3:"Flèche",4:"Angles de vision"]
+
+//Véhicule 1 position en X
+vh1_X = 2.8; //[-22:0.1:22]
+//Véhicule 1 position en Y
+vh1_Y = 6; //[-22:0.1:22]
+//Véhicule 1 angle
+vh1_ang = 115;
+//-- Vehicle 2 -------------------
+//Type du véhicule 2 à afficher
+vh2_type = 2; // [0:"Aucun",1:"Voiture rouge",2:"Voiture bleue",3:"Bus",4:"Cycliste"]
+
+//Éléments accessoires du véhicule 2
+vh2_acc = 0; // [0:"None",1:"Vehicle line limit X (for cars)",2:"Vehicle line limit Y (for cars)",3:"Arrow",4:"Views angles"]
+//::vh2_acc = 0; // [0:"Sans",1:"Limite du véhicule ligne X",2:"Limite du véhicule ligne Y",3:"Flèche",4:"Angles de vision"]
+
+//Véhicule 2 position en X
+vh2_X = 8; //[-22:0.1:22]
+//Véhicule 2 position en Y
+vh2_Y = 2.5; //[-22:0.1:22]
+//Véhicule 2 angle
+vh2_ang = 180;
+//-- Vehicle 3 -------------------
+//Type du véhicule 3 à afficher
+vh3_type = 3; // [0:"Aucun",1:"Voiture rouge",2:"Voiture bleue",3:"Bus",4:"Cycliste"]
+
+//Éléments accessoires du véhicule 3
+vh3_acc = 0; // [0:"None",1:"Vehicle line limit X (for cars)",2:"Vehicle line limit Y (for cars)",3:"Arrow",4:"Views angles"]
+//::vh3_acc = 0; // [0:"Sans",1:"Limite du véhicule ligne X",2:"Limite du véhicule ligne Y",3:"Flèche",4:"Angles de vision"]
+
+//Véhicule 3 position en X
+vh3_X = -3.4; //[-22:0.1:22]
+//Véhicule 3 position en Y
+vh3_Y = -5.2; //[-22:0.1:22]
+//Véhicule 3 angle
+vh3_ang = -52;
+//-- Vehicle 4 -------------------
+//Type du véhicule 4 à afficher
+vh4_type = 4; // [0:"Aucun",1:"Voiture rouge",2:"Voiture bleue",3:"Bus",4:"Cycliste"]
+
+//Éléments accessoires du véhicule 4
+vh4_acc = 0; // [0:"None",1:"Vehicle line limit X (for cars)",2:"Vehicle line limit Y (for cars)",3:"Arrow",4:"Views angles"]
+//::vh4_acc = 0; // [0:"Sans",1:"Limite du véhicule ligne X",2:"Limite du véhicule ligne Y",3:"Flèche",4:"Angles de vision"]
+
+//Véhicule 4 position en X
+vh4_X = 4.4; //[-22:0.1:22]
+//Véhicule 4 position en Y
+vh4_Y = 8.8; //[-22:0.1:22]
+//Véhicule 4 angle
+vh4_ang = 155;
+
+vh_type = [vh1_type,vh2_type,vh3_type,vh4_type];
+vh_acc = [vh1_acc,vh2_acc,vh3_acc,vh4_acc];
+vh_X = [vh1_X,vh2_X,vh3_X,vh4_X];
+vh_Y = [vh1_Y,vh2_Y,vh3_Y,vh4_Y];
+vh_ang = [vh1_ang,vh2_ang,vh3_ang,vh4_ang];
 
 //==============================
 /*[Texte Descriptif]*/
 //Titre du projet
-txt1 = "Titre du projet";
+txt01 = "Titre du projet";
 //Texte descriptif
-txt2 = "description";
+txt02 = "description";
 //_
-txt3 = "";
+txt03 = "";
 //_
-txt4 = "";
+txt04 = "";
 //_
-txt5 = "";
+txt05 = "";
 //_
-txt6 = "";
+txt06 = "";
 //_
-txt7 = "";
+txt07 = "";
 //_
-txt8 = "";
-usertxt = [txt1,txt2,txt3,txt4,txt5,txt6,txt7,txt8];
+txt08 = "";
+//_
+txt09 = "";
+//_
+txt10 = "";
+usertxt = [txt01,txt02,txt03,txt04,txt05,txt06,txt07,txt08,txt09,txt10];
 
 //Concepteur
 author="_";
 //Date et révision
 design="preliminary test";
+//Licence
+license="_";
 
-designtxt = [str("Author: ",author),str("Date, revision: ",design)];
+designtxt = [str("Author: ",author),str("Date, rev.: ",design),str ("License: ",license)];
 //==============================
 /*[Général]*/
 //Coté de conduite à droite
 right_drive = true;
-//Quelle route a priorité
-road_priority = "x road"; //["none", "x road", "y road"]
-//Carrefour en 'T' (pas de branche B en Y)
-t_cross = false;
+//-------------
 //Il y a des feux de circulation
 traffic_light=true;
+//------------
+//Quelle route a priorité
+road_priority = 1; //[0:"Aucune",1: "Route X", 2:"Route Y"]
+//-----------
+//Carrefour en 'T' (pas de branche B en Y)
+t_cross = false;
 //Le feu est installé après le passage piéton (quand on le regarde)
 light_after_crossing = true; 
 //décalage du centre de rayon des coins de trottoir (augmente le rayon mais diminue l'espace pour les piétons)
@@ -254,6 +317,8 @@ cycle_triangle_sp = _cycle_triangle_sp*cfu;
 //hauteur du trottoir - depuis la route
 _pavht=0.15; 
 pavht=_pavht*cfu; 
+//number of segment for pavement cylinder ends of 300mm diam. This is key to overall calculation time ??
+pavseg=12;
 //===============================
 /*[Route X, parties communes]*/
 //Right and left are from road when looking the crossing
@@ -679,7 +744,7 @@ Wcentral = [[XA_central*cfu,XBr_central*cfu],[YA_central*cfu,YBr_central*cfu]];
 disp_road=Display_road&&!Projection;
 
 //Road priorities
-Wpriority = [traffic_light || (road_priority=="x road")||(road_priority=="none"),traffic_light || (road_priority=="y road")||(road_priority=="none")];
+Wpriority = [traffic_light || (road_priority==1)||(road_priority==0),traffic_light || (road_priority==2)||(road_priority==0)];
 
 //pedestrian crossings and road limits
   //start of the inside surface ??
@@ -705,25 +770,22 @@ Wnb_lanes = [[[XAr_nb_lanes,XAl_nb_lanes],[XBr_nb_lanes,XBl_nb_lanes]],[[YAr_nb_
 //decho ("tab test; XAl, YAr,YBr,YBl",test[vX][vA][vleft],test[vY][vA][vright],test[vY][vB][vright],test[vY][vB][vleft]);
 //===================================
 //Space between the road and the bike way, to set light (on right) and estimate bike storage space (on left).
-function spacerk (axis,branch,side) = 
-totwidth[axis][branch]/2-
-	Wpavement[axis][branch][side]-Wcycle_wd(axis,branch,side)
-	-	Wmain_start[axis][branch][side]+(side?1:-1)*isdev(axis,branch);
+function spacerk (a,b,side) = 
+totwidth[a][b]/2-Wpavement[a][b][side]-Wcycle_wd(a,b,side)-Wmain_start[a][b][side]+(side?1:-1)*ispartdev(a,b,cr_border_r(a,b)); //*/
 
-function Waxis_shift(axis,branch,side) = 
-	Wmain_start[axis][branch][side]-Wlane_wd2(axis,branch)*Wnb_lanes[axis][branch][side]-Wcentral[axis][branch]/2;	
+function Waxis_shift(a,b,side) = 
+	Wmain_start[a][b][side]-Wlane_wd2(a,b)*Wnb_lanes[a][b][side]-Wcentral[a][b]/2;	
 	
-function Waxis (axis,branch) = 
-	(Wmain_start[axis][branch][vleft]-
-	Wmain_start[axis][branch][vright])/2-isdev(axis,branch);	
+function Waxis (a,b) = 
+	(Wmain_start[a][b][vleft]-Wmain_start[a][b][vright])/2-isdev(a,b);	
 
-function Wcycle_pos2 (axis,branch,side) = 	Wcycle_lane[axis][branch][side]?(Wpark_lane[axis][branch][side])?Wroad_start[axis][branch][side]-Wpark_lane[axis][branch][side]:Wroad_start[axis][branch][side]:(Walley[axis][branch][side] && Wcycle_path[axis][branch][side])?totwidth[axis][branch]/2-Wpavement[axis][branch][side]:Wmain_start[axis][branch][side];
+function Wcycle_pos2 (a,b,side) = 	Wcycle_lane[a][b][side]?(Wpark_lane[a][b][side])?Wroad_start[a][b][side]-Wpark_lane[a][b][side]:Wroad_start[a][b][side]:(Walley[a][b][side] && Wcycle_path[a][b][side])?totwidth[a][b]/2-Wpavement[a][b][side]:Wmain_start[a][b][side];
 // if there is no cycle way, the cycling way is considered to be the beginning of the usable road
 
 function Wcycle_wd (axis,branch, side) = Wcycle_lane[axis][branch][side]?Wcycle_lane[axis][branch][side]-cycle_lane_line:(Walley[axis][branch][side] && Wcycle_path[axis][branch][side])?Walley[axis][branch][side]:0;
 
 //----------------------------------
-// perpendicular branch
+// perpendicular branches
 function paxis (axis) = axis?vX:vY;
 function pbranch (axis,branch) = axis?(branch?vA:vB):(branch?vB:vA);
 // previous branch (for border)
@@ -732,11 +794,13 @@ function prevbranch (axis,branch) = axis?(branch?vB:vA):(branch?vA:vB);
 //* ??? replace below by functions ? 
 C1_radius= max(Wpavement[vX][vA][vright],Wpavement[vY][vA][vleft])+corner_offset; 
 corner_C1 =[totwidth[vY][0]/2+C1_radius-YAl_pavement*cfu,totwidth[vX][0]/2+C1_radius-Wpavement[vX][vA][vright]];
-//echo(C1_radius=C1_radius,corner_C1=corner_C1, "Wpavement[vX][vA][vright]",Wpavement[vX][vA][vright]);
+//---------
 C2_radius= max(Wpavement[vX][vB][vleft],Wpavement[vY][vA][vright])+corner_offset; 
 corner_C2 =[-totwidth[vY][0]/2-C2_radius+YAr_pavement*cfu,totwidth[vX][0]/2+C2_radius-Wpavement[vX][vB][vleft]];
+//----------
 C3_radius= max(Wpavement[vX][vB][vright],Wpavement[vY][vB][vleft])+corner_offset; 
 corner_C3 =[-totwidth[vY][0]/2-C3_radius+YAr_pavement*cfu,-totwidth[vX][0]/2-C3_radius+XAl_pavement*cfu];
+//----------
 C4_radius= max(Wpavement[vX][vA][vleft],Wpavement[vY][vB][vright])+corner_offset; 
 corner_C4 =[totwidth[vY][0]/2+C4_radius-YAl_pavement*cfu,-totwidth[vX][0]/2-C4_radius+XAl_pavement*cfu];
 //*/
@@ -749,10 +813,7 @@ corner1 = [[corner_C1,
 [[corner_C2[1],-corner_C2[0]],
 [-corner_C4[1],corner_C4[0]]]];
 
-/*/ island adjustements
-island_diam = [[C1_island_diam*cfu,C3_island_diam*cfu],
-[C2_island_diam*cfu,C4_island_diam*cfu]];
-*/
+// bikelight adjust ~review that ???
 island_pos1 = [[C1_island_pos1*cfu,C3_island_pos1*cfu],
 [C2_island_pos1*cfu,C4_island_pos1*cfu]];
 
@@ -766,24 +827,20 @@ dbl_light_adj = [[C1_dbl_light_adj*cfu,C3_dbl_light_adj*cfu],
 // t_cross bend shift 
 tc_rshift = t_cross?Wpavement[vX][vA][vleft]:0;
 
-//Wang = [[0,180],[90,270]];
-
 cy_corner1 = corner1;
 cy_radius1 = [[C1_radius,C3_radius],[C2_radius,C4_radius]];
 
 //The following functions are all to define the external border Y coordinate of the bikeway in the crossing, as defined in the bikeway_cross(). This suppose all lanes end up contacting the main pavement corner, whatever alley, lanes, parking lane or else exists. This is the right lane continuing from the considered segment.
-//-- internal radius 
-function cross_rad (a,b) =(cy_radius1[a][b]+cy_radius1[paxis(a)][pbranch(a,b)])/2;	
 	
 //-- External radius	
-function cr_rad_ext (a,b) = cross_rad (a,b) + Wcycle_wd(a,b,vright)+cycle_wd_extent_crossing+rad_increase;
+function cr_rad_ext (a,b) = (cy_radius1[a][b]+cy_radius1[paxis(a)][pbranch(a,b)])/2 + Wcycle_wd(a,b,vright)+cycle_wd_extent_crossing+rad_increase;
 
 // External border position
 function cr_border1 (a,b) = cy_corner1[a][b][1]-cy_radius1[a][b]*1.414+cy_corner1[a][b][0]-Waxis(paxis(a),pbranch(a,b))-(Wusewidth(paxis(a),pbranch(a,b))+straight_decrease)/2-cr_rad_ext(a,b)*0.414;
 
 function cr_border2 (a,b) = cy_corner1[paxis(a)][pbranch(a,b)][0]-cy_radius1[paxis(a)][pbranch(a,b)]*1.414+cy_corner1[paxis(a)][pbranch(a,b)][1]-(Wusewidth(paxis(a),pbranch(a,b))+straight_decrease)/2-cr_rad_ext(a,b)*0.414+Waxis(paxis(a),pbranch(a,b));
 //-- Final border result ---------- 
-function cr_border_r(a,b) = min(cr_border1(paxis(a),prevbranch(a,b)),cr_border2(paxis(a),prevbranch(a,b)));
+function cr_border_r (a,b) = min(cr_border1(paxis(a),prevbranch(a,b)),cr_border2(paxis(a),prevbranch(a,b)));
 
 //-- Calculate road radius of a roundabout --
 function round_road_radius() = 
@@ -857,7 +914,11 @@ function isdev (a,b) =
 		off_axis(a,b)>500?min(Wpark_lane[a][b][vright],off_axis(a,b)):(off_axis(a,b)<-500?-min(Wpark_lane[a][b][vleft],abs(off_axis(a,b))):0)
 	):0; 
 
-//Cycle way is deviated to ward the pavement corner
+//due to the angle, the deviation may be partial when not arrived to road junction, so we adapt - dev start at road side, but dist is coordinate (from center)
+function ispartdev (a,b,dist,devlg = dev_length) = 
+	isdev(a,b)*(1-(dist-totwidth[paxis(a)][prevbranch(a,b)]/2)/devlg);
+
+//Cycle way is deviated toward the pavement corner
 function iscycledev (axis,branch,side) = Wcycle_lane[axis][branch][side]?Wpark_lane[axis][branch][side]:0;
 
 //--------------------------------
@@ -871,20 +932,22 @@ module rotroad(axis,branch) {
 			children();
 }
 
-//-- Specification text ----------  
+//-- Specification text --------  
 basetext = [
 "Spécification",	
-	str("Emprise route X branche A: ",XA_totwidth,"m" ),
-	str("Emprise route X branche B: ",XB_totwidth,"m" ),
-	str("Emprise route Y branche A: ",YA_totwidth,"m" ),
-	str("Emprise route Y branche B: ",YB_totwidth,"m" ),
-str("Route X branche A largeur voie: ",round(Wlane_wd2(vX,vA)/10)/100,"m" ),	
-str("Route X branche B largeur voie: ",round(Wlane_wd2(vX,vB)/10)/100,"m" ),	
-str("Route Y branche A largeur voie: ",round(Wlane_wd2(vY,vA)/10)/100,"m" ),	
-str("Route Y branche B largeur voie: ",round(Wlane_wd2(vY,vB)/10)/100,"m")
+  traffic_light?"Il y a des feux de trafic":str("PAS de feux de trafic",road_priority==1?", la route X a priorité":road_priority==2?", la route Y a priorité":", aucune route prioritaire"),
+	str("Emprise route X branche A/B: ",XA_totwidth,"/",XB_totwidth?XB_totwidth:XA_totwidth,"m" ),
+	str("Emprise route Y branche A/B: ",YA_totwidth,"/",YB_totwidth?YB_totwidth:YA_totwidth," m" ),
+
+str("Route X branche A/BB largeur voie: ",round100(Wlane_wd2(vX,vA)),"/",round100(Wlane_wd2(vX,vB)),"m" ),	
+str("Route Y branche A/BB largeur voie: ",round100(Wlane_wd2(vY,vA)),"/",round100(Wlane_wd2(vY,vB))," m" ),
+
+str("Route X voie cyclable br.A droite/gauche: ",round100(Wcycle_wd(vX,vA,vright)),"/",round100(Wcycle_wd(vX,vA,vleft))," m"),
+	str("Y road bikeway branchA right/left: ",round100(Wcycle_wd(vY,vA,vright)),"/",round100(Wcycle_wd(vY,vA,vleft))," m")
+//::	str("Route Y br.A droite/gauche: ",round100(Wcycle_wd(vY,vA,vright)),"/",round100(Wcycle_wd(vY,vA,vleft))," m")
 ];
 
-function roundabout_text() = round_int_diam?["Rond-point:",str("- Diamètre interne: ",_round_int_diam," m"),str("- Diamètre externe: ",round(round_road_radius()/cfu*10)/10,"m"),str("- Diamètre interne piste cyclable: ",round((round_road_radius()-roundabout_space)*2/cfu*10)/10,"m")]:[]; 
+function roundabout_text() = round_int_diam?["Rond-point:",str("- Diamètre interne: ",_round_int_diam," m"),str("- Diamètre externe: ",round100(round_road_radius())," m"),str("- Diamètre interne piste cyclable: ",round100((round_road_radius()-roundabout_space)*2)," m")]:[]; 
 
 spectxt = concat(basetext,roundabout_text());
 
@@ -909,7 +972,8 @@ module all () {
   disp_bike_signs();
   disp_islands();
 	disp_roundabout();
-  vehicles_display();
+	if (disp_road&&vh_disp) 
+		disp_vehicles();
   check(); 
   red() disp_text();
 	disp_signature();
@@ -920,6 +984,7 @@ module road () {
 // Select according t_cross	
 	Upvstart = [[[corner_C1[0],t_cross?0:corner_C4[0]],[t_cross?0:-corner_C3[0],-corner_C2[0]]],[[corner_C2[1],corner_C1[1]],[-corner_C4[1],-corner_C3[1]]]];
 	//test = [[["xAr","xAl"],["xBr","xBl"]],[["yAr","yAl"],["yBr","yBl"]]];
+	//axis=1;	branch=0;	side=0;
 	for(axis=[0:1],branch=[0:1],side=[0:1]) 
 		rotroad(axis,branch) {
 			if (side==vright) {
@@ -981,28 +1046,27 @@ module road () {
 						t(recess+upvst,tot2-pav-10, 1)
 							ramp(2000);
 				} //diff()	
-					//pavement separating alley and road		 
-				 if(Walley[axis][branch][side])
+				//pavement separating alley and road		 
+				if(Ualley)
 					t(perp2+pedshift+ped, tot2-pav-Ualley){
-					//	pavement(pavalley,road_length-perp2-ped-pedshift, true);
-						//pavement start - make a rule for length ???
 						//pavement start side shift when cycle way deviated
 						pavshift = devpav*(pedshift-(upvst-perp2))/cydev_length;
 						t (0,-pavshift)
 							pav_start(-ped,pavalley-pavshift,0,400);
 						border_start = cr_border_r(axis,branch)-perpwidth[axis][branch]/2+250;
 						//Protection of deviated lanes
-						devp = side==vleft?(dev>0?dev:0):dev<0?-dev:0;
-						if (devp) {
+						dev2 = side==vleft?(dev>0?dev:0):dev<0?-dev:0;
+						if (dev2) {
 							t(-ped-pedshift,-pavalley)	
-								protect_dev(border_start,pedshift,ped,devp);
+								protect_dev(border_start,pedshift,ped,0,dev2);
 						}	
 						//protection of parking lanes when cycle path
 						if(park)
 							t(-ped-pedshift,-pavalley)	
-								protect_dev(pedshift-500,pedshift,ped,park-(side?-1:1)*dev,false);	//protect_dev(border_start,pedshift,ped,park,false);
+								protect_dev(pedshift-500,pedshift,ped,park,-(side?-1:1)*dev,false);	
 					} //t()
 		 //If cycle path alley ???
+			// build protection for cycle lanes also ???		
 			if(disp_road && cyclepath) {
 				startcycle=t_cross&&axis==vX&&((branch==vA&&side==vleft)||(branch==vB&&side==vright))?0:perp2;
 				color(color_cycle) 
@@ -1032,42 +1096,42 @@ module road () {
 				hull() {
 					t(perp2+dev_length, coord)
 					dmirrory()
-						cylz (300,pavht,0,central?central/2-150:0);
+						cylz(300,pavht,0,central?central/2-150:0,0,pavseg);
 					  
 					t(perp2+dev_length/2,coord+dev/2)
 						dmirrory()
-							cylz (300,pavht,0,wdc2+central/2-150);
+							cylz(300,pavht,0,wdc2+central/2-150,0,pavseg);
 					
 					t(perp2+ped+pedshift+150,coord+devped)
 						dmirrory()
-							cylz (300,pavht,0,wdc2++central/2-150);
+							cylz(300,pavht,0,wdc2++central/2-150,0,pavseg);
 				} //hull() 
 				// before ped crossing
-				
 				hull(){
 				  t(perp2+pedshift-150,coord+devped2)	  dmirrory() duplx(-200)
-							cylz (300,pavht,0,wdc2++central/2-150);
+							cylz(300,pavht,0,wdc2++central/2-150,0,pavseg);
 				}
 			}	
 		} // central block/enlargement if 2x2	
 	}	//all_pav()	-------------------	
 }// road()
 //----------------------------------
-module protect_dev (start=0,pcross_shift,pcross_wd,dev, trian=true) {
+module protect_dev (start=0,pcross_shift,pcross_wd,park,dev, trian=true) {
 	diam= 300;
+	dev1 = park+dev*(1-(pcross_shift)/dev_length);
+	dev2 = park+dev*(1-(pcross_shift+pcross_wd)/dev_length);
 	color (color_pavement) { 
 		hull()
-			duply(-dev+200) { 
-				cylz(diam,pavht, pcross_shift-diam/2);
-				cylz(diam,pavht, start+diam/2);
+			duply(-dev1+200) { 
+				cylz(diam,pavht, pcross_shift-diam/2,0,0,pavseg);
+				cylz(diam,pavht, start+diam/2,0,0,pavseg);
 			}
-		dev2 = dev*(1-(pcross_shift+pcross_wd)/dev_length);	
 		hull() {
 			duply(-dev2+diam/2)
 				duplx(200) //if diam 300->width 500
-					cylz(diam,pavht, pcross_shift+pcross_wd+diam/2);
+					cylz(diam,pavht, pcross_shift+pcross_wd+diam/2,0,0,pavseg);
 			if (trian)
-				cylz(150,pavht, dev_length,75);
+				cylz(150,pavht, dev_length,75,0,8);
 		}
   }
 }
@@ -1391,7 +1455,7 @@ module disp_pedcross () {
 					}
 			//dashed stop line ???
 				stpos = pedcross_shift+width+stop_line;	
-				devstop = dev*(1-stpos/dev_length);	
+				devstop = dev*(1-stpos/dev_length);		
 				diff() {
 					t(road+stpos,rstart-notcar_lane+devstop)
 						rotz(-90)
@@ -1474,6 +1538,10 @@ module disp_lanes () {
     red2 = -1200;
 		nbk = floor((road_length-pkstart-pos)/park_space);
 		spacex = deviate?0:500;
+		wdend = width-dev*(1-(pcross_shift+pcross_wd)/dlength);
+		//echo(width=width, wdend=wdend, sidepole=sidepole);
+		nb_poles = floor((pkstart-200)/2500);
+	  sidepole = nb_poles>1?(width-wdend)*0.5/(nb_poles-1):0;	
 		//-----------------------------------
 		if(width){ // park lane exists
 			// dashed line
@@ -1511,7 +1579,10 @@ module disp_lanes () {
 						}
 				else {	
 					// protection poles
-					if (dev==0) {
+					for (i=[0:nb_poles])
+						white()
+							cylz(150,800,pkstart-2500*i,-width/2+sidepole*i,0,8); 
+				/*	if (dev==0) {
 						white() {
 							cylz(150,800,safelg-100,-width/2); 
 							if(pkstart!=500)   
@@ -1522,7 +1593,7 @@ module disp_lanes () {
 							if (pkstart!=500)   
 								cylz(152,120, safelg/2,-width/2,600); 
 						}
-					}
+					} */
 				}	
 			} 
 	  }	
@@ -1663,11 +1734,9 @@ module island (axis,branch) {
 	//way stop line length
 	linelg = (wayr+cycle_wd_extent_crossing+400)/(cydouble?2:1)+450; 
 	dev = isdev(axis,branch);	
-	devp = isdev(axisp,branchp);	
-	alpav = (Walley[axisp][branchp][vleft]?Walley_pavement[axisp][branchp][vleft]+Wpark_lane[axisp][branchp][vleft]:0);
 	
-	xil2 = Wcycle_pos2(axisp,branchp,vleft)-waypl-alpav-devp;
-	//echo(xpos=xpos, "al pav", alpav, devp=devp);
+  xil2 = Wmain_start[axisp][branchp][vleft]-ispartdev(axisp,branchp,bordery);
+	
   yil2 = cr_border_r(axisp,branchp)-wayr-cycle_wd_extent_crossing-island_pos2[axis][branch];
 
 	xil1 =borderx-wayprev-cycle_wd_extent_crossing-island_pos1[axis][branch];
@@ -1680,26 +1749,13 @@ module island (axis,branch) {
 
 // bike traffic light AND stop line priority logic handled within module
 // concrete block to pedestrian 
-	lighty = bordery+450;
+	lighty = bordery+300;
 	extent = totwidth[axis][branch]/2+Wpedcross_shift[paxis(axis)][pbranch(axis,branch)]-lighty;
-		// next is to manage absence of bike space if no deviation ??
-//	p2xdec = Wcycle_lane[axisp][branchp][vleft]&&!Wpark_lane[axisp][branchp][vleft]&&!devp?0:500;
-//Calculate precisely the bike space to set or not advanced stop ??
-/*	bikesp = totwidth[axisp][branchp]/2-
-	Wpavement[axisp][branchp][vleft]-Wcycle_wd(axisp,branchp,vleft)
-	-	Wmain_start[axisp][branchp][vleft]+isdev(axisp,branchp);
-*/	
-	bikesp = spacerk(axisp,branchp,vleft);
-	//echo(bikesp=bikesp);
-	p2xdec = bikesp>1400?500:0;
+
 	if(Wcycle_wd(axis,branch,vright))
-		//If there is no parking lane or a deviation against this parking lane, so there is no bike advance storage space, hence bikelight not advanced
-		if(p2xdec)
-			t(xil2+250,lighty)
-				bikelight(-20,150,-80,linelg,axis, extent);
-	  else // no bike storage space so no advanced position- move pedestrian crossing ??
-			t(cy_corner1[axis][branch][0]+1250,totwidth[axis][branch]/2-Wpavement[axis][branch][vright]-Wcycle_wd (axis,branch,vright)-250)
-			  bikelight(-20,150,110,linelg,axis,0);
+		t(xil2+250,lighty)
+			bikelight(-20,150,-83,linelg,axis, extent);
+
 	if (dblprev) 
 		t(xil1-200-dbl_light_adj[axis][branch],yil1+150)
 			rotz(90)
@@ -1710,31 +1766,38 @@ module island (axis,branch) {
 	//-- Island ---------------------
 	xext = borderx-Wmain_start[axisp][branchp][vleft]-radius_clearance+isdev(axisp,branchp);
 
-	yext = bordery-Wmain_start[axis][branch][vright]-radius_clearance-isdev(axis,branch);
- 
+	yext = bordery-Wmain_start[axis][branch][vright]-radius_clearance-dev;
+ //Bias on island only if roundabout
  quart_bias=round_int_diam?round_bias*0.707:0; 	
-	
+	//-- islands ---------
   if (!(t_cross&&branch==vB)&&Wcycle_wd (axis,branch,vright)) {
 		//Only truck pavement if sufficient room ??
 		istruckpav = (xext+yext)>16000&&!quart_bias;
 		pavcarht = istruckpav?pavht/2:pavht;
-	  diff(){
-		  u(){
-			  t(borderx,bordery) rotz(180) {
-				  if(istruckpav)
-					  color(color_pavement_border)
-						 quart_shape (truck_radius,xext,yext,xext/3,pavht);
-				  color(color_pavement)
-					  quart_shape (car_radius,xext,yext,xext/2.5,pavcarht,diag=quart_bias);
-			  }			
-		  }//:::::::::
-	    cutcorner(axis,branch);
-			// cut diagonally to remove what expand over the way
-			t(corner1[axis][branch][0]-radius1[axis][branch],corner1[axis][branch][1]-radius1[axis][branch])  
+		color(color_pavement_border)
+			if(istruckpav) //truck island
+				diff() {
+					t(borderx,bordery) rotz(180)
+						quart_shape (truck_radius,xext,yext,xext/3,pavht,0);
+					//:::::::::
+					cutcorner(axis,branch);
+					cut_diag();
+				}
+		color(color_pavement)
+			diff(){ // car island
+				t(borderx,bordery) rotz(180)
+					quart_shape (car_radius,xext,yext,xext/2.5,pavcarht,diag=quart_bias);
+				//:::::::::
+				cutcorner(axis,branch);
+				cut_diag();
+			}	
+	}	
+	// cut diagonally to remove what expand over the way
+	module cut_diag(){
+		t(corner1[axis][branch][0]-radius1[axis][branch],corner1[axis][branch][1]-radius1[axis][branch])  
 				rotz (-45) 
 				  cubez (16000,4000,500, 0,2000,-100);
-	  }	
-	}		
+	}	
 }//Island()
 
 module quart_shape (radius,wdx,wdy, way, ht=pavht, extent=-1500, diag=0) {
@@ -1785,12 +1848,12 @@ module bikelight (angline=-25,stopline=100, linang=0, linelength=1000, axis=vX, 
 				}
 				color(color_pavement) 
 				  hull() {
-						cylz(500,pavht);
+						cylz(500,pavht, 0,0,0,16);
 						cubey (500,extent,pavht, 0,0,pavht/2);
 					}	
 			}
 			// stop line 
-			prio = road_priority=="none"?false:axis?(road_priority=="y road"?false:true):(road_priority=="x road"?false:true);
+			prio = road_priority==0?false:axis?(road_priority==2?false:true):(road_priority==1?false:true);
 			//no marking line if there is no priority
 			if (traffic_light || prio)
 				white() 
@@ -1803,7 +1866,7 @@ module bikelight (angline=-25,stopline=100, linang=0, linelength=1000, axis=vX, 
 module pav_corner (x,y) {
   r = max(x,y)+corner_offset;
   //echo (x=x,y=y,cut=cut);
-  gray() cylz(20,1000);
+  gray() cylz(20,1000, 0,0,0,6);
   color(color_pavement) {
     diff() {
       cylz(2*r,pavht, -(y-r),-(x-r),0,32);
@@ -1922,24 +1985,118 @@ module disp_bike_signs () {
 	} //dspbike
 } //disp_bikes_signs
 
-//================================
-//-----------------------------------
-module vehicles_display () {
-  if (Display_bus&&disp_road)
-    color ("lightblue")
-    	t(X_bus*cfu,Y_bus*cfu)
-				rotz (Ang_bus+90) {
-					t(1350,0,-30) 
-						rotz(-90) scale(1560) import("Bus_by_Anderson_Rondon.stl");
-					//cylx(-500,2550, 0,-20,1000); //bus width check
-					//cyly(-500,10900, 0,-100,1000); //bus length check
-				}
-	car("red",X_car*cfu,Y_car*cfu,Ang_car);
+//== VEHICLES =====================
+//4 vehicles MODELS, their color
+v_color = ["","red","blue","lightblue","Yellow"];
+//4 vehicles MODELS, their type
+v_type = [0,1,1,2,3];
+
+module disp_vehicles () {
+	for (i=[0:3]) {
+		disp_vh (v_type[vh_type[i]],v_color[vh_type[i]],vh_X[i],vh_Y[i],vh_ang[i], vh_acc[i]); 
+	}	
+}
+//-- display one vehicle --
+module disp_vh (type, vcolor, x,y,ang, acc) {
+//echo("type, vcolor, x,y,ang, acc", type, vcolor, x,y,ang, acc);	
+	//type: 0:nothing, 1:car, 2:bus, 3:bicyclist
+	linang= acc==1?1:acc==2?90:0;
+	arrow= acc==3?1:0;	
+	view = acc==4?1:0;		
+	//parameters for each TYPE of vehicle
+	//0:_, 1:arrow_dist, 2:view_pos, 3:view_shift, 4:view_ht, 5:view_angle]  
+	v_acc_param =	[[],
+		[0,2500,200,450,1050,-33],//car
+		[0,6000,4400,750,2000,-33],//bus
+		[0,1500,-20,0,1680,26] //bicyclist
+	];	
+
+	t(x*cfu,y*cfu) rotz(ang){ 
+    if (type==1) 
+		  car(vcolor,linang, ang); 
+	  else if(type==2) 
+			color(vcolor)
+				t(0,1350,-30) 
+						scale(1560) 
+							import("Bus_by_Anderson_Rondon.stl");
+		else if(type==3)
+		  color(vcolor)	
+				rotz(90) t(20,0,0) 
+					scale(1) 
+						import("Bicyclist_by_Digson.stl"); 
+				/*/ Check dimensions
+					cyly (-200,1000, 0,100,350);
+					cyly (-100,1750, 0,100,350);
+					cylz (100,1820);cylx 
+					(740,40,0,0,370); //*/
+		if(arrow&&type)
+			demo_arrow(v_acc_param[type][1]);
+		
+		if(view&&type)
+			t(v_acc_param[type][2],v_acc_param[type][3], v_acc_param[type][4])
+		    demo_sight(v_acc_param[type][5],clr="lightgreen");
+  } 
+}
+//-- Primitive car model(length:4.2m)
+module car(clrcar = "red", linang=0, ang) {
+	dwheel =600;
+	//line showing the back car end
+		t(-2100,800)
+			if (linang)//shut view at 0
+				rotz(-ang+linang)
+					color ("lightgreen") 
+						cubez (6000,120,30);
+	//wheels
+	black() 
+		dmirrorx() dmirrory() 
+			cyly(dwheel,220, 1200,550,dwheel/2); 	
+	//car
+	color(clrcar) 
+		diff() {
+			hull() {
+				cubez(4200,1620,200, 0,0,135);
+				cubez(4000,1580,200, -80,0,135+380);
+				cubez(2300,1580,200, -150,0,135+500);
+			}
+			dmirrorx() 
+				cyly(-dwheel-100,2200, 1200,0,dwheel/2); 	
+		}
+	//roof	
+	color(clrcar) 
+		cubez (1500,1400,10, -280,0,1350);	
+	//glass	
+	color(glass_color)
+		hull() {
+			cubez(2300,1580,2, -150,0,830);
+			cubez(1500,1400,2, -280,0,1350);
+		}
+}
+//-- Display arrow in front of vehicle
+module demo_arrow(pos=2500) {
+	color ("orange") {
+		cubex(1000,100,80, pos);
+			hull() {
+				cubex (10,300,80,pos+1000);
+				cubex (600,20,80,pos+1000);
+			}
+	}
+}
+//-- Show viewing angle ---------
+module demo_sight(ang,clr = "lightgreen") {
+		color ("orange")
+			rotz (ang)
+				cubex (10000,50,100);
+		color (clr) {
+			rotz(ang-60)
+			  cubex (5000,50,100);
+			rotz(ang+60)
+			  cubex (5000,50,100);
+		}	
 }
 
 //== display text =================
 module disp_text () {
-	copyright = ["Application: Protected crossing","Copyright Pierre ROUZEAU 2018","License: CC BY-SA","https://github.com/PRouzeau/Protected-crossing"];
+	copyright = ["Application: Protected crossing","Copyright Pierre ROUZEAU 2018","License: GPL v3, documentation: CC BY-SA 4.0","https://github.com/PRouzeau/Protected-crossing"];
 	tXA = totwidth[vX][vA]/2;
 	tXB = totwidth[vX][vB]/2;
 	tYA = totwidth[vY][vA]/2;
@@ -1958,17 +2115,17 @@ module disp_text () {
 	  txt();
 	module txt() 	 {
 		// User text
-		t(tYA+4000,tXA+18000) 
+		t(tYA+4000,tXA+20000) 
 			multiLine(usertxt);
 		// Author & date
-		t(tYA+4000,tXA+4000) 
+		t(tYA+4000,tXA+5000) 
 			multiLine(designtxt,750);
 		// Specification text
 		t(tYA+3500,-tXA-4000) 
 			multiLine(spectxt);
 	  // Copyright		
 		t(-26000-tYA,tXB+8000)
-			multiLine(copyright,700);
+			multiLine(copyright,750);
 		// Tags
 		dpt(tYA+15000, tXA+1200,"r(ight)");
 		dpt(tYB+15000, -tXA-1200,"l(eft)");
@@ -2107,6 +2264,10 @@ module decho(var1, var2="",var3="", var4="",var5="",var6="", var7="",var8="") {
 
 //== utilities ====================
 //-- Draw a straight line, dotted or not, horizontal, with optional deviation (angled) --
+
+//Round by 100 and divide by 1000 (cfu) mm->m
+function round100 (x) = round(x/10)/100;	
+
 // implement negative lengths ??
 module line2 (width=100,start, length, pos=0, interval=1000, space=0, ht=10, deviate=0) {
 	ang = atan (deviate/length);
@@ -2114,7 +2275,6 @@ module line2 (width=100,start, length, pos=0, interval=1000, space=0, ht=10, dev
 	startr = start/cos(ang);
 	nb = max(0,floor((lgt-startr)/interval));
 	//mmm shall correct library duplx /duply when numbers are negative ???
-	//echo (nb=nb)
 	t(0,deviate)
 		rotz(-ang)
 			if(space) {
@@ -2129,7 +2289,8 @@ module line2 (width=100,start, length, pos=0, interval=1000, space=0, ht=10, dev
 				cubex(lgt-startr,width,ht, startr,pos*width/2,ht/2+1);
 }
 
-//-- Draw a dotted line on a given diameter --
+//-- Draw dotted line or triangles
+//   on a given diameter --
 module circline (dline=24000, triang=false) {
 	wdline = 250;
 	segl = 500;
@@ -2148,16 +2309,14 @@ module circline (dline=24000, triang=false) {
 				rotz(-i*ags+j*90) 
 					cubez (wdline,segl,10, dline/2,-segl,2);
 		module tria()	{
-			hull() {
-				cubez (10,400,10, dline/2-100,100,2);
-				cubez (10,40,10, dline/2+600,100,2);
-			}	
+			t(dline/2-100) 
+				linear_extrude(height=10)
+					polygon([[700,0],[0,200],[0,-200]]);
 		}
-			
 }
 
 //Printing multiples lines in a vector
-module multiLine (lines, size=1000, wdtxt=22500){
+module multiLine (lines, size=1000, wdtxt=25000){
 	mirrorx(!right_drive) 
   t(!right_drive?-wdtxt:0)	 
 		union(){
@@ -2179,37 +2338,8 @@ function split(str, sep=" ", i=0, word="", v=[]) =
 	str[i] == sep ? split(str, sep, i+1, "", concat(v, word)) :
 	split(str, sep, i+1, str(word, str[i]), v);
 
-//-- Very primitive car model(l:4.2m)
-module car(clrcar = "red", x,y,ang) {
-	dwheel =600;
-	t(x,y) rotz(ang) {
-		t(-2100,800)
-		  rotz(-ang)
-				color ("lightgreen") cubez (6000,120,30);
-		black() 
-			dmirrorx() dmirrory() 
-				cyly(dwheel,220, 1200,550,dwheel/2); 	
-		color(clrcar) 
-			diff() {
-				hull() {
-					cubez(4200,1620,200, 0,0,135);
-					cubez(4000,1580,200, -80,0,135+380);
-					cubez(2300,1580,200, -150,0,135+500);
-				}
-				dmirrorx() 
-					cyly(-dwheel-100,2200, 1200,0,dwheel/2); 	
-			}
-		color("lightblue")
-			hull() {
-				cubez(2300,1580,2, -150,0,830);
-				cubez(1500,1400,2, -280,0,1350);
-			}
-		color(clrcar) 
-			cubez (1500,1400,10, -280,0,1350);
-	}	
-}
-
-module disp_signature(sc=60) {
+//Display my Signature (PRZ)
+module disp_signature(sc=50) {
 	ht=round_int_diam?300:50;
 	clr = round_int_diam?"green":"lightgreen";
 	color(clr)
