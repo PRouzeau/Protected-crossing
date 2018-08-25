@@ -9,9 +9,9 @@
 //All designs done with this application are free of right
 // This uses my OpenSCAD library, attached, but you can find details here:
 // https://github.com/PRouzeau/OpenScad-Library
-//models from sketchup warehouse
+//model from sketchup warehouse
 //Bus 3D model by Anderson Rondon - Marcopolo senior midi, length 11 m.
-//Cyclist model by Digson, modified
+//bike model own design, as ground marking bikes
 
 /* KNOWN BUGS:
 *When there is an alley and the pavement separation is not sufficiently wide, the main traffic light position may not be correct
@@ -122,8 +122,8 @@ $vpd=Cimp?Top_view?220000:110000:$vpd;
 //Vecteur de déplacement
 $vpt=Cimp?[-450,2200,4300]:$vpt; 
 //Vecteur de rotation
-$vpr=Cimp?Top_view?[0,0,0]:[80,0,10]:$vpr; 
-//echo_camera();
+$vpr=Cimp?Top_view?[0,0,0]:[74,0,10]:$vpr; 
+echo_camera();
 //===================================
 /*[Affichage]*/
 /*
@@ -134,13 +134,15 @@ display_building = false;
 Projection=false;
 //Affiche la route (sinon seulement trottoirs et marquage)
 Display_road = true;
+//Affiche avertissements et données dans la vues 3D
+Disp_text = true;
 //Affiche avertissements dans la console
 inf_text = true;
-
-//== VEHICLES ===================
-//see in vehicle chapter v_color and v_type for color and vehicle association 	
 //Afficher les véhicules
 vh_disp = false;	
+//== VEHICLES ===================
+//see in vehicle chapter v_color and v_type for color and vehicle association 	
+/*[Véhicules]*/
 //-- Vehicle 1 -------------------
 //Type du véhicule 1 à afficher
 vh1_type = 1; // [0:"Aucun",1:"Voiture rouge",2:"Voiture bleue",3:"Bus",4:"Cycliste"]
@@ -1040,7 +1042,7 @@ module road () {
 					if (Ualley) 	
 						side_alley(-100,400);
 					//pedestrian crossing
-					cubez (ped,Ualley*2,500, perp2+pedshift+ped/2,tot2-pav-Ualley*1.5,-200);
+					cubey (ped,-8000,600, perp2+pedshift+ped/2,tot2-pav-Ualley+100);
 					//pedestrian recess
 					if(recess)
 						t(recess+upvst,tot2-pav-10, 1)
@@ -1765,12 +1767,11 @@ module island (axis,branch) {
 //green() cylz (200,2000,0,bordery);
 	//-- Island ---------------------
 	xext = borderx-Wmain_start[axisp][branchp][vleft]-radius_clearance+isdev(axisp,branchp);
-
 	yext = bordery-Wmain_start[axis][branch][vright]-radius_clearance-dev;
  //Bias on island only if roundabout
  quart_bias=round_int_diam?round_bias*0.707:0; 	
 	//-- islands ---------
-  if (!(t_cross&&branch==vB)&&Wcycle_wd (axis,branch,vright)) {
+  if (!(t_cross&&branch==vB)&&Wcycle_wd(axis,branch,vright)) {
 		//Only truck pavement if sufficient room ??
 		istruckpav = (xext+yext)>16000&&!quart_bias;
 		pavcarht = istruckpav?pavht/2:pavht;
@@ -1790,7 +1791,20 @@ module island (axis,branch) {
 				//:::::::::
 				cutcorner(axis,branch);
 				cut_diag();
+				if (quart_bias)
+					cylz(2*(round_road_radius()-roundabout_space),500,0,0,-100);
 			}	
+	// Redraft the road angle for proper diagonal, only if there is perpendicular bikeway, are cut along island border	
+		xcut = borderx-xext;
+		ycut = bordery-yext;	
+		if(Wcycle_wd(paxis(axis),prevbranch(axis,branch),vright))
+			color(color_cycle)
+				diff() {
+					cutcorner(axis,branch,2,15,false);		
+					//::::::::::::::::
+					cubex (-10000,10000,100,xcut,bordery,-10);
+					cubey (10000,-10000,100,borderx,ycut,-10);
+				}	
 	}	
 	// cut diagonally to remove what expand over the way
 	module cut_diag(){
@@ -1883,9 +1897,13 @@ module pav_corner (x,y) {
 module ramp (width = 2000) {
   r(2.5)
     hull() {
-      cubey (width,-500, 200, 0,30,118);  
+      cubey (width,-10, 200, 0,30,140);  
+			r(-2.5)
+				cubey (width,-1200, 200, 0,30,140);  
 			cubey (1000,10, 200, 0,3500,118);  
-      cubey (width+3000,1700, 2, 0,-500,200);
+      cubey (width+3000,1200, 2, 0,-10,200);
+			r(-2.5)
+			  cubey (width+3000,-1200, 2, 0,-10,200);
 			cubey (width+5000,10, 10, 0,3000,200); 
     }  
 }
@@ -2019,11 +2037,17 @@ module disp_vh (type, vcolor, x,y,ang, acc) {
 				t(0,1350,-30) 
 						scale(1560) 
 							import("Bus_by_Anderson_Rondon.stl");
-		else if(type==3)
-		  color(vcolor)	
-				rotz(90) t(20,0,0) 
-					scale(1) 
-						import("Bicyclist_by_Digson.stl"); 
+		else if(type==3) {
+			color([0.15,0.15,0.15])
+				import("Bicycle.stl"); 
+			color("greenyellow")
+				import("Cyclist_body.stl"); 
+			color ("peachpuff")
+				import("Cyclist_head.stl"); 
+		}
+/*		  color(vcolor)	
+				rotz(90)
+						import("Bicyclist_by_Digson.stl"); */
 				/*/ Check dimensions
 					cyly (-200,1000, 0,100,350);
 					cyly (-100,1750, 0,100,350);
@@ -2072,12 +2096,13 @@ module car(clrcar = "red", linang=0, ang) {
 		}
 }
 //-- Display arrow in front of vehicle
-module demo_arrow(pos=2500) {
+module demo_arrow (pos=2500) {
+	ht = 40;
 	color ("orange") {
-		cubex(1000,100,80, pos);
+		cubex(1000,100,ht, pos,0,ht/2);
 			hull() {
-				cubex (10,300,80,pos+1000);
-				cubex (600,20,80,pos+1000);
+				cubex (10,340,ht,pos+1000,0,ht/2);
+				cubex (600,20,ht,pos+1000,0,ht/2);
 			}
 	}
 }
@@ -2137,11 +2162,13 @@ module disp_text () {
 		
 		dpt(-tYA-1500,tXB+15000,"r(ight)");
 		dpt(tYA+1500,tXA+15000,"l(eft)");
-		dpt(-tYB-1500,-tXB-15000,"l(eft)");
-		dpt(tYB+1500,-tXA-15000,"r(ight)");
-		  
-		duply(rpt-500) dpt(0,rl,"Y - A");
-		duply(-rpt+500) dpt(0,-rl,"Y - B");
+		if (!t_cross) {
+			dpt(-tYB-1500,-tXB-15000,"l(eft)");
+			dpt(tYB+1500,-tXA-15000,"r(ight)");
+		}  
+		duply(-rpt) dpt(0,rl,"Y - A");
+		if (!t_cross)
+			duply(rpt) dpt(0,-rl,"Y - B");
 			
 		t(tYA+1500,tXA+1200) {
 			dpt(0,0,"C1");
@@ -2156,12 +2183,14 @@ module disp_text () {
  		t(-tYB-1500,-tXB-1200) {
 			dpt(0,0,"C3");
 		  dpt(-10000,0,"XBr");
-			dpt(0,-9000,"YBl");
+			if (!t_cross)
+				dpt(0,-9000,"YBl");
 		}	
 		t(tYB+1500,-tXA-1200) {
 			dpt(0,0,"C4");
 		  dpt(10000,0,"XAl");  
-			dpt(0,-9000,"YBr"); 
+			if (!t_cross)
+				dpt(0,-9000,"YBr"); 
 		}	
 	}
 }
@@ -2265,7 +2294,7 @@ module decho(var1, var2="",var3="", var4="",var5="",var6="", var7="",var8="") {
 //== utilities ====================
 //-- Draw a straight line, dotted or not, horizontal, with optional deviation (angled) --
 
-//Round by 100 and divide by 1000 (cfu) mm->m
+//Round by 100 and divide by 1000 (cfu=1000) mm->m
 function round100 (x) = round(x/10)/100;	
 
 // implement negative lengths ??
@@ -2307,9 +2336,9 @@ module circline (dline=24000, triang=false) {
 			}				
 			else 	
 				rotz(-i*ags+j*90) 
-					cubez (wdline,segl,10, dline/2,-segl,2);
+					cubex (wdline,segl,10, dline/2,-segl/2,7);
 		module tria()	{
-			t(dline/2-100) 
+			t(dline/2) 
 				linear_extrude(height=10)
 					polygon([[700,0],[0,200],[0,-200]]);
 		}
@@ -2317,12 +2346,14 @@ module circline (dline=24000, triang=false) {
 
 //Printing multiples lines in a vector
 module multiLine (lines, size=1000, wdtxt=25000){
+	//mirroring text if left drive 
 	mirrorx(!right_drive) 
-  t(!right_drive?-wdtxt:0)	 
-		union(){
-			for(i = [0 : len(lines)-1])
-				translate([0 , -i *size*1.5*(i?1:1.2), 0 ])  text(lines[i], size*(i?1:1.2));
-		}
+  t(!right_drive?-wdtxt:0)	
+		if(Disp_text)
+			union(){
+				for(i=[0:len(lines)-1])
+					translate([0 , -i *size*1.5*(i?1:1.2), 0 ])  text(lines[i], size*(i?1:1.2));
+			}
 }
 
 //Flattening a vector of strings
