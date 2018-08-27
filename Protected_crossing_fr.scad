@@ -120,11 +120,11 @@ Top_view = false;
 Cimp = Dictate_camera_position||Top_view; 
 $vpd=Cimp?Top_view?220000:110000:$vpd; 
 //Vecteur de déplacement
-$vpt=Cimp?[-450,2200,4300]:$vpt; 
+$vpt=Cimp?[1150,900,700]:$vpt; 
 //Vecteur de rotation
-$vpr=Cimp?Top_view?[0,0,0]:[74,0,10]:$vpr; 
+$vpr=Cimp?Top_view?[0,0,0]:[64,0,19]:$vpr; 
 echo_camera();
-//===================================
+//================================
 /*[Affichage]*/
 /*
 //Affiche batiments (pas encore installé)
@@ -237,7 +237,7 @@ design="preliminary test";
 //Licence
 license="_";
 
-designtxt = [str("Author: ",author),str("Date, rev.: ",design),str ("License: ",license)];
+designtxt = [str("Date, rev.: ",design), str("Author: ",author,"  License: ",license)];
 //==============================
 /*[Général]*/
 //Coté de conduite à droite
@@ -674,7 +674,11 @@ pvYrB = YBr_alley?YBr_alley_pav:0;
 pvYlB = YBl_alley?YBl_alley_pav:0;
 
 Wpav_alley = [[[pvXrA*cfu,pvXlA*cfu],[pvXrB*cfu,pvXlB*cfu]],[[pvYrA*cfu,pvYlA*cfu],[pvYrB*cfu,pvYlB*cfu]]];
-//-----------------------------------
+
+//Real alley pavement width
+real_alley_pav = Wpav_alley-Wpavdev;
+
+//---------------------------------
 //??? cross lanes
 // use cfu if cycle path became a width ???
 XBr_cycle_path = XAl_cycle_path;
@@ -934,7 +938,7 @@ module rotroad(axis,branch) {
 			children();
 }
 
-//-- Specification text --------  
+//-- Specification text ------  
 basetext = [
 "Spécification",	
   traffic_light?"Il y a des feux de trafic":str("PAS de feux de trafic",road_priority==1?", la route X a priorité":road_priority==2?", la route Y a priorité":", aucune route prioritaire"),
@@ -1117,7 +1121,7 @@ module road () {
 		} // central block/enlargement if 2x2	
 	}	//all_pav()	-------------------	
 }// road()
-//----------------------------------
+//--------------------------------
 module protect_dev (start=0,pcross_shift,pcross_wd,park,dev, trian=true) {
 	diam= 300;
 	dev1 = park+dev*(1-(pcross_shift)/dev_length);
@@ -2119,7 +2123,7 @@ module demo_sight(ang,clr = "lightgreen") {
 		}	
 }
 
-//== display text =================
+//== display text ================
 module disp_text () {
 	copyright = ["Application: Protected crossing","Copyright Pierre ROUZEAU 2018","License: GPL v3, documentation: CC BY-SA 4.0","https://github.com/PRouzeau/Protected-crossing"];
 	tXA = totwidth[vX][vA]/2;
@@ -2143,8 +2147,8 @@ module disp_text () {
 		t(tYA+4000,tXA+20000) 
 			multiLine(usertxt);
 		// Author & date
-		t(tYA+4000,tXA+5000) 
-			multiLine(designtxt,750);
+		t(tYA+3200,tXA+3800) 
+			multiLine(designtxt,750, 25000,true);
 		// Specification text
 		t(tYA+3500,-tXA-4000) 
 			multiLine(spectxt);
@@ -2152,8 +2156,7 @@ module disp_text () {
 		t(-26000-tYA,tXB+8000)
 			multiLine(copyright,750);
 		// Tags
-		dpt(tYA+15000, tXA+1200,"r(ight)");
-		dpt(tYB+15000, -tXA-1200,"l(eft)");
+		
 		dpt(-tYA-15000, tXB+1200,"l(eft)");
 		dpt(-tYB-15000, -tXB-1200,"r(ight)");
 		  
@@ -2161,7 +2164,7 @@ module disp_text () {
 		duplx(rpt) dpt(-rl, 0,"X - B ");
 		
 		dpt(-tYA-1500,tXB+15000,"r(ight)");
-		dpt(tYA+1500,tXA+15000,"l(eft)");
+		
 		if (!t_cross) {
 			dpt(-tYB-1500,-tXB-15000,"l(eft)");
 			dpt(tYB+1500,-tXA-15000,"r(ight)");
@@ -2172,8 +2175,10 @@ module disp_text () {
 			
 		t(tYA+1500,tXA+1200) {
 			dpt(0,0,"C1");
-		  dpt(10000,0,"XAr");
+		  dpt(13500,0,"XAr");
+			dpt(17000,0,"r(ight)");
 			dpt(0,9000,"YAl");
+			dpt(0,12000,"l(eft)");
 		}	
 		t(-tYA-1500,tXB+1200) {
 			dpt(0,0,"C2");
@@ -2188,7 +2193,8 @@ module disp_text () {
 		}	
 		t(tYB+1500,-tXA-1200) {
 			dpt(0,0,"C4");
-		  dpt(10000,0,"XAl");  
+		  dpt(13500,0,"XAl");
+			dpt(17000, 0,"l(eft)");
 			if (!t_cross)
 				dpt(0,-9000,"YBr"); 
 		}	
@@ -2212,6 +2218,10 @@ function typeway(axis,branch, side) =	str("Voie ",naxis[axis],",branche ",nbranc
 			c_way(vY,vA,vleft),
 			c_way(vY,vB,vright),
 			c_way(vY,vB,vleft),
+			c_1lane_sep (vX,vA),
+			c_1lane_sep (vX,vB),
+			c_1lane_sep (vY,vA),
+			c_1lane_sep (vY,vB),
 			c_ped_light()
 		);
 	//Split string in a vector
@@ -2236,8 +2246,9 @@ function typeway(axis,branch, side) =	str("Voie ",naxis[axis],",branche ",nbranc
 	wr_light_pcross_wd:"";
 	
 	function c_way (a,b,s) = 
-		str(c_path_wd1(a,b,s),"\n",c_path_wd2(a,b,s),"\n",c_lane_wd(a,b,s)
+		str(c_path_wd1(a,b,s),"\n",c_path_wd2(a,b,s),"\n",c_lane_wd(a,b,s),"\n",c_pavalley(a,b,s),"\n"
 	);
+	
 	//-- check cycle path width ------
 	function c_path_wd1(a,b,s) = 
 	Walley[a][b][s]&&Wcycle_path[a][b][s]&&Walley[a][b][s]<2000&&!Wcycle_double[a][b][s]?
@@ -2256,10 +2267,14 @@ function typeway(axis,branch, side) =	str("Voie ",naxis[axis],",branche ",nbranc
 	:
 	((Wcycle_lane[a][b][s]-cycle_lane_line)<1500?str(wr_lane_width, (Wcycle_lane[a][b][s]-cycle_lane_line)/cfu,"m ,",typeway(a,b,s),"\n."):"")
 	):"";
+	
+	function c_pavalley (a,b,s) = 
+	  Wcycle_path[a][b][s]&&Walley[a][b][s]&&Wpark_lane[a][b][s]?real_alley_pav[a][b][s]<600?str(er_pavalleypark, real_alley_pav[a][b][b]/cfu," m, ", typeway(a,b,s),"\n."):"":"";
+		
+	function c_1lane_sep (a,b) = 	 Wcentral[a][b]&&Wnb_lanes[a][b][vleft]<2?str(er_1lane_sep, typeway(a,b,vleft),"\n.\n"):"";
 
 } //check()
-
-//== Warnings =======================
+//== Warnings =====================
 wr_path_width = "* La largeur minimale recommandée\n pour une piste cyclable unidirectionnelle\n est de 2m, avec une préférence pour 2.5m. Largeur actuelle:";
 //---------------
 wr_2path_width = "* La largeur minimale recommandée pour une piste cyclable a double sens est de 2.5m, avec une préférence pour 3m. Largeur actuelle:";
@@ -2272,9 +2287,9 @@ wr_light_ped_crossing = "* Lorqu'il y a des feux rouges, il y a généralement d
 //---------------------------------
 //== ERRORS =======================
 // a mettre en oeuvre
-er_1lane_sep = "Erreur!: vous ne pouvez pas mettre de séparateur béton quand l'entrée n'a qu'une seule voie, ceci empêche les bus et les camions de tourner:";
+er_1lane_sep = "Erreur!: vous ne pouvez pas mettre de\n séparateur central béton quand il\n n'y  a qu'une seule voie, ceci empêche\n les bus et les camions de tourner:\n";
 
-er_pavalleypark = "Erreur!: quand une voie de parking est située a coté d'un trottoir de séparation d'une allée, ce trottoir doit faire au moins 0.6m de large pour un chargement/déchargement correct des voitures et pour la protection des usagers de l'allée. Largeur actuelle du trottoir:";
+er_pavalleypark = "Erreur!: quand une voie de parking est\n située a coté d'un trottoir de séparation\n d'une allée, ce trottoir doit être\n suffisamment large pour un chargement/\ndéchargement correct des voitures et\n pour la protection des usagers de l'allée.\n Largeur actuelle du trottoir:\n";
 
 //== end of Warnings ==============
 //-- Information text -------------
@@ -2345,11 +2360,11 @@ module circline (dline=24000, triang=false) {
 }
 
 //Printing multiples lines in a vector
-module multiLine (lines, size=1000, wdtxt=25000){
+module multiLine (lines, size=1000, wdtxt=25000, always=false){
 	//mirroring text if left drive 
 	mirrorx(!right_drive) 
   t(!right_drive?-wdtxt:0)	
-		if(Disp_text)
+		if(Disp_text||always)
 			union(){
 				for(i=[0:len(lines)-1])
 					translate([0 , -i *size*1.5*(i?1:1.2), 0 ])  text(lines[i], size*(i?1:1.2));
