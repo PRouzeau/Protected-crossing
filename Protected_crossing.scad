@@ -4,12 +4,13 @@
 // documentation licence cc BY-SA 4.0 and GFDL 1.2
 // First version: 0.0 - 19 August 2018
 // V 0.1: 22 August 2018 - bugs, generic vehicles, always bike advanced position, protective poles, precise light positioning.
+// V 0.2: 28 August 2018 - bugs, own models, more checks, misc. improvements.
 //All designs done with this application are free of right
 // This uses my OpenSCAD library, attached, but you can find details here:
 // https://github.com/PRouzeau/OpenScad-Library
-//model from sketchup warehouse
-//Bus 3D model by Anderson Rondon - Marcopolo senior midi, length 11 m.
-//bike model own design, as ground marking bikes
+//Bus model own design, 12 x 2.55 m, wheel base 5.9 m.
+//bike model own design
+//ground marking bikes own design
 
 /*en+ 
 Road protected crossing design, 'the dutch way'
@@ -1600,9 +1601,9 @@ module bikeway_cross (a,b) // a(xis), b(ranch)
 		//------------------------------	
     // priority triangle marking 
     t(-Waxis_shift(ap,bp,vright)-devp,border-way_tot/2) {
-      triang(-way_tot/2-cycle_cross_line-cycle_triangle_dist, signal, false);
+      teeth(-way_tot/2-cycle_cross_line-cycle_triangle_dist, signal, false);
         if(priority)
-          triang(way_tot/2+cycle_cross_line+cycle_triangle_dist, -signal2, true);
+          teeth(way_tot/2+cycle_cross_line+cycle_triangle_dist, -signal2, true);
       }  
   } // bikeway_cross() 
 //---------------------------------
@@ -1619,22 +1620,24 @@ module turn (width, side=vright, radius=0) {
 			}	
 }	
 	
-	//---------------------------------
-  //Priority triangles on bike way
-  module triang (pos, length, mirr=false) {
-    plength = abs(length);
-    nb = floor((plength+500)/cycle_triangle_sp);
-    white() 
-      mirrorx(!right_drive)
-        mirrorx(length<0)
-          duplx(cycle_triangle_sp, nb-1)
-            t(0,pos)
-              mirrory(mirr)
-                // projection()
-                linear_extrude(height=5)
-                polygon([[0,0],[cycle_triangle_wd,0],[cycle_triangle_wd/2,-cycle_triangle_lg]]);
-  }
+	
 } // crossing()
+
+//------------------------------
+  //Priority triangles on bike way - along X line
+module teeth (pos, length, mirr=false) {
+	plength = abs(length);
+	nb = floor((plength+500)/cycle_triangle_sp);
+	white() 
+		mirrorx(!right_drive)
+			mirrorx(length<0)
+				duplx(cycle_triangle_sp, nb-1)
+					t(0,pos)
+						mirrory(mirr)
+							// projection()
+							linear_extrude(height=5)
+							polygon([[0,0],[cycle_triangle_wd,0],[cycle_triangle_wd/2,-cycle_triangle_lg]]);
+}//teeth()
 
 //-- road pedestrian crossing -------
 module disp_pedcross () {
@@ -2061,29 +2064,33 @@ module quart_shape (radius,wdx,wdy, way, ht=pavht, extent=-1500, diag=0) {
 }
 
 module bikelight (angline=-25,stopline=100, linang=0, linelength=1000, axis=vX, extent) {
-		if(traffic_light) {
-			rotz(angline) 
-				side_traffic_light(1650,90,90,90,"bike");
-			orange()  
-				diff() {
-					cylz (250,800, 0,0,300);  
-					cylz (240,1500,0,0,-10);   
-				}
-				color(color_pavement) 
-				  hull() {
-						cylz(500,pavht, 0,0,0,16);
-						cubey (500,extent,pavht, 0,0,pavht/2);
-					}	
+	if(traffic_light) {
+		rotz(angline) 
+			side_traffic_light(1650,90,90,90,"bike");
+		orange()  
+			diff() {
+				cylz (250,800, 0,0,300);  
+				cylz (240,1500,0,0,-10);   
 			}
-			// stop line 
-			prio = road_priority==0?false:axis?(road_priority==2?false:true):(road_priority==1?false:true);
-			//no marking line if there is no priority
-			if (traffic_light || prio)
-				white() 
-				  t(-100, stopline)
-						rotz(linang)
-							line2(150,100,linelength,-1,1000,0,30);
-		// bikeway stop line
+			color(color_pavement) 
+				hull() {
+					cylz(500,pavht, 0,0,0,16);
+					cubey (500,extent,pavht, 0,0,pavht/2);
+				}	
+		}
+		// stop line 
+		noprio = road_priority==0?false:axis?(road_priority==2?false:true):(road_priority==1?false:true);
+		//no marking line if there is priority
+		if(traffic_light || noprio)
+			white() // bikeway stop line
+				t(-100, stopline)
+					rotz(linang) {
+						line2(150,100,linelength,-1,1000,0,30);
+						// shark teeth if no priority
+						if (!traffic_light)
+							t(500,0,30) 
+								teeth(150,linelength-500, true);
+					}	
 } //bikelight
 
 module pav_corner (x,y) {
@@ -2241,11 +2248,18 @@ module disp_vh (type, vcolor, x,y,ang, acc) {
 	t(x*cfu,y*cfu) rotz(ang){ 
     if (type==1) 
 		  car(vcolor,linang, ang); 
-	  else if(type==2) 
-			color(vcolor)
+	  else if(type==2) {
+			orange()
+				import("Bus_body.stl");
+			color(glass_color)
+				import("Bus_glasses.stl");
+			black()
+				import("Bus_tires.stl");
+		}
+			/*color(vcolor)
 				t(0,1350,-30) 
 						scale(1560) 
-							import("Bus_by_Anderson_Rondon.stl");
+							import("Bus_by_Anderson_Rondon.stl"); */
 		else if(type==3) {
 			color([0.15,0.15,0.15])
 				import("Bicycle.stl"); 
@@ -2479,7 +2493,7 @@ module check () {
 	function c_pavalley (a,b,s) = 
 	  Wcycle_path[a][b][s]&&Walley[a][b][s]&&Wpark_lane[a][b][s]?real_alley_pav[a][b][s]<600?str(er_pavalleypark, real_alley_pav[a][b][b]/cfu," m, ", typeway(a,b,s),"\n."):"":"";
 		
-	function c_1lane_sep (a,b) = 	 Wcentral[a][b]&&Wnb_lanes[a][b][vleft]<2?str(er_1lane_sep, typeway(a,b,vleft),"\n.\n"):"";
+	function c_1lane_sep (a,b) = 	 Wcentral[a][b]&&Wnb_lanes[a][b][vleft]<2&&!round_int_diam?str(er_1lane_sep, typeway(a,b,vleft),"\n.\n"):"";
 
 } //check()
 //== Warnings =====================

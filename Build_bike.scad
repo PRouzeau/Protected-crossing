@@ -1,4 +1,7 @@
-
+// Protected crossing design
+// Copyright 2018 Pierre ROUZEAU AKA PRZ
+// Program license GPL v3
+// documentation licence cc BY-SA 4.0 and GFDL 1.2
 include <Z_library.scad>
 
 part=0;
