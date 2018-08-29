@@ -344,10 +344,11 @@ _cydev_length = 10;
 cydev_length = _cydev_length*cfu;
 //fr:Diamètre interne du rond-point, 0 si pas de rond-point
 //Internal diameter of roundabout, 0 if no roundabout
-_round_int_diam=0; //[0:0.2:20]
+_round_int_diam=0; //[0:0.2:24]
 round_int_diam=_round_int_diam*cfu;
-//Roundabout island biased part
-_round_bias=6; //[0:0.2:10] 
+//fr:Partie diagonale des îlots de giratoire
+//Roundabout island diagonal part
+_round_bias=6; //[0:0.2:15] 
 round_bias = _round_bias*cfu;
 //================================
 /*fr:[Nombre de voies principales]*/
@@ -465,7 +466,7 @@ XAr_cycle_path=true;
 XAr_cycle_double = false;
 //fr:Largeur trottoir séparation entre allée et route, s'il y a une allée
 //Pavement separating alley and main road, unused if no alley
-XAr_alley_pav = 0.6; //[0.2:0.1:5]
+XAr_alley_pav = 0.6; //[0.2:0.1:8]
 //fr:Largeur file de parking
 //Parking lane width
 XAr_park_lane=2; //[0,2,2.1,2.2]
@@ -474,7 +475,7 @@ XAr_park_lane=2; //[0,2,2.1,2.2]
 XAr_cycle_lane = 0; //[0:0.1:2.5]
 //fr:déviation de la piste cyclable (nécessite un trottoir de séparation large)
 //Cycle PATH deviation (need a large separating pavement)
-XAr_pavdev = 0; //[0:0.1:4]
+XAr_pavdev = 0; //[0:0.1:6]
 //fr:Voie bus (pas installé)
 //Bus lane (not implemented)
 XAr_bus_lane = false;
@@ -504,7 +505,7 @@ XAl_cycle_path=true;
 XAl_cycle_double = false;
 //fr:Largeur trottoir séparation entre allée et route, s'il y a une allée
 //Pavement separating alley and main road, unused if no alley
-XAl_alley_pav = 0.6; //[0.2:0.1:5]
+XAl_alley_pav = 0.6; //[0.2:0.1:8]
 //fr:Largeur file de parking
 //Parking lane width
 XAl_park_lane = 0; //[0,2,2.1,2.2]
@@ -513,7 +514,7 @@ XAl_park_lane = 0; //[0,2,2.1,2.2]
 XAl_cycle_lane = 0; //[0:0.1:2.5]
 //fr:déviation de la piste cyclable (nécessite un trottoir de séparation large)
 //Cycle PATH deviation (need a large separating pavement)
-XAl_pavdev = 0; //[0:0.1:4]
+XAl_pavdev = 0; //[0:0.1:6]
 //fr:Voie de bus 
 //Bus lane
 XAl_bus_lane = false;
@@ -573,7 +574,7 @@ YAr_cycle_path=true;
 YAr_cycle_double = false;
 //fr:Largeur trottoir séparant contre-allée et route
 //Pavement separating alley and main road, unused if no alley
-YAr_alley_pav = 0.7; // [0.2:0.1:5]
+YAr_alley_pav = 0.7; // [0.2:0.1:8]
 //fr:Largeur file de parking
 //Parking lane width
 YAr_park_lane = 0; //[0,2,2.1,2.2]
@@ -582,7 +583,7 @@ YAr_park_lane = 0; //[0,2,2.1,2.2]
 YAr_cycle_lane = 2; //[0:0.1:2.5]
 //fr:déviation de la piste cyclable (nécessite un trottoir de séparation large)
 //Cycle PATH deviation (need a large separating pavement)
-YAr_pavdev = 0; //[0:0.1:4]
+YAr_pavdev = 0; //[0:0.1:6]
 //fr:Largeur file de parking
 //parking lane width
 YAr_park_lane = 0; //[0,2,2.1,2.2]
@@ -613,7 +614,7 @@ YAl_cycle_path=true;
 YAl_cycle_double = false;
 //fr:Largeur trottoir séparation entre allée et route, s'il y a une allée
 //Pavement separating alley and main road, unused if no alley
-YAl_alley_pav = 0.7; //[0.2:0.1:5]
+YAl_alley_pav = 0.7; //[0.2:0.1:8]
 //fr:Largeur file de parking
 //parking lane width
 YAl_park_lane = 2; // [0,2,2.1,2.2]
@@ -622,7 +623,7 @@ YAl_park_lane = 2; // [0,2,2.1,2.2]
 YAl_cycle_lane = 2; //[0:0.1:2.5]
 //fr:déviation de la piste cyclable (nécessite un trottoir de séparation large)
 //Cycle PATH deviation (need a large separating pavement)
-YAl_pavdev = 0; //[0:0.1:4]
+YAl_pavdev = 0; //[0:0.1:6]
 //fr:Voie de bus 
 //bus lanes branch A 
 YAl_bus_lane = false;
@@ -696,11 +697,11 @@ cycle_cent_line = _cycle_cent_line*cfu_line;
 /*[Fine tuning]*/
 //fr:Augmentation du rayon de virage pour avoir un parcours plus circulaire. Réduit l'espace de stockage des véhicules motorisés
 //Increase of turn radius for a more round travel. Beware it reduces the room for motorised vehicle storage.
-_rad_increase = 0; //[0:0.2:5]
+_rad_increase = 0; //[0:0.2:10]
 rad_increase = _rad_increase*cfu;
 //fr:Réduction de la longueur droite pour gagner de l'espace de stockage des véhicules motorisés (valeur négative)
 //Decrease of straight length to gain room for motorised vehicle storage (negative number).
-_straight_decrease = -1; //[-3:0.2:0]
+_straight_decrease = -1; //[-6:0.2:0]
 straight_decrease = _straight_decrease*cfu;
 //fr:Rayon virage voiture (trottoir surbaissé)
 //Car radius turn (with lowered pavement)
@@ -732,7 +733,7 @@ light_pole_dist = _light_pole_dist*cfu;
 traffic_light_diam = 200; // [200,300]
 //fr:Distance entre le rond-point et la piste cyclable (m)
 //Distance between roundabout and bike path
-_roundabout_space = 6;
+_roundabout_space = 6; //[5:0.5:12]
 roundabout_space = _roundabout_space*cfu;
 
 /*[Hidden]*/
@@ -1054,6 +1055,8 @@ cr_border_r(vY,vA)-Wcycle_wd(vX,vA, vright),
 cr_border_r(vX,vB)-Wcycle_wd(vY,vA, vright),
 cr_border_r(vY,vB)-Wcycle_wd(vX,vB, vright))-cycle_wd_extent_crossing;
 
+d_roundline = 2*(round_road_radius()-roundabout_space);
+
 //-- angle shape to cut islands --
 module cutcorner (a, b, bottom=-100, ht=500, extent=true) {
 	ap = paxis(a);
@@ -1158,8 +1161,8 @@ traffic_light?"There is traffic light":str("NO traffic light",road_priority==1?"
 //::	str("Route Y br.A droite/gauche: ",round100(Wcycle_wd(vY,vA,vright)),"/",round100(Wcycle_wd(vY,vA,vleft))," m")
 ];
 
-function roundabout_text() = round_int_diam?["Roundabout:",str("- Internal diameter: ",_round_int_diam," m"),str("- External diameter: ",round100(round_road_radius())," m"),str("- Bikepath internal diameter: ",round100((round_road_radius()-roundabout_space)*2)," m")]:[]; 	
-//fr::function roundabout_text() = round_int_diam?["Rond-point:",str("- Diamètre interne: ",_round_int_diam," m"),str("- Diamètre externe: ",round100(round_road_radius())," m"),str("- Diamètre interne piste cyclable: ",round100((round_road_radius()-roundabout_space)*2)," m")]:[]; 
+function roundabout_text() = round_int_diam?["Roundabout:",str("- Internal diameter: ",_round_int_diam," m"),str("- External diameter: ",round100(d_roundline)," m"),str("- Bikepath internal diameter: ",round100(d_roundline+roundabout_space*2)," m")]:[]; 	
+//fr::function roundabout_text() = round_int_diam?["Rond-point:",str("- Diamètre interne: ",_round_int_diam," m"),str("- Diamètre externe: ",round100(d_roundline)," m"),str("- Diamètre interne piste cyclable: ",round100(d_roundline+roundabout_space*2)," m")]:[]; 
 
 spectxt = concat(basetext,roundabout_text());
 
@@ -1252,7 +1255,7 @@ module road () {
 					if (Ualley) 	
 						side_alley(-100,400);
 					//pedestrian crossing
-					cubey (ped,-8000,600, perp2+pedshift+ped/2,tot2-pav-Ualley+100);
+					cubey (ped,-20000,600, perp2+pedshift+ped/2,tot2-pav-Ualley+100);
 					//pedestrian recess
 					if(recess)
 						t(recess+upvst,tot2-pav-10, 1)
@@ -1397,28 +1400,23 @@ module seg (width, radius, depth=10, intrad=true) {
 			cylz(2*radius+addext,depth, 0,0,0, 36);  
 			//::
 			cylz(2*radius+addint,40+depth, 0,0,-20, 36);  
-			cubez(16000,32000,40+depth, 8000,0,-20); 
+			cubez(32000,50000,40+depth, 16000,0,-20); 
 			rotz(-45)
-				cubez(16000,32000,40+depth, -8000,0,-20); 
+				cubez(32000,50000,40+depth, -16000,0,-20); 
 		}  
 }
 
 //==================================
 module crossing () {
-//test = [[["xAr","xAl"],["xBr","xBl"]],[["yAr","yAl"],["yBr","yBl"]]];
-//	axis=vY; branch=vA;
-	for(axis=[0:1],branch=[0:1]) 
-	{
-		paxis = paxis(axis);
-		pbranch = pbranch(axis,branch);	
-  	cdev = iscycledev(axis,branch,vright); 
-	disp_br(paxis,pbranch)	// perp !!
-		rotz(Wang[axis][branch])
-			if (Wcycle_wd(axis,branch,vright)) 
-				bikeway_cross(axis,branch); 
+//	a=vY; b=vA;
+	for(a=[0:1],b=[0:1]) {
+		disp_br(paxis(a),pbranch(a,b))	// perpendicular !!
+			rotz(Wang[a][b])
+				if (Wcycle_wd(a,b,vright)) 
+					bikeway_cross(a,b); 
 	} // for
 	
-//-- modules -------------------------
+//-- modules ------------------------
 module bikeway_cross (a,b) // a(xis), b(ranch) 	
 	{
 /*design basis
@@ -1615,13 +1613,13 @@ module turn (width, side=vright, radius=0) {
 			diff() {
 				cylz (rad*2+width,25, 0,0,-5);
 				cylz (rad*2-width, 100, 0,0,-10);
-				cubex (-10000,10000,80);
-				cubey (10000,10000,90);
+				cubex (-20000,20000,80);
+				cubey (20000,20000,90);
 			}	
 }	
 	
 	
-} // crossing()
+} //crossing()
 
 //------------------------------
   //Priority triangles on bike way - along X line
@@ -1991,7 +1989,7 @@ module island (axis,branch) {
 			if(istruckpav) //truck island
 				diff() {
 					t(borderx,bordery) rotz(180)
-						quart_shape (truck_radius,xext,yext,xext/3,pavht,0);
+						quart_shape(truck_radius,xext,yext,xext/3,pavht,0);
 					//:::::::::
 					cutcorner(axis,branch);
 					cut_diag();
@@ -1999,12 +1997,17 @@ module island (axis,branch) {
 		color(color_pavement)
 			diff(){ // car island
 				t(borderx,bordery) rotz(180)
-					quart_shape (car_radius,xext,yext,xext/2.5,pavcarht,diag=quart_bias);
+					quart_shape(car_radius,xext,yext,xext/2.5,pavcarht,diag=quart_bias);
 				//:::::::::
 				cutcorner(axis,branch);
-				cut_diag();
-				if (quart_bias)
-					cylz(2*(round_road_radius()-roundabout_space),500,0,0,-100);
+				if (quart_bias) {
+					// cut internal cylinder
+					cylz(d_roundline,500,0,0,-100);
+					//bias cut pushed 500 mm due to round shape
+					cut_diag(500);
+				}	
+				else // cut diagonally
+					cut_diag();
 			}	
 	// Redraft the road angle for proper diagonal, only if there is perpendicular bikeway, are cut along island border	
 		xcut = borderx-xext;
@@ -2019,10 +2022,10 @@ module island (axis,branch) {
 				}	
 	}	
 	// cut diagonally to remove what expand over the way
-	module cut_diag(){
-		t(corner1[axis][branch][0]-radius1[axis][branch],corner1[axis][branch][1]-radius1[axis][branch])  
+	module cut_diag (dec=0){
+		t(corner1[axis][branch][0]-radius1[axis][branch]+dec,corner1[axis][branch][1]-radius1[axis][branch]+dec)  
 				rotz (-45) 
-				  cubez (16000,4000,500, 0,2000,-100);
+				  cubez (24000,4000,500, 0,2000,-100);
 	}	
 }//Island()
 
@@ -2132,16 +2135,15 @@ module disp_roundabout() {
 				cylz (round_int_diam-500,pavht);	
 				cylz (round_int_diam,pavht/2);	
 			}
-		dline = 2*(round_road_radius()-roundabout_space);	
-	//the below modules assume that the road center is in the middle, which is not a correct hypothesis.		
-		circline(dline);	
-		circline(dline,true);	
+	//the below modules assume that the road center is in the middle, which is not a correct hypothesis. ???		
+		circline(d_roundline);	
+		circline(d_roundline,true);	
 		white()	
 		for(a=[0:1],b=[0:1])
 			rotroad(a,b) {
 				coord = Wmain_start[a][b][vright]-Wnb_lanes[a][b][vright]*Wlane_wd2(a,b)-Wcentral[a][b]/2+isdev(a,b);
 				t(0,coord)
-					line2(road_cent_line,dline/2,cr_border_r(a,b)-Wcycle_wd(paxis(a),prevbranch(a,b),vright)-cycle_wd_extent_crossing,0,10,0,5,0);
+					line2(road_cent_line,d_roundline/2,cr_border_r(a,b)-Wcycle_wd(paxis(a),prevbranch(a,b),vright)-cycle_wd_extent_crossing,0,10,0,5,0);
 			}	
 	}	
 }
@@ -2149,19 +2151,22 @@ module disp_roundabout() {
 //-- Ground markings ----------------
 module disp_arrows () {
 	for(axis=[0:1],branch=[0:1])
-		rotroad(axis,branch)
-			for(i=[0:Wnb_lanes[axis][branch][vright]-1]){
-				road = perpwidth[axis][branch]/2;
-				dev = isdev(axis,branch);
-				ang = atan(-dev/dev_length);
-				xa = Wpedcross_shift[axis][branch]+ Wpedcross_wd[axis][branch] + 6500;
-				ya = Wmain_start[axis][branch][vright]-Wlane_wd2(axis,branch)*(i+0.5);
-				tp = Wlane_arrows[axis][branch][i];
-				t(road+dev_length)
-					rotz (ang) 
-						t(24000-dev_length) darr(-xa,ya,tp);
-				darr(road+xa+20000,ya,tp);
-			}	
+		rotroad(axis,branch) {
+			nbl = Wnb_lanes[axis][branch][vright];
+			if(nbl) 
+				for(i=[0:nbl-1]){
+					road = perpwidth[axis][branch]/2;
+					dev = isdev(axis,branch);
+					ang = atan(-dev/dev_length);
+					xa = Wpedcross_shift[axis][branch]+ Wpedcross_wd[axis][branch] + 6500;
+					ya = Wmain_start[axis][branch][vright]-Wlane_wd2(axis,branch)*(i+0.5);
+					tp = Wlane_arrows[axis][branch][i];
+					t(road+dev_length)
+						rotz (ang) 
+							t(24000-dev_length) darr(-xa,ya,tp);
+					darr(road+xa+20000,ya,tp);
+				}	
+		}	
 	//----------------------
 	module darr (x,y, type, nb=1, sp=20000) {
 	// fr translation	
