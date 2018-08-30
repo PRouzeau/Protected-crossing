@@ -814,11 +814,33 @@ corner_C4 =[totwidth[vY][0]/2+C4_radius-YAl_pavement*cfu,-totwidth[vX][0]/2-C4_r
 
 radius1 = [[C1_radius,C3_radius],
 [C2_radius,C4_radius]];
+cy_radius1 = radius1;
 
 corner1 = [[corner_C1,
 [-corner_C3[0],-corner_C3[1]]],
 [[corner_C2[1],-corner_C2[0]],
 [-corner_C4[1],corner_C4[0]]]];
+cy_corner1 = corner1;
+
+function corner_pass(a,b) = radius1[a][b]-1.414*corner_offset;
+
+corner_txt = str(
+  round100(corner_pass(vX,vA)),"/",
+	round100(corner_pass(vY,vA)),"/",
+	round100(corner_pass(vX,vB)),"/",
+	round100(corner_pass(vY,vB))," m"
+);
+
+//bikepath middle radius
+function bk_radius(a,b) = (radius1[a][b]+radius1[paxis(a)][pbranch(a,b)])/2+rad_increase+Wcycle_wd(a,b,vright)/2+cycle_wd_extent_crossing/2;
+
+//Bikepath radiuses for each branch XA to YB 
+radius_txt = str(
+	round100(bk_radius(vY,vB)),"/",
+  round100(bk_radius(vX,vA)),"/",
+	round100(bk_radius(vY,vA)),"/",
+	round100(bk_radius(vX,vB))," m"
+);
 
 // bikelight adjust ~review that ???
 island_pos1 = [[C1_island_pos1*cfu,C3_island_pos1*cfu],
@@ -833,9 +855,6 @@ dbl_light_adj = [[C1_dbl_light_adj*cfu,C3_dbl_light_adj*cfu],
 
 // t_cross bend shift 
 tc_rshift = t_cross?Wpavement[vX][vA][vleft]:0;
-
-cy_corner1 = corner1;
-cy_radius1 = [[C1_radius,C3_radius],[C2_radius,C4_radius]];
 
 //The following functions are all to define the external border Y coordinate of the bikeway in the crossing, as defined in the bikeway_cross(). This suppose all lanes end up contacting the main pavement corner, whatever alley, lanes, parking lane or else exists. This is the right lane continuing from the considered segment.
 	
@@ -952,13 +971,17 @@ str("Route X branche A/BB largeur voie: ",round100(Wlane_wd2(vX,vA)),"/",round10
 str("Route Y branche A/BB largeur voie: ",round100(Wlane_wd2(vY,vA)),"/",round100(Wlane_wd2(vY,vB))," m" ),
 
 str("Route X voie cyclable br.A droite/gauche: ",round100(Wcycle_wd(vX,vA,vright)),"/",round100(Wcycle_wd(vX,vA,vleft))," m"),
-	str("Y road bikeway branchA right/left: ",round100(Wcycle_wd(vY,vA,vright)),"/",round100(Wcycle_wd(vY,vA,vleft))," m")
-//::	str("Route Y br.A droite/gauche: ",round100(Wcycle_wd(vY,vA,vright)),"/",round100(Wcycle_wd(vY,vA,vleft))," m")
+  str("Route Y br.A droite/gauche: ",round100(Wcycle_wd(vY,vA,vright)),"/",round100(Wcycle_wd(vY,vA,vleft))," m"),
+  str("Passage au coin: ",corner_txt)
 ];
 
 function roundabout_text() = round_int_diam?["Rond-point:",str("- Diamètre interne: ",_round_int_diam," m"),str("- Diamètre externe: ",round100(d_roundline)," m"),str("- Diamètre interne piste cyclable: ",round100(d_roundline+roundabout_space*2)," m")]:[]; 
 
-spectxt = concat(basetext,roundabout_text());
+spectxt = concat(
+	basetext,
+	roundabout_text(),
+str("Rayon piste cyclable: ",radius_txt)  	
+);
 
 //*** program execution ***********
 //*********************************
@@ -1000,7 +1023,7 @@ module road () {
 				//-- road ------------------
 				if(disp_road)
 				color(color_road)
-					cubex(road_length,totwidth[axis][branch],20, 0,0,-10);
+					cubex(road_length,totwidth[axis][branch],18, 0,0,-10);
 			 //-- Main pavement corners --	
 				t(perpwidth[axis][branch]/2,totwidth[axis][branch]/2)
 					pav_corner(Wpavement[axis][branch][vright],Wpavement[paxis(axis)][pbranch(axis,branch)][vleft]);
