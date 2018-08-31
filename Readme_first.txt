@@ -1,5 +1,10 @@
 PROTECTED CROSSING DESIGN
 Road protected crossing design, 'the dutch way', as built in the Netherlands from nearly fifty years.
+
+Please note that an help more complete than what is written below and much more practical is available:
+*On Internet at  http://rouzeau.net/pcross
+*Or directly in the help directory by running the 'index.htm' file. This is direct with Firefox or Edge but Chrome refuse to execute local Javascript files and you will need to use a local web server or to create a new shortcut with the parameter "--allow-file-access-from-files".
+
 For state of the art explanation, have a look here:
 	https://bicycledutch.wordpress.com/2011/04/07/state-of-the-art-bikeway-design-or-is-it/
 

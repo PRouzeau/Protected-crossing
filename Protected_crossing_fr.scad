@@ -14,6 +14,11 @@
 //bike model own design
 //ground marking bikes own design
 
+/*Please note that a complete help (in english and in french is available:
+*On Internet at  http://rouzeau.net/pcross
+*Or directly in the help directory by running the 'index.htm' file. This is direct with Firefox or Edge but Chrome refuse to execute local Javascript files and you will need to use a local web server or to create a new shortcut with the parameter "--allow-file-access-from-files". 
+*/
+
 /* KNOWN BUGS:
 *When there is an alley and the pavement separation is not sufficiently wide, the main traffic light position may not be correct
 *Islands have problems if there is no bikeway on one side

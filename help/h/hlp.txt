@@ -1,0 +1,819 @@
+2018 (c) Pierre ROUZEAU  CC BY-SA 4.0 
+Help file of application 'Protected crossing'
+Bilingual English/French
+You can write any comments before the first page.
+
+■aqlgroups
+Groups for tabbed presentation
+*En
+*Fr
+
+■home
+Protected crossing
+(:notoc:)(:nonum:)
+800%pcross_app.png
+Protected crossing is an application to design road protected intersection "the dutch way". The 'protection' is for cyclists and pedestrians and generally non motorised or assimilated users. 
+This application is mainly an educational tool as it is difficult to elaborate an application for all possible cases with assymetries or non right angles.
+It can also design %dutch roundabouts%round which uses same principles but are a better solution than cross intersection when footprint is sufficient.
+It shall be well understood that there are %other solutions%altern for cyclist safety, by example the 'all directions green lights for cyclist' or separated grades routes.
+
+==Installation
+*%Install OpenScad%instoscad
+*%Install Protected Crossing%instpcross
+
+==Utilisation
+*%Main principles%philo
+*%Using the application%usage
+*%Recording data%recdata
+*%Roundabouts%round
+*%Vehicles%vehicles
+
+==Miscellaneous
+*%Safety preamble%safe
+*%Links%links
+*%Alternatives%altern
+*%Why this application?%why
+
+==________________ 
+%Credits%%
+%About%%
+
+■home_fr, fr
+Croisements protégés
+(:notoc:)(:nonum:)
+800%pcross_app.fr.png
+L'application "Protected crossing" permet de concevoir des carrefours protégés "à la Néerlandaise". La 'protection' s'entend pour les cyclistes et les piétons. 
+Cette application est principalement un outil pédagogique car il est complexe d'élaborer un programme qui puisse répondre à tous les cas de figure avec des assymétries ou des angles qui ne sont pas droits.
+L'application permet aussi de concevoir les "giratoires Néerlandais" qui appliquent les mêmes principes et sont une meilleure solution si la place disponible est suffisante.
+Il faut aussi savoir que ce n'est pas la seule solution pour améliorer la sécurité cycliste, il existe des %alternatives%altern_fr par exemple le système de 'tous feux cyclistes au vert' ou des circulations a des niveaux séparées.
+
+==Installation
+*%Installer OpenScad%instoscad_fr
+*%Installer Protected Crossing%instpcross_fr
+
+==Utilisation
+*%Principes de base%philo_fr
+*%Utiliser l'application%usage_fr
+*%Enregistrer les données%recdata_fr
+*%Giratoires%round_fr
+*%Véhicules%vehicles_fr
+
+== Divers
+*%Préambule sur la sécurité%safe_fr
+*%Liens%links_fr
+*%Alternatives%altern_fr
+*%Pourquoi cette application?%why_fr
+
+==________________ 
+%Crédits%Credits_fr
+%A propos%About_fr
+
+■menu
+help menu
+(:notoc:)(:nodef:)(:notitle:)(:nodate:)
+
+==Installation
+*%Install OpenScad%instoscad
+*%Install Protected Crossing%instpcross
+
+==Utilisation
+*%Main principles%philo
+*%Using the application%usage
+*%Recording data%recdata
+*%Roundabouts%round
+*%Vehicles%vehicles
+
+==Miscellaneous
+*%Safety preamble%safe
+*%Links%links
+*%Alternatives%altern
+*%Why this app?%why
+
+==________________ 
+%Credits%%
+%About%%
+
+■menu_fr, fr
+Menu de l'aide
+(:notoc:)(:nodef:)(:notitle:)(:nodate:)
+
+==Installation
+*%Installer OpenScad%instoscad_fr
+*%Installer Protected Crossing%instpcross_fr
+
+==Utilisation
+*%Principes de base%philo_fr
+*%Utiliser l'application%usage_fr
+*%Enregistrer les données%recdata_fr
+*%Giratoires%round_fr
+*%Véhicules%vehicles_fr
+
+== Divers
+*%préambule sur la sécurité%safe_fr
+*%Liens%links_fr
+*%Alternatives%altern_fr
+*%Pourquoi cette application?%why_fr
+
+==________________ 
+%Crédits%Credits_fr
+%A propos%About_fr
+
+■instoscad, en
+Installation and configuration of OpenSCAD
+
+OpenScad shall be "downloaded from their site https://www.openscad.org/downloads.html#snapshots", but you shall use the development snapshots, which are the only one to work with Customizer. Development versions are stable. Select the version adapted to your operating system. On Windows, prefer the installer version.
+
+800C%01_Preferences.png
+800C%02_Select_Customizer.png
+800C%03_Unhide_customizer.png
+
+Than after having loaded the application, you shall start it either with the button or with [F5] key.
+800C%04_Start_app.png
+800C%05_Description_only.png
+800C%06_Free_camera_pos.png
+
+■instoscad_fr, fr
+Installation et configuration d'OpenScad
+
+OpenScad "se télécharge depuis leur site https://www.openscad.org/downloads.html#snapshots", mais ce sont les dernières versions de développement ('development snapshots') qui doivent être utilisées, les versions officielles ne fontionnant pas avec Customizer. Les versions de développement sont stables. Choisissez la version adaptée à votre système d'exploitation. L'installation se fait comme pour n'importe quel autre logiciel. Sur Windows, préférez l'installeur.
+
+800C%01_Preferences.fr.png
+800C%02_Select_Customizer.fr.png
+800C%03_Unhide_customizer.fr.png
+
+Ensuite, après avoir chargé l'application, la démarrer avec le bouton ou avec la touche [F5]
+800C%04_Start_app.fr.png
+800C%05_Description_only.fr.png
+800C%06_Free_camera_pos.fr.png
+
+■instpcross, en
+Installation of Protected Crossing
+Download application "on GitHub https://github.com/PRouzeau/Protected-crossing"
+800C%00_Download_pcross.png
+
+Then the zip file shall be expanded in an unique directory.
+That directory could be placed anywhere, provided thers is no space, accented character, umlaut or any non ascii character in the complete directory path.
+
+If OpenScad was already installed, clicking on the Protected_crossing.scad file start OpenScad, then  you shall %Configure OpenScad%instoscad
+
+■instpcross_fr, fr
+Installation de Protected Crossing
+Télécharger l'application "sur le site GitHub https://github.com/PRouzeau/Protected-crossing"
+800C%00_Download_pcross.png
+
+Ensuite le fichier zip doit être décompressé dans un unique répertoire. Ce répertoire peut être n'importe ou mais son chemin complet ne doit comporter aucun espace, lettre accentuée ou autre caractère non-ascii.
+
+Si OpenScad a déjà été installé, cliquer sur le fichier Protected_crossing_fr.scad démarre OpenScad, que vous %devez configurer suivant%instoscad_fr
+
+■usage, en
+Usage of 'Protected Crossing' application
+(:nonum:)
+After having %configured OpenSCAD%instoscad, you can now use the application.
+== What can it do ?
+In its current form, this application is limited to design intersections with perpendicular roads, aligned, with bikeways and parking lanes also aligned but car lanes could be adapted in the dedicated tab. There are so many possible combinations that it is difficult to design a program really usable for all the variety you can find. It shall be regarded primarily as an educational tool.
+All car lanes within a road segment shall have the same width (yet).
+
+When happy with a design, customizer can %record it in a dataset%recdata.
+
+After finishing a design, it can be exported to a dxf file.
+You have first to do a projection by ticking the [projection] option in [Display] tab. Note this can be a long process (tens of minutes) depending your machine power. Once projected, you shall make a render with [F6] key or button 'Render'. Then the model can be exported in a vectorial drawing in dxf format with [Files][Export][Export as DXF], usable by any CAD program. This drawing will need manual cleanup.
+
+You can export an image in png format with [Files][Export][Export as image]. The exported image is related to your screen image, the actual zoom and screen definition.
+
+There is no way yet in OpenScad to export the 3D model in a useful format (say with colors). This is the biggest weakness of OpenSCAD and so of this application.
+
+== Bugs
+If you don't see the examples in the dataset pull-down menu, come back to the note about the directory character sets in %OpenSCAD installation%instoscad.
+
+== Conventions
+Note a few conventions
+* 0 neutralise equipment
+* n number give value
+ 
+Tagging:
+ Road X is left-right 
+ Road Y is south-north 
+ For each road there is two branches, A and B, but there can be common parameters (see below) 
+ 
+Right and left are considered for each branch when running TO the crossroad (but FROM the crossroad for left hand drive)
+
+Dimensions are in m(eters), except for ground marking where they are in mm. 
+
+Ground marking according french regulation (line size, arrows, etc.). May be compatible to international or European standards, I don't know...
+
+X and Y roads are assumed to be of continuous width. So are pavement width.
+    Central pavement separator are same width along one road, but may be repositioned according lanes distribution.
+
+IMPORTANT NOTE: By exception, you can adjust lanes number of facing branch (B) in the parameters of branch A (to help create preselection lanes). There is a tab dedicated for lane count
+
+There are really many options of design and they are not all covered in this program. So it may be sometimes used only for preliminary study or for training, which is a very important goal. 
+
+Bases for dimensions:
+
+*park_lane and cycle_lane width defined outside the external line, however the regulated minimum specified bike lane width is inside the line.
+*cycle path width is measured between the pavements, and the marking lines are set outside at crossing
+*stop line width (500 or 600mm) is compliant with vienna convention, even if not traditional in some countries (France)
+*red color for cycle lanes and path is only required in the Netherlands, but this is by far the best solution and you may stay with it.
+*Yet there is no solution for preselection lane at arrival in cross
+*Cycle ways are enlarged of a fixed value (yet 250mm) inside the crossing compared to the road. Parameter  accessible in [Fine tuning] tab.
+*Lanes are always deviated toward the center of the road by biting the parking lanes as this is what gives the best results for islands and also the largest space for motorised vehicles. You can forbid these deviations in [General] tab but the results are generally quite poor.
+*A bike path deviation (to not be confused with main lanes deviation) 'eat' the pavement separating the bike path and the main road, so this pavement shall be widened accordingly.
+*Islands are automatically positioned but their radius is adjustable. In large crossroads, the 'car island' is lowered and a 'truck' island is added.
+*If there is at least two lanes on each side, a central separating island is automatically added. It width is established while reducing central lanes width to 2.7m. This lanes width reduction is also done if there is a central separating pavement. 
+
+The general aspect of the bikeway is more 'round' that what you generally see. This gives more space for motorised vehicles and allow better placement of islands. This is more adapted to low footprint but is beneficial whatever the size. 
+
+Note that for all examples, there was some tuning done in parameters available in [Fine tuning] tab.
+360%tab_general_unfolded.png
+== How to start
+While you can start from the default screen, it is recommended to start from an example and to have a look on them first.
+All parameters are in tabs, which deploy vertically in the customizer panel.
+When adjusting your intersection, you may want to hide the vehicles, which will be repositioned when you have finished the design. You can hide them in [Display] tab by unticking [Display vehicles].
+General parameters of the intersection (priorities, traffic lights, deviation length, T cross, etc.) are in the [General] tab.
+All lane numbers are in the [Main lanes count] and they can be adjusted on all four branches.
+Then you will adjust the parameters of the road and branches on [Road X/Y common elements] tabs and [Road X/Y right/left side, branch A/B].
+It shall be noted that the dimensions are given at road arrival to the central rectangular area. This means that deviating a road or a bike path is defined at the border of the central area to the branch end, not at the intersection center. The deviation of the cycle path move them against the separating pavement, which shall be increased in width accordingly. 
+
+Note that if there are things which are considered not ok by the application, there will be warnings written on the left of the 3D view. They are also written in the console, but most probably as a end user you will prefer having the console hidden. You can hide all screen messages in the [Display] tab.
+ 
+== 3D view manipulation
+*3D model can be moved by cliking and maintaining the right button of your mouse while moving it
+*3D model can be rotated by cliking the left button of your mouse while moving it
+*Use the buttons at the bottom of the image to set view in predefined positions
+*For a general 3D overview, you can go in the [Camera] tab and tick [Dictate camera position], untick just after to avoid automatic reorientation at each run.
+*For a general plan overview, you can go in the [Camera] tab and tick [Top view], untick just after to avoid automatic reorientation at each run.
+
+Mouse movement are very sensitive and you may want to reduce your mouse sensitivity (there is unfortunately no parameter in OpenSCAD, so you shall modify your system).
+
+== Ergonomics
+Note that for variables with spinboxes (small box with top/down arrows), when you click in the value box, you can then use the mouse scroll wheel to modify the value. 
+
+Yet (August 2018) there is some trouble with automated recalculation when updating data, you can untick [Automatic preview], then force recalculation with [F5] key.
+ 
+After that, you are free to modify any variable to adjust your road crossing. Remember that nothing is saved till you record a dataset 
+  
+Ground signalling dimensions not all accessible in customizer (values set in 'Hidden' group) as it shall be imposed, however, you still can modify them in the program.
+
+== Limits and restrictions 
+As a general philosophy, while there are many parameters, some things are not modifiable on purpose. This is a design decision because what initiated this program was the absolute lack of standardization and huge incoherences in existing road infrastructure in my country (France), and I got the idea that a program may help to improve the compliance with rules, being official rules, recommendations or simply good practice. In my country (France), many infrastructures design points are only 'recommended' and not compulsory and that did open a wide door to poor design. Also, there is no structure in charge of checking the compliance of infrastructure with regulation and so no penalisation for non compliance. Standards are of limited use without control.
+
+■usage_fr, fr
+Utilisation de l'application 'Protected Crossing'
+(:nonum:)
+Après avoir %configuré OpenSCAD%instoscad_fr, vous pouvez utiliser l'application.
+== Que peut-elle faire ?
+Actuellement, cette application est limitée à la conception des carrefours avec des routes perpendiculaires, avec des trottoirs et files de parking alignés, mais on peut redistribuer les voies principales. Il y tant de combinaisons possible qu'il est difficile de concevoir un programme répondant à tous les cas de figure. Ce programme doit être vu comme un outil pédagogique ou d'avant projet. 
+
+Toutes les voies d'une branche du carrefour ont la même largeur (pour le moment).
+
+Quand vous êtes content de votre conception, vous pouvez %l'enregistrer comme un 'dataset'%recdata_fr
+
+Une conception terminée peut être exportée dans un fichier DXF.
+Vous devez d'abord faire une projection en sélectionnant l'option [projection] dans l'onglet [Affichage]. Notez que ceci peut être long (plusieurs dizaines de minutes) suivant la puissance de votre machine. Une fois projetée, vous devez faire un rendu avec la touche [F6] key ou le bouton 'Rendu'. Le modèle peut alors être exporté comme un dessin au format vectoriel dxf avec le menu principal [Fichiers][Exporter][Exporter comme DXF], utilisable par tout program de CAO. Ce dessin devra être nettoyé manuellement.
+
+Vous pouvez exporter une image au format png avec le menu principal [Fichiers][Exporter][Exporter comme image]. Le contenu de votre image est lié a ce que vous voyez sur votre écran, le zoom actuel et la définition du moniteur.
+
+Il n'y a actuellement aucun moyen d'exporter un modèle 3D utilisable (c'est à dire en couleurs). C'est le plus gros défaut d'OpenSCAD et donc de cette application.
+
+== Bugs
+Si vous ne voyez pas les exemples dans les datasets, voir la note sur les caractères des répertoires dans %Installation d'OpenSCAD%instoscad_fr.
+
+== Conventions
+Notez les conventions
+* 0 neutralise les équipments
+* n un nombre donne une valeur
+ 
+Repérage (conforme au repère OpenScad):
+* Route X gauche droite
+* Route Y nord-sud
+Pour chaque route il y a deux branches, A et B, mais il peut y avoir des paramètres communs a ces branches (voir plus loin).
+La droite et la gauche de chaque branche s'entendent quand on va VERS le carrefour.
+Les dimensions sont en m, sauf le marquage au sol défini en mm
+Les marquages sols sont conformes à la règlementation Française (largeurs de lignes, flèches, etc.). 
+ 
+Les routes X et Y sont supposées être de largeur constante. Ainsi que la largeur des trottoirs.
+Les trottoirs de séparation de voies sont de largeur constante le long d'une voie.
+NOTE IMPORTANTE: Les voies peuvent être redistribuées d'une branche à l'autre dans l'onglet [Nombre de voies principales].
+
+Il y a beaucoup d'options de conception et elles ne sont pas toutes prises en compte dans ce programme. Aussi il pourra parfois être utilisé uniquement pour un avant projet ou pour des études pédagogiques, ce qui est important.
+ 
+Bases pour les dimensions:
+*La largeur des voies de parking et des bandes cyclables est définie à l'extérieur de la ligne de délimitation, cependant la largeur minimum règlementaire à considérer est à l'intérieur de la ligne.
+*La largeur des pistes cyclables est celle entre trottoirs, et les lignes de bord (quand il n'y a pas de trottoir) sont à l'extérieur de cette largeur.
+*La largeur des lignes de stop (500 ou 600mm) est conforme à la convention de Vienne, même si ce n'est jamais le cas en France sauf expérimentation.
+*La couleur rouge pour les voies cyclable est uniquement obligatoire aux pays-bas, mais c'est clairement la meilleure solution aussi il n'y a pas d'option.
+*Actuellement rien n'est prévu pour une voie de présélection à l'arrivée dans le carrefour (cependant la conception n'est que pour la partie proche du carrefour)
+*Les voies cyclables sont élargies à la traversée du carrefour d'une valeur donnée (paramétrable dans [Réglages fins]), fixée par défaut à 250mm.
+*Les voies sont toujours déviées vers le centre du carrefour en mordant sur les voies de stationnement car c'est ce qui préserve au mieux les îlots et l'espace pour les véhicule motorisés. On peut cependant interdire ces déviations, mais le résultat est généralement assez malheureux.
+*Une déviation de la piste cyclable (à ne pas confondre avec la déviation des voies principales) 'mange' le trottoir de séparation entre la piste et la route principale, aussi ce trottoir doit être élargi en conséquence.
+*Les îlots sont positionnés automatiquement mais leur rayon est paramétrable. Dans les grands carrefours, l'îlot 'voiture' est surbaissé et un îlot 'camion/bus' est ajouté.
+*S'il y a au moins deux voies de chaque coté, un îlot de séparation s'installe automatiquement. Sa largeur se définit en réduisant les voies centrales à une largeur de 2.7m. Cette réduction des voies se fait aussi s'il existe un trottoir central (pour ralentir les véhicules par effet d'écluse). 
+
+L'aspect général de la piste cyclable est plus 'rond' que ce que l'on voit souvent. Ceci donne plus d'espace pour stocker les véhicules motorisés et permet une meilleure mise en place des îlots. C'est plus adapté aux emprises assez faibles mais c'est bénéfique en toutes tailles. 
+
+Notez que pour tous les exemples, il y a eu des ajustements de paramètres dans l'onglet [Réglages fins].
+360%tab_general_unfolded.fr.png
+== Comment démarrer
+Bien qu'il soit possible de démarrer depuis l'écran par défaut, il est recommandé de partir d'un exemple et de revoir tous les exemples d'abord.
+Tous les paramètres sont dans des onglets qui se déploient verticalement dans le panneau 'Customizer'.
+Lorsque vous paramétrez un carrefour, vous préfèrerez cacher les véhicules, qui seront repositionnés une fois la conception terminée. Vous pouvez les cacher dans l'onglet [Affichage] en décochant l'option [Affichage des véhicules].
+Les paramètres généraux du carrefour (priorités, feux de trafic, longeurs des déviations, carrefour en T, etc.) sont dans l'onglet [Général].
+Le nombre de voies pour **toutes** les branches est défini dans l'onglet [Nombre de voies principales].
+Vous pourrez alors définir les paramètres de chaque route et branche dans les onglets [Route X/Y éléments communs] et [Route X/Y droite/gauche, branche A/B].
+Il faut noter que les dimensions sont données a l'arrivée des routes sur la zone rectangulaire centrale. Ceci signifie que la déviation d'une route ou d'une voie cyclable est donnée au bord de la zone centrale et non au milieu du carrefour. La déviation des voies cyclables les déplace vers le trottoir de séparation allée/route, qui doit être élargi en cons&quence. 
+
+S'il y a des éléments considérés non conformes par l'application, il y a ura des avertissment écrit en bas a gauche de la vue 3D. Ils sont aussi écrit sur l'écran de la console, mais en tant qu'utilisateur fibnal, vous préfèrerez probablement cacher la console. Vous pouvez cacher les messages de la vue 3D dans l'onglet [Affichage].
+ 
+== Manipulation de la vue 3D
+*Le modèle 3D peut être déplacé en maintenant le bouton droite de la souris tout en la déplaçant.
+*Le modèle 3D peut être orienté en maintenant le bouton gauche de la souris tout en la déplaçant.
+*Utilisez les boutons au bas de l'image pour aller sur les positions prédéfinies.
+*Pour une vue 3D d'ensemble, vous pouvez sur l'onglet [Caméra] sélectionner [Imposer la position de la caméra], Que vous devez déselectionner juste après pour éviter le repositionnement automatique à chaque recalcul.
+*Pour une vue de dessus, vous pouvez sur l'onglet [Caméra] sélectionner [Vue de dessus], Que vous devez déselectionner juste après pour éviter le repositionnement automatique à chaque recalcul.
+
+Les mouvements de la souris sont très sensibles et vous pouvez éventuellement modifier la sensibilité de celle-ci (malheureusement il n'existe pas de paramètre pour ceci dans OpenSCAD, il faut donc modifier votre système)
+
+== Ergonomie
+Notez que pour les variables avec des flèches de modifications ('spinboxes'), quand vous cliquez sur le champ, vous pouvez alors modifier la valeur avec la roulette de la souris.
+
+Il y a actuellement (Aout 2018) sur OpenSCAD customizer des problèmes avec le recalcul automatique lorsque vous mettez a jour les données, aussi vous pouvez décocher [Automatic Preview], et faire les mises a jour ultérieures avec la touche [F5] ou la première icone.
+ 
+Ensuite, vous pourrez modifier les variables pour ajuster votre carrefour. Souvenez vous que rien n'est sauvegardé tant que vous n'avez pas enregistré de dataset.
+  
+Les dimensions du marquage au sol ne sont pas toutes accessibles dans l’interface (valeurs dans le groupe 'Hidden') car elles sont imposées (par la règlementation), cependant vous pouvez toujours les modifier dans le programme, mais les modifications du programme seront effacées à la prochaine mise à jour.
+ 
+== Limites et restrictions 
+D'un point de vue général, bien qu'il y ait beaucoup de paramètres, un certain nombre de choses ne sont pas modifiables à dessein. C'est une décision de conception car ce programme a été crééé pour lutter contre le manque total de standardisation et les grandes incohérences de l'existant en France. J'ai pensé qu'un programme pouvait améliorer la conformité aux règles officielles et aux bonnes pratiques. En France, beaucoup d'éléments sont de simples recommandations non obligatoires et ceci laisse la porte grande ouverte a des conceptions déficientes. 
+Comme il n'y a pas de structure chargée du contrôle de la conformité, il n'y a aucune pénalisation des conceptions non conformes. Les spécifications sont d'intérêt limité quand il n'y a pas de contrôle.
+
+■vehicles, en
+Vehicles
+When [Display vehicles] is ticked in the tab [Display], you can show up to four simplified vehicles.
+Models availables yet (august 2018) are only cars (red and blue), cyclist and bus
+*Cars are 4.2m length
+*Bus is 12m x 2.55m, standard
+*Cyclist upright 'urban style'
+280%tab_vehicles.png
+The vehicles parameters and position are defined in tab [vehicles].
+They can be defined in any order.
+To each vehicle can be attached only one accessory to help define a purpose:
+*A line on X or Y axis at the back of a car to show how vehicles conflict. Orientation of line is fixed whatever the car orientation. Only available for cars.
+*An arrow to show that the vehicle is in movement.
+*A viewing sector of 160° (viewing angle with both eyes for common people. Wider sector can be reached but extremes angles can only be viewed from only one eye). These sectors are rotated to a predefined value to show how drivers have mutual view when turning. Yet this is exist only on the bicycle (turned on left) and the cars (turned on right).
+
+The position of vehicles is defined in X and Y and they can be turned (around their center).
+
+All models are of own design.
+
+■vehicles_fr, fr
+Vehicules
+When [Afficher les véhicules] est sélectionné dans l'onglet [affichage], vous pouvez montrer jusqu'a quatre véhiclues simplifiés.
+Les modèles disponibles (aout 2018) sont les voitures (rouge et bleue), un cycliste et un bus
+*Les voitures font 4.2m de long
+*Le bus fait 12m x 2.55m, standard
+*Le cycliste est de type urbain, position verticale
+280%tab_vehicles.fr.png
+Les paramètres des véhicules et leur position sont définis dans l'onglet [Véhicules]
+Ils peuvent êtres définis dans n'importe quel ordre.
+On peut attacher un seul accessoire à chaque véhicule pour définir son rôle:
+*Une ligne sur l'axe X ou Y attachée à l'arrière d'une voiture pour montrer les conflits. L'orientation de la ligne est fixe quelle que soit l'orientation de la voiture. Uniquement disponible pour les voitures.
+*Une flèche pour montrer que le véhicule est en movement.
+*Un secteur de vision de 160° (angle de vision pour les deux yeux pour une personne ordinaire. L'angle de vision global est plus large mais les extrêmes ne sont vus que d'un seul oeil). Ces secteurs sont orientés de manière fixe pour montrer comment les conducteurs se voient lorsqu'ils tournent. Actuellement disponible pour le vélo (regard vers la gauche) et les voitures (regard vers la droite).
+
+La position des véhicules est définie en X and Y et on peut les orienter (autour de leur centre).
+
+Tous les modèles sont de conception personnelle.
+
+■why, en
+Why this application?
+This application was elaborated to try to influence urban designers about bicycling infrastructure, as in my country (France), cycling infrastructure is often poorly designed, especially at road crossing, which ruins the interest of all the cycling infrastructure and is unsafe.
+
+Initially, I was going to make a web page about the protected intersections on my "own site http://rouzeau.net".
+I was needing images and was not capable to find free images and sufficient examples, so I thought to creates schematics with libre office draw. It cames immediately to my mind that may be much easier and practical to use OpenSCAD as this can be parametric. From images examples to complete design, this is just a question of extra-work, so here we are.
+
+I have been a bicycle commuter in France for a few years (in harsh environment) and while very efficient compared to any other transports (I was saving half an hour per day), I found it somewhat difficult.
+I have limited experience of bicycling in the Netherlands as a tourist, and this is really another world, but when using it, you don't quite realize the amount of work and details which make the infrastructure efficient and safe. I also have been many times in the Netherlands for my job, using many taxis which are a good place to see how the system works. Though I regret a bit now to haven't pay more attention...
+I also added to the program other stuff unrelated to cycling uncommon in France, derived from the impressive work done by Jacques Robin on safety:http://www.securite-routiere-plus.com/
+ (that is in french)
+Examples are for relatively space constrained roads, as this is what is common where I live and you have to deal with. In my country (France) most existing bicycle lanes does not comply with the required minimum and most of the cycling infrastructure is an afterthought, and planners think that could be done only using paint! There is much road ahead...
+If available footprint is sufficient, protected crossing are not the best solution, which is the %dutch roundabout%round
+
+■why_fr, fr
+Pourquoi cette application?
+Cette application a été conçue comme un outil pour tenter d'influencer les planificateurs urbains au sujet des infrastructures cyclistes, car dans mon pays (la France), mis a part les infrastructures touristiques, les infrastructures urbaines sont généralement mal conçues, tout particulièrement aux carrefours, ce qui ruine l'intérêt d'ensemble des infrastructures et présente des dangers.
+
+Au départ, j'avais prévu de réaliser une page Internet à propos des carrefours protégés sur "mon site personnel http://rouzeau.net".
+J'avais besoin d'images et n'en ai pas trouvé de disponibles librements et avec assez d'exemples, aussi j'ai pensé créer des schémas avec Libre Office Draw. Il m'est immédiatement venu à l'esprit que ce serait beaucoup plus pratique d'untiliser OpenSCAD car cela permettrait des schémas paramétriques. Passer de schémas d'exemples a une conception complète n'est qu'une question de travail supplémentaire, et nous y voici.
+
+J'ai utilisé mon vélo pour aller au travail pendant quelques années et bien que j'ai trouvé ceci très efficace (plus rapide que tous les autres moyens de transport disponibles, j'économisais environ une demi-heure par jour), j'ai trouvé cela relativement difficile (dans un contexte urbain plutôt hostile).
+
+J'ai une expérience limitée du vélo aux pays-bas en tant que touriste, et c'est vraiment un autre monde. Quand vous roulez sur les pistes néerlandaises, vous ne réalisez pas vraiment la quantité de travail nécessaire et la multitude de détail qui rend ces infrastructures efficaces et sûres.
+J'ai aussi été de nombreuses fois au pays-bas pour mon travail, prenant de nombreux taxis qui sont un bon poste d'observation pour voir comment fonctionne le système. Cependant je regrette parfois de n'avoir pas été plus attentif...
+
+J'ai aussi ajouté à cette application des éléments non liés au cyclisme qui manquent dans les infrastructures routières françaises, dérivées de l'impressionnant travail de Jacques Robin sur la sécurité routière (site en Français):
+	http://www.securite-routiere-plus.com/
+Les exemples sont pour des endroits relativement étroits, car c'est la situation la plus courante là ou je vis et nous avons à y faire face. La majorité des pistes cyclables ne sont pas conformes à la largeur minimum requise et la plupart des infrastructures cyclables sont un ajout après-coup et beaucoup de planificateurs s'imaginent que l'infrastructure cyclable ne se fait qu'a la peinture!
+Il reste de la route à faire...
+Si l'emprise disponible est suffisante, les carrefours protégés ne sont pas la meilleure solution, qui est les %rond-points Néerlandais%round_fr
+Cette application permet de réaliser des ronds-points! Définissez un diamètre intérieur et c’est bon.
+
+■developers, en
+Notes to developers
+First, please note that I am not at all a professional programmer, but I started to play with computers more than thirty years ago, which helps.
+Professional all know Github, so I won't explain its use.
+For non professionals, use of Github is quite complex and if you can have help from someone, it is better.
+I recommend to use the desktop application. Don't hesitate to ask help to GitHub if you are locked (this was the case for me when I created my account). 
+
+Before forking this application, please note an interesting functionality of Customizer with the datasets. Only variables effectively present in the dataset are modified, so you can create a 'partial dataset' usable as a modifier. A typical example can be for the groung marking, you can creates UK marks, Australian marks or anything while deleting all other variables from a recorded dataset. That also means the compatibility of existing datasets can be maintained reasonnably easily.
+
+If you fork this application, I'll prefer that you maintain the french existing translation in order for me to easily reintegrate the modification if I am interested.  
+
+When doing general purpose operations, pre or post-processing, instead of using shell commands, python or any other language, I think it is preferable to creates macros in Libre Office Calc or Writer. This will be easier for non programmers users and this is the most portable method. Have a look to the translation macro for the general philosophy of that. I don't like much Libre Office basic, but this is free, very portable and you can create an interface with buttons and fields for easy interfacing.
+
+■altern, en
+Alternatives
+(:notoc:)(:nonum:)
+The protected intersection system is not the only way to improve cyclist safety, there are alternatives which could be used for many reasons.
+== All cyclists have light green
+The system with all bike light simultaneously green allow some time to cyclists to cross in all directions when all motorised traffic is stopped at red light. Cyclists turning left route in diagonal and cyclists from all directions crosses in the middle, which is more fluid than for motorised traffic. 
+This work well whatever the intersection size. However, this system does not carry many benefits to pedestrians.
+This solution does not need many modifications of an intersection because there is no interaction between cyclists and motorist, only time sharing. Though, in all cases bike ways are ground marked, but without color. 
+Its weakness is that it may be modified too easily by someone who decides that motorist shall have priority and timing modifications may endanger cyclists. It is very sensitive to 'politic variations'.
+
+== Passages on different levels
+On large infrastructures or dangerous passages, the dutch generally install separated levels routes, with underpasses or bridges. Often, to reduce the level change in an underpass, the main road is slightly elevated. 
+
+== Exclusives routes
+In town as in rural areas, a lot of routes are exclusive for bikes, especially in urban areas when their width is low. In this case, only delivery motorised vehicles may be allowed. This makes historical town centers much more pleasant. On roads with large or fast traffic, often there is no cycling infrastructure at all, which is moved to other routes generally quite distant from the motorised roads, cyclist routes being often more direct. Crossing is in this case often done with underpass.
+
+■altern_fr, fr
+Les alternatives
+(:notoc:)(:nonum:)
+Le système des carrefours protégés n'est pas la seule solution pour améliorer la sécurité des cyclistes, il y a des alternatives qui peuvent être préférées pour diverses raisons
+== Tous les feux au vert
+Le systèmes avec tous les feux cyclistes au vert laisse un peu de temps aux cyclistes pour traverser dans toutes les directions quand les véhicules motorisés sont tous stoppés aux feux rouges. Les cyclistes tournant à gauche traversent le carrefour en diagonale et les cyclistes provenant d'axes différents se croisent au milieu du carrefour, ce qui se passe beaucoup plus simplement que pour les véhicules motorisés.
+Ceci fonctionne bien quel que soit la taille du carrefour. Par contre, ce système n'apporte que peu de bénéfices aux piétons.
+Cette solution ne nécessite que peu de modifications d'une intersection car il n'y a aucune interaction entre les cyclistes et les véhicules motorisés, seulement un temps partagé.  Cependant, dans tous les cas, les pistes cyclables sont physiquement marquées au sol, mais elles n'ont pas besoin d'être colorées.
+La faiblesse de ce système est qu'il est à la merci d'une décision de donner la priorité au trafic motorisé. Une modification des temporisations peut alors créer du danger pour les cyclistes. Il est très sensible aux 'variations politiques'
+
+== Les passages sur des niveaux séparés
+Sur les grandes infrastructures ou les passages dangereux, les Néerlandais prévoient la majorité du temps des passages sur des niveaux séparés, passages en sous-terrain ou avec des passerelles. Souvent, pour réduire la dénivelée, lorsqu'il y a un passage souterrain, les voies principales sont souvent légèrement surélevées. 
+
+== Les routes exclusives
+En ville comme en zone rurale, beaucoup de voies sont réservées aux cyclistes, en zone urbaine particulièrement quand leur largeur est faible. Dans ce cas, seules les livraisons sont autorisées pour les véhicules motorisés. Ceci rend les centres urbains historiques très agréables. Sur les routes à fort passage, il n'y a souvent aucune infrastructure cycliste et une ou plusieurs autres voies sont prévues à distance, parfois sur des passages plus directs. Dans ce cas, les croisements sont souvent fait par des passages souterrains. 
+
+■safe, en
+Safety preamble
+As for any pages about cyclist safety improvement, it is important to remind that even for the most unsafe place for cyclists (e.g. USA), the health benefit in term of years life gain and reduction of illnesses carried by daily use of bicycle is an order of magnitude higher than the road accidental risk. This shall not prevent us to build adapted infrastructures as this is the most incitative stuff to promote bicycle use, which does not only benefit to cyclists. The indirect gain from a good infrastructure because it does encourage bicycle use is most probably higher than the direct benefit in accident decrease. 
+
+■safe_fr, fr
+Préambule sur la sécurité
+Comme dans toute page traitant de l’amélioration de la sécurité cycliste, il convient de rappeler que dans l’état actuel, les gains en termes de santé et d’années de vies épargnées par un usage régulier du vélo sont d’un ordre de grandeur supérieur aux risque accidentel, ce qui ne doit pas nous empêcher de prêter attention à celui-ci (voir les autres pages). De plus, la mise en sécurité apportée par une bonne infrastructure cyclable est très incitative à un usage élargi, ce qui apporte un bénéfice général qui ne concerne pas que les cyclistes. Le gain indirect d’une bonne infrastructure parce qu’elle encourage l’usage est probablement sensiblement supérieur au gain direct accidentel. 
+
+■round, en
+Roundabouts
+320%pcross_giratoire_3d.png
+Dutch roundabounts follow the exact same principles as protected intersections, with the added internal circular island and a somewhat rounder cycling path around the motorised vehicle intersection.
+You may start from the examples to create or modify roundabouts.
+You creates a roundabout by giving a diameter to the internal island (it is equal to 0 for a common intersection) in the [General] tab.
+Due to larger diameter, the island shall be extended by adding a 'diagonal area' between the cylindrical sectors and you adjust them by adjusting this diagonal area with the parameter 'Roundabout island diagonal part' (this parameter have no effect on common intersection islands)
+There is some tuning done compared to a common crossed intersection.
+The bicycle path is not exactly round because of the algorithm used but this can have some advantages.
+(:clear:)
+320%pcross_roundabout.png
+The part along the pedestrian crossing is normally straight with slightly curved inlet and outlet. You can reduce the extent of the straight part with the parameter [Decrease of straight length...] in [Fine tuning] tab. However, this parameter is common for all roads, so if you have roads of different width (because of different lane numbers), you shall left a minimal straight section and your roundabount may be somewhat oval - I may add another parameter later -.
+The radius of the bike path is normally linked to the pavement width and the offset of the center of the pavement corner (defined in [General] tab). Though, for a roundabout, this radius is not sufficient (you get a losanged bicycle path) and you shall increase it. In [Fine tuning] tab, you have the parameter [Increase of turn radius...]. However, having a somewhat straight section along corners have an advantage, it increase the room at road inlet/outlet, so you may not necessarily want a near perfect circle if you have limitation in footprint at the corners of the intersection. 
+(:clear:)
+400%round_combi.png
+For a limited penalty to cyclists, you can increase the overall room by 1m or more in each direction. This will either allow the increase of the central part or you can increase the space for motorised vehicles, defined in the [fine tuning] tab by modifying [Distance between roundabout and bike path] by default at 6m. In case of assymetry in the roundabout, this space may be larger on one road axis than the defined parameter. Playing with these parameters will give you a quick grasp on how it works.
+An example is shown on a composed image on right, you find (playing with radius increase and car space for a unique footprint and car line diameter):
+*top left : nearly circular bike path, radius increase:7m; 5m car space
+*top right: the example, radius increase:4.6m; 6m car space
+*bottom right: radius increase:3.4m; 6.5m car space
+*bottom left: radius increase:2.2m; 7m car space 
+The cycle path axis radius varies from 14.2m to 9.4m
+Central footprint: 33m x 33m (108' x 108') 
+Bicycle path radius is now displayed in the specification text in the 3D view.
+
+■round_fr, fr
+Giratoires
+320%pcross_giratoire_3d.png
+Les giratoires Néerlandais suivent exactement les mêmes principes que les carrefours protégés, ils ont seulement un îlot central en plus et la piste périphérique est plus ou moins circulaire.
+Il est préférable de démarrer à partir des exemples pour concevoir ou modifier un giratoire.
+Un giratoire est créé dans l'application en donnant un diamètre à l'îlot central (ce diamètre est nul pour un carrefour ordinaire) dans l'onglet [Général].
+Du fait du plus grand diamètre, les îlots de protection sont élargis en ajoutant une 'zone diagonale' entre les secteurs cylindriques. Vous devez ajuster cette zone avec le paramètre [Partie diagonale des îlots de giratoire] (ce paramètre n'a aucun effet sur les îlots des carrefours ordinaires)
+Il y a des ajustements à faire par rapport a un carrefour.
+La piste cyclable n'est pas tout a fait ronde du fait de l'algorithme utilisé mais ceci a certains avantages.
+La section le long des passages piétons est en principe droite avec des entrées/sorties incurvées. Vous pouvez réduire la longueur de la section droite avec le paramètre [Réduction de la longueur droite...] dans l'onglet [Réglages fins]. Cependant ce paramètre est commun a tous les axes aussi si vous avez des assymétries de largeur de route (parce qu'il n'y a pas le même nombre de voies sur chaque axe), vous devez laisser une longeur droite minimale - Il est possible qu'un paramètre soit ajouté plus tard pour régler ce problème -.
+(:clear:)
+320%pcross_giratoire.png
+Le rayon de la piste cyclable est calculé a partir du rayon de l'angle du trottoir et du décalage du centre de l'arrondi du trottoir (défini dans l'onglet [Général]). Cependant, pour un giratoire, ce rayon n'est pas suffisant (avec les valeurs par défaut vous aurez une piste de forme losangée) et vous devez l'augmenter. Dans l'onglet [Réglages fins], vous trouvez le paramètre [Augmentation du rayon de virage...]. Avoir une partie un peu plus droite au niveau des coins de trottoir a cependant un avantage, cela augmente la place disponible en entrée/sortie de route, aussi vous ne souhaiterez pas forcément avoir une piste parfaitement circulaire si vous ête limité dans la largeur de l'emprise au niveau des coins de l'intersection. 
+(:clear:)
+400%round_combi.png
+Pour une pénalité minimale pour les cyclistes, vous pouvez accroitre la place disponible de 0.5m a 1m sur chaque axe. Ceci permet soit d'accroitre le diamètre central, soit d'augmenter l'espace d'arrêt des véhicules motorisés, qui est défini dans l'onglet [Réglages fins] en modifiant le paramètre [Distance entre le giratoire et la piste cyclable] mis par défaut à 6m. Si le giratoire est assymétrique, cet espace peut être plus large sur un des axes que ce qui est spécifié. Jouer avec l'ensemble de ces paramètres devrait vous permettre de comprendre rapidement le fonctionnement du système.
+Un exemple est exposé sur une image composée a droite, vous trouvez (en jouant avec les paramètres augmentation du rayon et espace pour les voitures, pour une emprise donnée et un diamètre de ligne fixé):
+*en haut a gauche : piste presque circulaire, augmentation du rayon:7m; espace voiture 5m
+*en haut a droite: l'exemple, augmentation du rayon:4.6m; espace voiture 6m
+*en bas a droite: augmentation du rayon:3.4m; espace voiture 6.5m
+*en bas a gauche: augmentation du rayon:2.2m; espace voiture 7m
+Le rayon de la piste cyclable (en son milieu) varie de 14.2m à 9.4m
+Emprise centrale: 33m x 33m
+Le rayon de la piste est affiché dans le texte 'spécification' sur la vue 3D.
+
+■recdata, en
+Recording your projects
+OpenSCAD customizer allow recording of a dataset - a project - (see examples for existing datasets).
+Nothing is recorded automatically and you shall creates datasets for your projects.
+A new dataset can be created with the [+] button then updated with [save preset].
+If you want to came back to the already recorded set (the last [save preset]), use [reset] button.
+This is recorded locally in the directory where is installed the application.
+The file recording all the datsets is named 'Protected_crossing.json', recorded in "JSON format https://en.wikipedia.org/wiki/JSON" .
+Unfortunately there is no simple mean to isolate each project and updating the application will crush your own data. You shall be cautious to rename an existing 'Protected_crossing.json' file before update. 
+Also it is possible that a new update may slightly modify the data format, though most stuff may remain compatible. 
+
+■recdata_fr, fr
+Enregistrer vos projets
+OpenSCAD customizer permet d'enregistrer des jeux de données - des projets - (voir le exemples pour les jeux de données existants).
+Rien n'est enregistré automatiquement et vous devez créer des jeux de données pour vos projets.
+Un nouveau jeu de donnée est créé avec le nouton [+] puis mis à jour avec [save preset].
+Si vous voulez revenir aux valeurs déjà enregistrées (le dernier appui sur [save preset]), utilisez le bouton [reset].
+Ceci est enregistré localement dans le répertoire ou vous avez installé votre application.
+Le fichier enregistrant les données est appelé 'Protected_crossing.json', il est enregistré au"format JSON  https://en.wikipedia.org/wiki/JSON" .
+Malheureusement il n'y a aucun moyen simple d'isoler chaque projet et la mise a jour de votre application va écraser les données. Vous devez faire attention a changer le nom du fichier 'Protected_crossing.json' avant toute mise à jour. 
+
+Il est aussi possible que les nouvelles mises à jour ajoutent ou modifient des variables, mais la compatibilité globable devrait être maintenue. 
+
+■philo, en
+Design principles
+(:nonum:)
+== Introduction
+320%pcross_vue_3d.png
+Protected intersections are an infrastructure practically only seen in the Netherlands. Rare attempts in other countries were not always properly done. The cost probably hindered their development. However they are one key element of infrastuctures and in terms of safety protecting cyclist at intersection is one key justifying segregated circulation. Without a good safety at intersection, a separated cycle path is no less dangerous, even sometimes more than shared circulation. All benefits of segregated routes is often lost at intersections. It shall be noted that separated routes have other benefits than safety, they are much more comfortable et easier to use which favor development of cycling transport, knowing that as soon as there is an increase in cycling, related accidents decrease, so there is an indirect benefit.
+
+== History and context
+In the Netherlands, this type of intersection and some of its elements began to be built nearly fifty years ago and this is a fundamental component of the safety of the Dutch network. A lot of people are telling that what works in the Netherlands cannot necessarily work well elsewhere. This forgets that a good infrastructure is intuitive and that as in others countries, there is in the Netherlands a significant amount of foreign drivers, especially trucks not always used to the country. One fundamental element of of what is called 'pacified' infrastructures is that they could be mastered by less competent people, due to their age or a handicap. Another parameter is that they need to allow facing errors and uncivilities without having them driving to consequences. In the Netherlands as elsewhere there are drivers who forgot to signal, 'eat' the cycle lanes, run red light or phone while driving. Promoting anticipation of these bad behaviours is key.
+Compared to other european countries, a lot of the infrastructures were built after world war 2 while in other european countries, an important part of the layout have only slowly changed since one century, which make them too small for infrastructures with separated routes.
+However, the real difference is the political will to promote non motorised transport (Including walking) with real choices. You cannot please to everyone and when, by example, you remove one parking lane, there will alaways be unhappy people, which now shamm pay for parking or have to park a bit more remotely.
+
+== Principles
+A protected intersection have many different components which all have their importance and you shall not focus on the most visible parts as the islands.
+
+What mades a protected intersection?
+=== 1/ Deviated cyclist route
+The cyclist route is deviated to have motorised traffic nearly ended their turn when they cross the cycle path, in order to avoid the 'blind spot'.
+=== 2/ Space for car to stop
+This deviation gives also some room to cars turning right or left to stop without hindering main flow.
+=== 3/ Short turn radius for main road
+The turn radius is relatively short to obliged motorised traffic to slow down.
+=== 4/ Main lanes of limited width
+Lane width is only slightly incresed in the intersection, again to invite motorised vehicles to slow down.
+This lower speed allow mutual view and anticipation of intent. Drivers have time to look each other to comprehend intent. If a driver run at red light or will refuse to give way, the cyclist will have sufficient time to brake and stop.
+320%pcross_vision_mutuelle.png
+=== 5/ Protection islands
+Another benefit, the most visible is that gives room to place a physical protection in the form of 'islands', which also minimize the length of the crossing. This physical protection also prevent drivers to 'cut' the turn which contribute to speed reduction.
+=== 6/ «Bypass» for cyclists who turn right
+A free passage without stop nor light is set for right turning cyclists.
+(:clear:)
+320%pcross_depart_avance2.png
+=== 7/ Advanced cyclist position when stopped
+If there are traffic lights, cyclists stops in advanced position in the intersection, whhich allow them to end their crossing before right turning motorised vehicles arrive on the cycling path, even if the bicycle light start at the same moment as the motor vehicles light.
+(:clear:)
+320*pcross_route_prioritaire.png
+=== 8/ Cycle ways in red
+Cycle paths are in red color to well show they have priority, and sometimes they are slightly raised above the main road. This is a powerful visual signal to show where flows are crossing. In intersections where there is one road which have priority, the color is interrupted on the non prioritized cyle path as another reminder to cyclist that they shall give way. However the 'shark teeth' for right turning vehicles are still there to remind that its is still forbidden to cut way of other vehicles on your right.
+=== 9/ Strong ground marking
+The ground marking (and especially the 'shark teeth') remind the cycle path priority and interdication to cut route. In the Netherlands, these shrk teeth are not always shown on all intersections, but they are relatively used to frequent cycle path priority which exists since decades. In all cases the side signalling of the cycle ways is always very wide.
+=== 10/ Adapted traffic lights
+If the amount of cycling traffic requires it, the timing of green light can be different for the cyclists and other traffic. A very useful setup is when light are coordinated to allow successive crossing to make a left turn. In some intersections, there is a sequence where all bicycle  lights are green while all motorised traffic lights are red to allow crossing in alll directions.
+=== 11/ Absolutely no visual obstacle
+There shall be no visual obstacle, billboard, vegetation, flower pots or anything else. Children shall not be forgotten when designing an intersection. In some countries, billboards are causing much trouble.
+=== 12/ No fences neither any high obstacle
+There shall be no pole or bollard which can be collided by a cyclist nor any fence against he could be crushed by a truck or a bus. Only raised pavement will prevent circulation. This type of accident can occur to any kind of two-wheeler.
+== Miscellaneous questions
+320%pcross_grand_carrefour.png
+=== Cyclist route swerve slow down them? 
+A ‘normal’ urban cyclist, not a sportive one, run at approximately 20km/h(13.5 mph) and will not be slowed down much by this swerve, which invite him to be attentive. In the perspective of more common cycling, the fast cyclist will became a minority and the low speed allow to all a good anticipation and fluid traffic. An ordinary person who uses his bicycle daily is not at all related to a bicycle courier, his bicycle weight (twenty kilogs ore more when theft protection is included) and upright position which gives the aerodynamic of an iron will prevent any performance desire. Using bicycle for transport is a more peaceful situation for everyone. An urban cyclist shall sure do some effort, but nothing which makes him sweat. Upright position also improve visibility. Yet in some countries, cycling is so frightening that you only met the 'warriors'. This is not what you expect if you build good infrastructure.
+
+320%pcross_taille_reduite.png
+=== This need large footprint? 
+Indeed, if you have a very low footprint, it became difficult to have a "car space" for stop and stopping cars may hinder main flow. Also, advanced position of cyclists in the intersection will somewhat hinder right turning for others (as for any common intersection).
+=== Pedestrians are also required to swerve? 
+Yes as cyclist, pedestrians have to swerve, but this have a few advantages:
+* Crossing between cyclist and pedestrian is improved as pedestrian also benefit from the distance between cycle path and perpendicular pedestrian passage.
+* The protection of pedestrian from motorist is even better than the one for cyclist.
+* Lowered speed is beneficial.
+* Crossing length is reduced because you are out of the turn area and there is a physical protection on the width of the parking lanes. 
+=== This does not work for large vehicles? 
+Large vehicles will hinder flow, but not really more than for an common intersection, however we still have the benefit of a better visibility, which is even more important for utility vehicles without back glasses which have a very large blind spot.
+320%pcross_double_ilot.png
+=== This prevent bus and truck passage? 
+Somewhat for the smallest footprint, truck flow will be hindered by the short radius. If room is sufficient, you can have 'climbable pavement' by busses or trucks which gives them a larger radius. Here also, see examples. There shall not be a lane separating island if you don't have at least 2x2 lanes, as this makes the turn difficult for large vehicles. The bus in examples is a standard bus of 12m x 2.55m (39'x 8.4').
+
+You shall note something compared to intersections installed in the Netherlands. Frequently in the Netherlands the pedestrian crossing is just aside the cycle path which prevent the 'shark teeth' marking before the cycle path in flow toward intersection. In these cases sometimes the shark teeth are before the pedestrian passage, but this is a bit confusing.
+320%pcross_giratoire_3d.png
+== Roundabouts
+The principle of dutch roundabouts is the same as the protected intersection, just with the added central island and more round cycle path which allow faster speed and good cycle flow as cyclist have priority (there is no traffic light).
+This is the best possible infrastructure if the footprint is sufficient and the dutch prefer to install it nowadays.
+"Une vidéo https://www.youtube.com/watch?v=XhqTc_wx5EU" showing how it does work by "Bicycle dutch https://www.youtube.com/channel/UC67YlPrRvsO117gFDM7UePg" . 
+
+Sometimes, cyclists haven't priority.
+
+It shall be reminded that roundabounts were developed in the united kingdom who were seing them as a mean to increase flow. British roundabount are so often large with optimised inlet angles dor a fast traffic.
+
+Other europeans countries then have seen the advantages of this type of infrastructure but were more intereseted by the safety benefits and so have established standards with smaller roundabouts and a design reducing the speed. Where I live (France) everywhere footprint is sufficient and in all new developments, roundabounts proliferate. The dutch roundabout is the final step of this trend to reduce speed. It also now exists mini-roundabount with a central area which can be climbed by trucks and busses for turning.
+320%pcross_giratoire.png
+It shall be reminded that if the central footprint of a roundabount is larger than a common intersection, its more continuous flow can avoid using preselection lanes and the common roundabounts with only one lane in each direction reduces the overall footprint on arrivals and exits which may result in an overall footprint reduction. Cycle path deviation start very near to the roundabount (less than 20m) so their footprint is limited. And the required ground work of a cycle path is much lower than of a road lane. The absence of traffic lights also reduce maintenance and overall costs.
+
+The curious may have a look to turbo-roundabount for high flow (with or without preselection lanes), but they are completely unadapted to cycling which shall be moved far away, generally on another route. For large infrastructures, the dutch generally use underpasses or bridges and creates specific routes for cycling.
+
+■philo_fr, fr
+Principes de conception
+(:nonum:)
+== Introduction
+320%pcross_vue_3d.png
+Les carrefours protégés sont un aménagement qu’on ne voit pratiquement qu’aux pays-bas, et les rares tentatives dans d’autres pays n’ont pas toujours été correctement réalisées. Leur coût a probablement freiné le développement. Pourtant ils sont l’un des éléments clés des infrastructures et en termes de sécurité, la protection aux intersections est l’élément principal justifiant la ségrégation des usagers. Sans une bonne sécurité aux carrefours, une piste cyclable séparée n’est pas moins dangereuse, voire même présente plus de risques qu’une circulation partagée. Tout le bénéfice de sécurité des pistes séparées est généralement perdu aux carrefours. Il faut noter que les pistes séparées ont d’autres avantages que celui de la sécurité, qui est un plus grand confort et une facilité d’usage favorisant le développement du transport cycliste, sachant que dès qu’il y a augmentation du trafic cycliste, les accidents diminuent, il y a donc un bénéfice indirect.
+
+== Histoire et contexte
+Aux pays-bas, ces types de carrefours ou certains de leurs composantes ont commencés à être installés il y a près de cinquante ans et c’est un élément fondamental de la sécurité de leur réseau. Beaucoup argumentent que ce qui fonctionne aux pays-bas ne fonctionne pas forcément ailleurs. C’est oublier qu’une bonne infrastructure a aussi un aspect intuitif et que les pays-bas comme tous les pays d’Europe voient un trafic de conducteurs étrangers non négligeable, en particulier de camions pas forcément très habitués. Un élément essentiel des infrastructures dites ‘pacifiées’ est qu’elles peuvent être maîtrisées par des personnes moins compétentes, par exemple du fait de leur age ou d’un handicap. Un autre paramètre est qu’elles doivent permettre de faire face aux erreurs et incivilités sans que celles-ci entraînent de conséquences. Aux pays-bas comme ailleurs, il y a des conducteurs qui oublient leur clignotant, ‘mangent’ les bandes cyclables, grillent des feux rouges ou téléphonent en conduisant. Favoriser l’anticipation de ces mauvais comportement est une des clés.
+Par rapport à d’autres pays européens, une bonne partie des infrastructures des pays-bas a été réalisée après la deuxième guerre mondiale alors que dans d’autre pays d’Europe, il y a une partie importante des emprises qui a peu changé depuis un siècle et celles ci sont parfois insuffisantes pour les aménagements avec séparation.
+Mais la vraie différence, c’est la volonté politique de favoriser les transports autres que motorisés (Y compris la circulation piétonne) par de véritables choix. On ne peut pas faire plaisir a tout le monde et la suppression de files de stationnement pour compenser la faible emprise, par exemple, va forcément créer un lot de mécontents, qui seront obligés de payer pour stationner ou devront se garer un peu plus loin.
+
+== Les principes
+Un carrefour protégé comporte beaucoup d’éléments qui ont tous leur importance et on ne doit pas se focaliser sur les parties les plus visibles comme les îlots.
+
+Qu’est-ce qui fait un carrefour protégé?
+=== 1/ Une circulation cycliste déviée
+La circulation cycliste est déviée afin que les véhicules motorisés aient pratiquement terminé leur virage lorsqu’ils vont couper la piste cyclable, il n’y donc pas d’angle mort visuel.
+=== 2/ Un espace d’arrêt pour les voitures
+Cette déviation laisse un espace ou les voitures tournant à droite ou à gauche peuvent s’arrêter sans gêner le flux direct.
+=== 3/ Un rayon de virage court pour les voies routières
+Le rayon de virage est court pour obliger les véhicules motorisés à ralentir.
+=== 4/ Des voies routières de largeur limitée
+La largeur des voies n’est que peu augmentée, là encore pour obliger à ralentir
+Ceci permet d’assurer une visibilité réciproque et d’anticiper les intentions. Les conducteurs ont le temps de se regarder, ce qui favorise aussi une compréhension des intentions. Si un automobiliste a grillé un feu rouge ou va refuser la priorité, le cycliste va s’en rendre compte à temps et avoir le temps de freiner.
+320%pcross_vision_mutuelle.png
+=== 5/ Des îlots de protection
+Un autre bénéfice, qui est le plus visible, c’est qu’on peut installer une protection physique des cyclistes, qui minimise la longueur de leur traversée de voie. Cette protection empêche aussi de ‘couper’ les virages ce qui diminue la vitesse.
+=== 6/ Un «bypass» pour les cyclistes tournant à droite
+Un passage libre sans interruption ni feu est prévu pour les cyclistes tournant à droite.
+(:clear:)
+320%pcross_depart_avance2.png
+=== 7/ Une position avancée des cyclistes à l’arrêt
+S’il y a des feux de circulation, les cyclistes s’arrêtent en position avancée dans le carrefour, ce qui leur permet d’avoir traversé les voies avant que les voitures tournant à droite ne soient arrivées, ceci même si le déclenchement des feux cyclistes est le même que celui des feux pour véhicules motorisés.
+(:clear:)
+320*pcross_route_prioritaire.png
+=== 8/ Des voies cyclables de couleur rouge
+La piste est de couleur rouge pour bien marquer sa priorité, et parfois en légère surélévation, ce qui est aussi un marqueur visuel puissant pour signaler avec précision là ou les flots se croisent. Dans les carrefours ou un axe est prioritaire, la couleur rouge de la piste cyclable s’interrompt sur l’axe non prioritaire pour rappeler aux cyclistes qu’ils n’ont pas la priorité. Mais les dents de requin sur le ‘tourne à droite’ rappellent qu’on a toujours pas le droit de couper la route d’un véhicule situé sur sa droite.
+=== 9/ Un balisage sol fort pour les priorités
+Le balisage sol (les ‘dents de requin’) rappellent la priorité des pistes cyclables et l’interdiction de couper la route. Au pays-bas, ces dents de requins ne sont pas présentes sur tous les carrefours, mais la priorité des voies cyclables existe là-bas depuis des décennies et a moins besoin d’être rappelée. Dans tous les cas, le balisage des bordures de piste est très large.
+=== 10/ Des feux de circulation adaptés
+Si le volume du trafic cycliste l’impose, on peut donner des temps de déclenchements différents aux feux cyclistes par rapport aux feux pour véhicules motorisés. Un élément particulièrement pratique, c’est de permettre la traversée successive des voies perpendiculaires pour faire un ‘tourne à gauche’. Dans certains carrefours, tous les feux voitures restent au rouge pendant une dizaine de secondes alors que tous les feux cyclistes sont au vert pour leur permettre de passer en sécurité sur les deux axes.
+=== 11/ Absolument aucun obstacle visuel
+Il ne doit y avoir absolument aucun obstacle visuel, panneau publicitaire, végétation, pot de fleurs ou autre dans toute la zone du carrefour. On ne doit pas oublier les enfants dans la construction d’un carrefour. Les panneaux publicitaires/plan de ville posent un problème particulier en France et sont un obstacle visuel fréquent.
+=== 12/ Pas de barrières ni d’obstacles hauts
+Il ne doit y avoir aucun poteau qui pourrait être heurté par un cycliste et aucune barrière contre laquelle il pourrait être écrasé par un camion ou un bus. Seules les surélévations des îlots empêchent la circulation. Tous les deux roues peuvent être impliqués dans ce genre d’accident.
+== Questions diverses
+320%pcross_grand_carrefour.png
+=== La déviation de la piste ralentit les cyclistes? 
+Un cycliste urbain ‘normal’, pas un sportif, roule a environ 20km/h et ne sera que peu ralenti par cette déviation, qui l’incite aussi a plus d’attention. Dans le cadre d’une circulation cycliste plus large, les cyclistes ‘sportifs’ deviennent un minorité et les vitesses modestes permettent à tous une bonne anticipation et une grande fluidité de trafic. Une personne qui se déplace à vélo régulièrement n’a rien à voir avec un livreur à vélo, le poids de son vélo (vingt kilos ou plus quand on compte les antivols) et sa position verticale lui donnant une aérodynamique de fer à repasser élimine toute velléité de performance. Le transport à vélo, c’est une situation plus calme pour tous. Un cycliste urbain doit certes fournir un effort, mais rien qui le fasse transpirer.
+La position verticale du cycliste améliore sa visibilité.
+320%pcross_taille_reduite.png
+=== Cela nécessite de la place? 
+Oui, si les emprises sont insuffisantes, comme on peut le voir dans certains exemples, on perd deux bénéfices importants, celui de «l’espace d’attente» pour les voitures qui vont alors gêner le trafic principal et la position avancée des cyclistes qui devient gênante pour les autres cyclistes (semblable a celle d’un carrefour ordinaire).
+=== Les piétons sont obligés de dévier? 
+Tout comme les vélos, les piétons sont obligés de dévier de leur axe pour traverser. Ceci leur procure néanmoins divers avantages:
+* Le croisement piéton/cyclistes est amélioré car eux aussi bénéficient d’une plus grande distance entre la piste et le passage piéton perpendiculaire.
+* La protection des piétons par rapport aux véhicules motorisés est encore meilleure que pour les cyclistes
+* La réduction de vitesse due à la configuration du carrefour leur est bénéfique
+* La longueur de la traversée est nettement réduite car le virage est terminé et ils bénéficient d’une protection sur la largeur de stationnement. 
+=== Ca ne marche pas avec les grands véhicules? 
+Les grands véhicules vont gêner la circulation, mais pas vraiment plus que dans un carrefour ordinaire, cependant on conserve le bénéfice de la visibilité améliorée, qui est encore plus important pour les véhicules utilitaires que pour les voitures, la visibilité latérale étant souvent faible sans vitrages en position reculée ce qui donne un angle mort très important.
+320%pcross_double_ilot.png
+=== Cela gêne le passage des camions et des bus? 
+Dans une certaine mesure, pour les emprises les plus faibles, la circulation des camions peut être gênée par les rayons de virage courts. Si la place est suffisante, les îlots peuvent avoir des ‘trottoirs grimpables’ par les camions ou les bus leur donnant un rayon de virage un peu plus grand. Là aussi, voir les exemples. Il ne doit pas y avoir d’îlot de séparation de voies (en dessous de 2×2 voies) gênant le virage des grands véhicules. Le bus des exemples est un bus standard de 12m x 2.55m.
+
+Un point est a noter par rapport aux carrefours installés aux pays-bas. Souvent, aux Pays-bas, la piste cyclable est immédiatement adjacente au passage piéton, mais cela empêche la mise en place des ‘dents de requins’ devant la piste quand on va vers le carrefour. Dans ce cas, ces dents de requin sont parfois marquées avant le passage piéton, ce qui prête un peu à confusion sur qui a priorité.
+320%pcross_giratoire_3d.png
+== Les giratoires.
+Le principe des giratoires Néerlandais est le même que celui des carrefours protégés, mais le plus grand diamètre en améliore le fonctionnement et la déviation des pistes cyclables améliorant l’angle d’entrée permet aux cyclistes un franchissement très rapide et sans difficultés car ils sont prioritaires (il n’ ya pas de feux de trafic).
+C’est la meilleure infrastructure possible si on a la place et les Néerlandais préfèrent aujourd’hui, quand la place est disponible, installer des giratoires plutôt que des carrefours protégés avec ou sans feux.
+"Une vidéo https://www.youtube.com/watch?v=XhqTc_wx5EU" montrant comment ça marche par "Bicycle dutch https://www.youtube.com/channel/UC67YlPrRvsO117gFDM7UePg" . 
+
+Parfois, les cyclistes ne sont pas prioritaires.
+
+Il convient de rappeler que les giratoires se sont d’abord développés au royaume-uni qui y voyaient un moyen d’augmenter les débits de passages. Les giratoires britanniques sont donc souvent assez grands, avec des angles d’entrée optimisés pour une circulation rapide.
+
+Les autres pays européens ont vu l’intérêt de ce genre d’aménagement mais se sont plus attachés au gains en terme de sécurité. Ils ont donc établis des standards avec des giratoires plus petits et une conception obligeant un ralentissement. En France, partout ou la place est disponible, les giratoires se sont multipliés. Le giratoire Néerlandais est l’aboutissement de cette évolution tendant a diminuer les vitesses de passage. Il y a aussi maintenant des mini giratoires ou les camions et bus peuvent monter sur la zone centrale pour tourner.
+
+320%pcross_giratoire.png
+Il faut rappeler que si l’emprise centrale d’un giratoire est plus importante que celle d’un carrefour, sa plus grande régularité de débit permet souvent de se passer de voies de présélection et les giratoires ordinaires ne comportant qu’un seule voie par sens diminuent l’emprise des voies sur l’arrivée, ce qui peut résulter en un gain général sur les emprises. Les déviations cyclables ne se font que de manière assez proche du giratoire (moins de vingt m) et leur emprise reste raisonnable. Le renforcement du sol pour une piste cyclable n’est pas non plus du même ordre que celui requis pour une voie routière. L’absence de feux de trafic simplifie la tâche des communautés en charge de l’entretien et réduit le coût global.
+
+Les curieux pourront aussi aller voir les turbo giratoires pour les gros débits (avec ou sans voie de présélection), mais ils sont totalement inadaptés à la circulation cycliste qui doit se faire ailleurs, généralement a une distance importante. Pour les grosses infrastructures routières, les Néerlandais utilisent généralement des niveaux séparés avec ponts ou des passages souterrains pour les traversées et des routes spécifiques pour les cyclistes.
+
+■links, en
+Links and resources
+(:notoc:)(:nonum:)
+You have active militants and associations about cycling infrastructure:
+== Bicycle dutch
+Mark Wagenbuur, who have done a lot of videos (more than 200) in english, some being subtitled in other languages. He also maintain a blog in relation with his youtube chain. This is a very impressive work with nothing comparable. 
+* "Blog 'Bicycle Dutch' https://bicycledutch.wordpress.com/"
+* "Youtube chain 'Bicycle Dutch' https://www.youtube.com/channel/UC67YlPrRvsO117gFDM7UePg"
+
+== A view from the cycle path
+David Hembrow, a former british citizen now dutch, who is militing for everyday cycling since decades and is publishing a blog with comments and criticism about infrastructures, going often on foreign 'interpretations' of the dutch designs. His posts are generally quite opinionated but always with developed analysis and the ensemble is thorough and coherent. He organize sensibilisation tours in the Netherlands.
+* His blog: "A view from the cycle path http://www.aviewfromthecyclepath.com/".
+
+== A Dutch association, the CROW
+The dutch have defined standards mostly in dutch, however they have published some stuff in english.
+An association, the CROW, "publish many documents https://www.crow.nl/english-summary", a few being translated in english.
+
+== A British association, SUSTRANS
+A british association dedicated to sustainable transport, "SUSTRANS https://www.sustrans.org.uk/our-services/our-expertise/route-design/sustrans-design-guidance" publish also many documents. David Hembrow have issued criticism about some of their proposals, however they publish many interesting things and the ensemble is relatively comprehensive. The active realisation in the United Kingdom of what they propose is another story.
+
+== My own stuff (more limited)
+For french readers, I publish some web pages about daily cycling and infrastructure and you will find in my pages relevant links for french documentation. 
+*http://rouzeau.net/VeloDeVille/VeloDeVille
+
+The situation in France may be slightly better than in the UK with 3% of modal share by cycling, but globally we face very similar problems and way of thinking. However, there is some momentum in development of cycling for tourism and we may hope that will help daily cycling for transport and overall infrastructure understanding by the people in charge.
+Though, we are extremely far from the ratio in the Netherlands of 30% to 50% of cycling modal share depending the area. Germany is "approximately at 10% of modal share https://nationaler-radverkehrsplan.de/sites/default/files/forschung_radverkehr/cye-a-01.pdf".
+
+■links_fr, fr
+Liens et ressources
+(:notoc:)(:nonum:)
+
+■about, en
+About
+*Protected crossing is (c) Pierre ROUZEAU 
+Application can be found at https://github.com/PRouzeau/Protected-crossing
+It requires the installation of "OpenScad https://www.openscad.org/downloads.html", see documentation
+
+Licence of the Program: GPL v3
+Licence of the documentation: CC BY-SA 4.0 and GFDL 1.2
+All output generated by the application is free of right and you can define your own license for each project.
+
+The documentation system is run by "Aquilegia http://aquilegia.blue", also of own design, a pure Javascript application without any use of server language - so run entirely on YOUR machine.
+
+My "own site http://rouzeau.net" with varied topics in french and english
+"Web pages I wrote about cycling as transport http://rouzeau.net/VeloDeVille" exist only in french
+My other published programs can be found "on Github https://github.com/PRouzeau"
+
+■about_fr, fr
+A propos
+*Protected crossing is (c) Pierre ROUZEAU 
+L'application se télécharge à l'adresse https://github.com/PRouzeau/Protected-crossing
+Elle nécessite l'installation d'"OpenScad https://www.openscad.org/downloads.html", voir la documentation.
+
+Licence du programme: GPL v3
+Licence de la documentation: CC BY-SA 4.0 et GFDL 1.2
+Tout ce qui est produit par l'application est libre de droits et vous pouvez définir votre propre license pour chaque projet.
+
+Le système d'aide est "Aquilegia http://aquilegia.blue", lui aussi un programme de conception personnelle conçu en pur  Javascript, sans aucune utilisation d'un langage serveur.
+
+"Mon site Internet http://rouzeau.net" sur des sujets plutôt variés (en Français et en Anglais)
+Je publie des pages internet sur "le vélo en tant que moyen de transport http://rouzeau.net/VeloDeVille", actuellement uniquement en Français.
+Les autres programmes que je publie sont "sur Github https://github.com/PRouzeau".
+
+■credits, en
+Credits
+*Protected crossing is &copy;2018, Pierre ROUZEAU  License GPL V3, documentation CC BY-SA 4.0
+This application and all its documentation is designed from scratch without any program reuse, but with the help of my own "OpenScad library https://github.com/PRouzeau/OpenScad-Library" and documentation is run by my own Aquilegia engine.
+All programs I publish are under open licences and I never get any form of reward from it nor from all my other publications. This will remain the same for the foreseable future. I attach importance to the compliance to the licences and will fight for it. 
+
+The general concept, design and philosophy is based upon the work of Mark Wagenbuur who maintains the blog and youtube chain 'Bicycle Dutch' (in english) which is by far the most comprehensive documentation about cycling in the Netherlands. This is great work.
+*"Blog https://bicycledutch.wordpress.com/"
+*"Youtube channel https://www.youtube.com/channel/UC67YlPrRvsO117gFDM7UePg"
+
+■credits_fr, fr
+Crédits
+*Protected crossing est &copy;2018, Pierre ROUZEAU License GPL V3, documentation CC BY-SA 4.0
+Cette application et sa documentation a été créée à partir de zéro sans aucune réutilisation de code, mais en utilisant ma propre "bibliothèque OpenScad https://github.com/PRouzeau/OpenScad-Library" et mon système de documentation Aquilegia.
+Tous les programmes que je publie sont sous licence ouverte et je ne perçois aucune rémunération ni bénéfice de quelque forme que ce soit, pas plus que de mes autres publications. Ceci devrait perdurer dans le futur prévisible. J'attache de l'importance au respect des licences et n'hésiterai pas a me battre pour celui-ci.
+
+La conception générale et la philosophie sont basées sur le travail de Mark Wagenbuur qui tient un blog et une chaîne youtube 'Bicycle Dutch' (en anglais) qui est de loin la documentation la plus complète sur le cyclisme aux pays-bas. C'est du très beau travail.
+*"Blog https://bicycledutch.wordpress.com/"
+*"Youtube channel https://www.youtube.com/channel/UC67YlPrRvsO117gFDM7UePg"
+
+■privacy
+Privacy policy
+When you view this help system, nothing else than the usual statistics about browser type, IP and operating system is recorded (by the provider -OVH- ). A cookie is used to store the last viewed page and recall it at next opening. If this is too much for you, you always can operate the help on your machine directly with Firefox or Edge by opening the help 'index.htm' file. Chrome browser refuse to execute local Javascript files and you shall use a local web server or create a new shortcut with the parameter "--allow-file-access-from-files".
+
+■hlpdef
+Default page add directives or text at start of any page. Could be cancelled by local directives.
+(:numtitle:)(:hlpfoot:)(:hlphead:)
+
+■hlpfoot
+Foot page add text at the bottom of the page, outside the title sections, inside page css class. Code interpreted
+<small>&ensp;Content &copy;2018 Pierre ROUZEAU %credits%% Licence CC BY-SA 4.0</small> %Privacy%privacy &emsp;<sub> "delivered by Aquilegia http://aquilegia.blue"</sub>
+ 
+■hlphead
+Head page if called. Code interpreted  - title line not used - so empty here
+ 
+■hlpdiag
+Writer tool box
+<a href="javascript:hlpLoadAll('hlpListAll');">List all pages (after loading external pages)</a>
+
+<a href="javascript:hlpLoadAll('hlpAllWeblnk');">List all web links (after loading external pages)</a> 
+Links open in new window, so you can test one after the other while closing test window with [Ctrl]W.
+
+<a href="javascript:hlpLoadAll('hlpAllImglnk');">Check linked images (after loading external pages)</a>
+

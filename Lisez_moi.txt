@@ -1,7 +1,11 @@
 CROISEMENTS PROTÉGÉS
 Conception de croisement protégés 'à la néerlandaise', comme il s’en construit depuis près de cinquante ans aux pays-bas.
- Pour une explication de l'état de l'art, voyez le lien (en anglais):
-	https://bicycledutch.wordpress.com/2011/04/07/state-of-the-art-bikeway-design-or-is-it/
+
+Merci de noter qu'une aide plus complète que celle ci-dessous et beaucoup plus pratique a utiliser est disponible:
+*Sur Internet à l'adresse  http://rouzeau.net/pcross
+*Ou directement dans le répertoire d'aide en exécutant le fichier 'index.htm' du répertoire help. Ceci est direct avec Firefox ou Edge mais Chrome refuse d'éxecuter les fichiers locaux en Javascript et vous devez utiliser un serveur web local ou créer un nouveau raccourci avec le paramètre "--allow-file-access-from-files".
+
+Pour une explication de l'état de l'art, voyez le lien (en anglais):https://bicycledutch.wordpress.com/2011/04/07/state-of-the-art-bikeway-design-or-is-it/
 
 Cette application a été conçue comme un outil pour tenter d'influencer les planificateurs urbains au sujet des infrastructures cyclistes, car dans mon pays (la France), mis a part les infrastructures touristiques, les infrastructures urbaines sont généralement mal conçues, tout particulièrement aux carrefours, ce qui ruine l'intérêt d'ensemble des infrastructures et présente des dangers.
  J'ai utilisé mon vélo pour aller au travail pendant quelques années et bien que j'ai trouvé ceci très efficace, j'ai trouvé cela relativement difficile (dans un contexte urbain plutôt hostile).
@@ -53,7 +57,7 @@ Notez les conventions
 
  Les dimensions du marquage au sol ne sont pas toutes accessibles dans l’interface (valeurs dans le groupe 'Hidden') car elles sont imposées (par la règlementation), cependant vous pouvez toujours les modifier dans le programme, mais les modifications du programme seront effacées à la prochaine mise à jour.
  
-D'un point de vue général, bien qu'il y ait beaucoup de paramètres, un certain nombre de choses ne sont pas modifiables à dessein. C'est une décision de conception car ce programme a été crééé pour lutter contre le manque total de standardisation et les grandes incohérences de l'existant en France. J'ai pensé qu'un programme pouvait améliorer la conformité aux règles officielles et aux bonnes pratiques. En France, beaucoup d'éléments sont de simples recommandations non obligatoires et ceci laisse la porte grande ouverte a des conceptions déficientes. L'absence de ligne de stop aux passages piétons est un de ces exemples, bien qu'il soit recommandé depuis 1973 dans la convention de Vienne, soit depuis plus de quarante ans. Cependant de nos jour on trouve beaucoup de sas vélos qui sont envahis par les voitures et scoooters du fait d'un marquage insuffisant. L'épaisseur standard internationale des lignes de stop est de 50cm, pourquoi ne pas la respecter alors qu'il est évident que les lignes de stop des sas cyclable ne servent à rien, ce qui aurait dû conduire a de sérieux questionnements sur leur conception.
+D'un point de vue général, bien qu'il y ait beaucoup de paramètres, un certain nombre de choses ne sont pas modifiables à dessein. C'est une décision de conception car ce programme a été crééé pour lutter contre le manque total de standardisation et les grandes incohérences de l'existant en France. J'ai pensé qu'un programme pouvait améliorer la conformité aux règles officielles et aux bonnes pratiques. En France, beaucoup d'éléments sont de simples recommandations non obligatoires et ceci laisse la porte grande ouverte a des conceptions déficientes. L'absence de ligne de stop aux passages piétons est un de ces exemples, bien qu'il soit recommandé depuis 1973 dans la convention de Vienne, soit depuis plus de quarante ans. Cependant de nos jour on trouve beaucoup de sas vélos qui sont envahis par les voitures et scooters du fait d'un marquage insuffisant. L'épaisseur standard internationale des lignes de stop est de 50cm, pourquoi ne pas la respecter alors qu'il est évident que les lignes de stop des sas cyclable ne servent à rien, ce qui aurait dû conduire a de sérieux questionnements sur leur conception.
 
 Les marquages sols sont conformes à la règlementation Française (largeurs de lignes, flèches, etc.). 
 
