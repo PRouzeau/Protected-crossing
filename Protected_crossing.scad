@@ -2286,32 +2286,20 @@ module disp_vh (type, vcolor, x,y,ang, acc) {
 		  car(vcolor,linang, ang); 
 	  else if(type==2) {
 			orange()
-				import("Bus_body.stl");
+				import("vehicles/Bus_body.stl");
 			color(glass_color)
-				import("Bus_glasses.stl");
+				import("vehicles/Bus_glasses.stl");
 			black()
-				import("Bus_tires.stl");
+				import("vehicles/Bus_tires.stl");
 		}
-			/*color(vcolor)
-				t(0,1350,-30) 
-						scale(1560) 
-							import("Bus_by_Anderson_Rondon.stl"); */
 		else if(type==3) {
 			color([0.15,0.15,0.15])
-				import("Bicycle.stl"); 
+				import("vehicles/Bicycle.stl"); 
 			color("greenyellow")
-				import("Cyclist_body.stl"); 
+				import("vehicles/Cyclist_body.stl"); 
 			color ("peachpuff")
-				import("Cyclist_head.stl"); 
+				import("vehicles/Cyclist_head.stl"); 
 		}
-/*		  color(vcolor)	
-				rotz(90)
-						import("Bicyclist_by_Digson.stl"); */
-				/*/ Check dimensions
-					cyly (-200,1000, 0,100,350);
-					cyly (-100,1750, 0,100,350);
-					cylz (100,1820);cylx 
-					(740,40,0,0,370); //*/
 		if(arrow&&type)
 			demo_arrow(v_acc_param[type][1]);
 		
