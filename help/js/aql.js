@@ -31,6 +31,7 @@ var aqlO = {}; // object for variable parameters
 var aqlI = {}; // object for image parameters
 /** @private */
 var tabHlp={}; // storage of pages, groups, titles, search authorisation and title section toggle
+var aqlDNT = navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack;
 aqlC.version = "Beta1";
 aqlC.linkMaxLength = 24; // maximum number of character for a link name (due to file length limitation= 30-2 for 'h/'-4 for'.txt')
 aqlC.sweb   	= '•'; // U+2022 symbol at the end of a web link - well supported by fonts, possible ○
@@ -43,7 +44,7 @@ aqlC.imgLocalDir= "f/"; // sub-directory of h/ for images when the resources are
 aqlC.dispDir 	= "f/"; // sub-directory of h/ for **displayed** images (they shall have same name as full images)
 aqlC.EndText	= '<br>'; // add empty lines at end of body text
 aqlC.Utils		= ["hlpLoadAll(hlpListAll)", "hlpLoadAll(hlpAllWeblnk);", "hlpLoadAll(hlpAllImglnk);"];
-
+aqlC.lastPageCookie = true; // store a cookie with last viewed page when activated (if DNT not set)
 //______________________________________________________________
 aqlO.imagesDir	= "f/"; // sub-directory of h/ for large images  ('full' images) use imgLocalDir if resources are local
 aqlO.source		= "http://aquilegia.blue/";
@@ -586,7 +587,7 @@ function hlpCall (page, text) {
 function aqlTrans (data, hpage, isHeadFoot) {//simple wiki markup w/ pdf, images references & web links
 // \s capture the \n, so [\t ] is used to catch spaces only
 var intro, ptitle, numtitle, myclass, hlpfoot, hlphead, allweb, hlpdiag;  //blocs and directives
-var trail, imgpar, imgborder, pgdate; //blocs and directives
+var trail, imgpar, imgborder, pgdate, cssblock; //blocs and directives
 var notoc, notitle, nofoot, nohead, nodate; // parameters of directives
 var refidx=0, notesidx=0, weblnk, weblnk1, weblnk2; //notes and web link lists
 var codeblocks=[], tmp=[], titles=[], weblinks=[], weblinkis=[], tables=[]; //data storage while tokenising
@@ -802,6 +803,11 @@ var imgdisp, rgximg, rgximglnk, ptarget ='" target="_blank">', imgsrc; // image 
 	data=data.replace(/(<br>)*♂(<br>)*/,""); // remove newlines between default page and page- was needed for markup interpreter
 	data+="(:clear:)"; // to have the window height adjusting to height.
 	data=data.replace(/[\t ]*\(:clear:\)[\t ]*(<br>)*/gm, cleardiv); // clear image
+	
+	//Define right floating block - html code inside ok, as tokenized above ??
+	data=data.replace(/\(:(lfloat|rfloat|rnote)\s([\w-\s\:\.\"\/☼↕▲♥♠▼♪♫<>&;]*?):\)/g,  function(mt, p1, p2) {
+		return "<div class=\""+p1+"\">"+p2+"</div>"; // 
+    });
 	//== introduction ====================================================
 	if (!isHeadFoot) {
 		var npos = data.search (/♦/g);  // Isolate text which is before first title (== title)
@@ -854,7 +860,7 @@ var imgdisp, rgximg, rgximglnk, ptarget ='" target="_blank">', imgsrc; // image 
 		}
 		if (!nohead && hlphead) {
 			tmpstr = aqlTrans(z(zo(tabHlp[hlphead]).p), hlphead, true);
-			data+=tmpstr;
+			data=tmpstr+data;
 		}
 		data += aqlC.EndText;
 	}
@@ -1102,7 +1108,8 @@ function hlpSetContent (hpage, x, stateCh) {
 	if (!stateCh) {// 2nd argument is statechange
 		hash = aqlbsel()+idx+anchor;
 		history.pushState("", "", aqlO.linkbase+'#'+aqlC.prefix+hash);
-		document.cookie = "aqlpage="+escape(hash)+";" // store last hash in a cookie
+		if (!aqlDNT && aqlC.lastPageCookie) // only store cookie if DNT not activated (and option activated)
+			document.cookie = "aqlpage="+escape(hash)+";" // store last hash in a cookie
 	}	
 }
 

@@ -368,10 +368,34 @@ buttons with 28px sprites -> 28/48*628=366px, space 33px (=28/48*58)*/
 	display:inline-block;
 }
 
+/*-- Miscellaneous --*/
 .hlpsign { /* for signature - in principle in the footer*/
 	float:right;
 	font-size:10px;
 	vertical-align: text-bottom;
+}
+
+/* floating component */
+.rfloat {
+	float:right;
+	display:inline-block;
+}
+
+.lfloat {
+	float:left;
+	display:inline-block;
+}
+
+/* right floating note */
+.rnote {
+	float:right;
+	display:inline-block;
+	background:#ffffcc;
+	padding:4px 7px 4px 7px;
+	border-color:#F8F8F8;
+	border-style:solid;
+    border-width:1px;
+	border-color:#222222;
 }
 
 /*-- Table of content links 2-4 --------*/

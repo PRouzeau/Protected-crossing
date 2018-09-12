@@ -91,7 +91,9 @@ module bike (diam=380, ht=35, ana=2, fill=false) {
   d2 = diam/2;
   d25 = diam/2.5;
   wbase2 = diam/1.3;
-white() t(diam*0.3)  scale ([ana,1,1]) { 
+	//render() 
+	white() 
+	t(diam*0.3) scale ([ana,1,1]) { 
   // wheels
   dmirrory() 
     diff() {
