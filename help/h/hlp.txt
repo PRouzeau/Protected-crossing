@@ -16,6 +16,7 @@ Protected crossing is an application to design road protected intersection "the 
 This application is mainly an educational tool as it is difficult to elaborate an application for all possible cases with assymetries or non right angles.
 It can also design %dutch roundabouts%round which uses same principles but are a better solution than cross intersection when footprint is sufficient.
 It shall be well understood that there are %other solutions%altern for cyclist safety, by example the 'all directions green lights for cyclist' or separated grades routes.
+This manual also exist %in french%home_fr .
 
 ==Installation
 *%Install OpenScad%instoscad
@@ -175,6 +176,7 @@ Usage of 'Protected Crossing' application
 (:nonum:)
 After having %configured OpenSCAD%instoscad, you can now use the application.
 == What can it do ?
+(:clear:)380%examples.png
 In its current form, this application is limited to design intersections with perpendicular roads, aligned, with bikeways and parking lanes also aligned but car lanes could be adapted in the dedicated tab. There are so many possible combinations that it is difficult to design a program really usable for all the variety you can find. It shall be regarded primarily as an educational tool.
 All car lanes within a road segment shall have the same width (yet).
 
@@ -265,6 +267,7 @@ Utilisation de l'application 'Protected Crossing'
 (:nonum:)
 Après avoir %configuré OpenSCAD%instoscad_fr, vous pouvez utiliser l'application.
 == Que peut-elle faire ?
+(:clear:)380%examples.png
 Actuellement, cette application est limitée à la conception des carrefours avec des routes perpendiculaires, avec des trottoirs et files de parking alignés, mais on peut redistribuer les voies principales. Il y tant de combinaisons possible qu'il est difficile de concevoir un programme répondant à tous les cas de figure. Ce programme doit être vu comme un outil pédagogique ou d'avant projet. 
 
 Toutes les voies d'une branche du carrefour ont la même largeur (pour le moment).
@@ -360,7 +363,7 @@ The value of the swerve angle can be adjusted from 15° to 45°. At 45°, the ov
 There is a swerve angle for each road axis, and they are set as "Connecting angle for crossing swerve" in the [road X/Y common elements] tabs. You will see lower angle (20/25°) in the examples of large instersections, while the lower footprint intersections have a swerve angle of 40/45°.
 == Corners
 (:clear:)380%radiuses_schem.png 
-If the swerve angle is at 45°, the corner have a perfectly cicrcular shape. If the perpendicular pavements are not of the same width, the center position is adjusted. However, to have a more round corner, you can offset the center outside the pavement. While this increase the radius, this also reduce the room for pedestrians at the corner. The remaining room is indicated in the specification paragraph displayed on the image. If there are cut corners as is often seen in large intersections, you can increase significantly this offset. Yet, the offset is common for both axis and is set in the 'general' tab, field "pavement corner center offset".
+If the swerve angle is at 45°, the corner have a perfectly circular shape. If the perpendicular pavements are not of the same width, the center position is adjusted. However, to have a more round corner, you can offset the center outside the pavement. While this increase the radius, this also reduce the room for pedestrians at the corner. The remaining room is indicated in the specification paragraph displayed on the image. If there are cut corners as is often seen in large intersections, you can increase significantly this offset. Yet, the offset is common for both axis and is set in the 'general' tab, field "pavement corner center offset".
 If the swerve angle is different from 45°, you have to build a smaller radius for connection between perpendicular path. So, by design the center radius of the corner is set equal to half the value of what is shall be with 45° connection. The arrriving radius is then larger and it depends from the swerve connection angle. By example, for a 30° connection, the arrival radius is 1.6 time larger than what it would be for a 45° connection, so the ratio between the arrival radius and center radius is 3.2. This gives a reasonnably soft right turn connection while making the straight way a bit more easy to handle. Note that while the corner looks a bit pointy, this is only due to the algorithm and the point is only white paint. If you look closely, you will see that the corner is effectively round. There is no other way to modify the radius than playing with the pavement width, center offset and swerve angle. Have a look on the schematics to see how this work.
 
 You shall left sufficient pavement width for pedestrians, if not they will invade the cycle path, which is a bad thing. It shall be noted that the minimum width required for easy manoeuvering of wheelchairs is 1.4m (there will be a message if you go below). The corner shall be free of any pole for signalisation or any other obstacle. In constrained areas, signs or lights could be attached to buildings.
@@ -588,7 +591,7 @@ The bicycle path is not exactly round because of the algorithm used but this can
 320%pcross_roundabout.png
 The part along the pedestrian crossing is normally straight with slightly curved inlet and outlet. You can reduce the extent of the straight part with the parameter [Decrease of straight length...] in [Fine tuning] tab. However, this parameter is common for all roads, so if you have roads of different width (because of different lane numbers), you shall left a minimal straight section and your roundabount may be somewhat oval - I may add another parameter later -.
 
-Cycle path radius is calculated from pavement corner radius and offset. However, for a roundabout, this radius is not sufficient (with default values you will have a losanged cycle path) and you shall increase it. In [Fine tuning] tab, you will find a parameter [Increase of turn radius...]. However, a somewhat straight part increase the car stop space and you may not want to have a perfectly circulat path if your footprint is limited. See chapter %shapes and radiuses%rad.
+Cycle path radius is calculated from pavement corner radius and offset. However, for a roundabout, this radius is not sufficient (with default values you will have a losanged cycle path) and you shall increase it. In [Fine tuning] tab, you will find a parameter [Increase of turn radius...]. However, a somewhat straight part increase the car stop space and you may not want to have a perfectly circular path if your footprint is limited. See chapter %shapes and radiuses%rad.
 
 ■round_fr, fr
 Carrefours giratoires

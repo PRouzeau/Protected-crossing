@@ -15,7 +15,7 @@
 //ground marking bikes own design
 
 /*Please note that a complete help (in english and in french) is available:
-*On Internet at  http://rouzeau.net/pcross
+*On Internet at http://rouzeau.net/pcross
 *Or directly in the help directory by running the 'index.htm' file. This is direct with Firefox or Edge but Chrome refuse to execute local Javascript files and you will need to use a local web server or to create a new shortcut with the parameter "--allow-file-access-from-files". 
 */
 
@@ -597,9 +597,6 @@ YAr_cycle_lane = 2; //[0:0.1:2.5]
 //fr:déviation de la piste cyclable (nécessite un trottoir de séparation large)
 //Cycle PATH deviation (need a large separating pavement)
 YAr_pavdev = 0; //[0:0.1:6]
-//fr:Largeur file de parking
-//parking lane width
-YAr_park_lane = 0; //[0,2,2.1,2.2]
 //fr:Voie de bus 
 //Bus lane
 YAr_bus_lane = false;
@@ -704,7 +701,7 @@ stop_line_sp = _stop_line_sp*cfu_line;
 stop_line_thk = _stop_line_thk*cfu_line;
 ped_zebra_line = _ped_zebra_line*cfu_line;
 pedcross_side_line=_pedcross_side_line*cfu_line;
-cycle_cent_line = _cycle_cent_line*cfu_line;
+
 //====================================
 /*fr:[Réglages fins]*/
 /*[Fine tuning]*/
@@ -940,8 +937,8 @@ Wmain_start = Wroad_start-Wpark_lane-Wcycle_lane;
 //echo(Wpav_alley=Wpav_alley ,Wroad_start=Wroad_start);
 //-------------------------------
 //??? check
-XBr_lane_arrows = XAr_lane_arrows;
-YBr_lane_arrows = YAr_lane_arrows;
+//XBr_lane_arrows = XAr_lane_arrows;
+//YBr_lane_arrows = YAr_lane_arrows;
 
 Wlane_arrows = [[XAr_lane_arrows,XBr_lane_arrows],[YAr_lane_arrows,YBr_lane_arrows]];
 //echo (Wlane_arrows);
@@ -1157,7 +1154,6 @@ module cutcorner (a, b, bottom=-100, ht=500, extent=true) {
 	bopp= oppbranch(b);
 	wayang = way_ang(a,b);
 	wayangp = way_ang(ap,bp);
-	bprev = prevbranch(a,b);
 	
 	total = totwidth[a][b];
 	border = min(cr_border1(a,b),cr_border2(a,b));
