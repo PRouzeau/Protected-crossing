@@ -13,10 +13,11 @@
 // https://github.com/PRouzeau/OpenScad-Library
 //Bus model own design, 12 x 2.55 m, wheel base 5.9 m.
 //bike model own design
+//car model length 4.2 m
 //ground marking bikes own design
 
 /*Please note that a complete help (in english and in french) is available:
-*On Internet at  http://rouzeau.net/pcross
+*On Internet at http://rouzeau.net/pcross
 *Or directly in the help directory by running the 'index.htm' file. This is direct with Firefox or Edge but Chrome refuse to execute local Javascript files and you will need to use a local web server or to create a new shortcut with the parameter "--allow-file-access-from-files". 
 */
 
@@ -33,7 +34,7 @@ Generally speaking, turns and ground marking are not handled well on double dire
 Bikeway are not handled properly when there is a t cross and a double direction cycle path on the side of the t branch (there shall not be traversing bikeways) 
 */
 
-/*fr+  
+/*  
 Conception de croisement protégés 'à la néerlandaise'
  Pour une explication de l'état de l'art, voyez le lien (en anglais):
 	https://bicycledutch.wordpress.com/2011/04/07/state-of-the-art-bikeway-design-or-is-it/
@@ -254,6 +255,13 @@ traffic_light=true;
 //------------
 //Quelle route a priorité
 road_priority = 1; //[0:"Aucune",1: "Route X", 2:"Route Y"]
+//------------
+//Priorité à la voie cyclable: sur les giratoires, une piste éloignée NON prioritaire peut offrir une meilleure sécurité
+cycle_priority = true; 
+
+//move cycle way crossing from intersection - for roundabouts
+_cycle_way_offset = 0; //[0:0.5:12]
+cwo = _cycle_way_offset*cfu;
 //-----------
 //Carrefour en 'T' (pas de branche B en Y)
 t_cross = false;
@@ -277,6 +285,9 @@ round_int_diam=_round_int_diam*cfu;
 //Partie diagonale des îlots de giratoire
 _round_bias=6; //[0:0.2:15] 
 round_bias = _round_bias*cfu;
+//Distance entre le rond-point et la piste cyclable (m)
+_roundabout_space = 6; //[5:0.5:12]
+roundabout_space = _roundabout_space*cfu;
 //================================
 /*[Nombre de voies principales]*/
 //Route X branche A: nombre de voies à droite
@@ -451,8 +462,6 @@ YAr_park_lane = 0; //[0,2,2.1,2.2]
 YAr_cycle_lane = 2; //[0:0.1:2.5]
 //déviation de la piste cyclable (nécessite un trottoir de séparation large)
 YAr_pavdev = 0; //[0:0.1:6]
-//Largeur file de parking
-YAr_park_lane = 0; //[0,2,2.1,2.2]
 //Voie de bus 
 YAr_bus_lane = false;
 //Voie de bus sur la branche B
@@ -532,7 +541,7 @@ stop_line_sp = _stop_line_sp*cfu_line;
 stop_line_thk = _stop_line_thk*cfu_line;
 ped_zebra_line = _ped_zebra_line*cfu_line;
 pedcross_side_line=_pedcross_side_line*cfu_line;
-cycle_cent_line = _cycle_cent_line*cfu_line;
+
 //====================================
 /*[Réglages fins]*/
 //Augmentation du rayon de virage pour avoir un parcours plus circulaire. Réduit l'espace de stockage des véhicules motorisés
@@ -562,9 +571,6 @@ _light_pole_dist = 0.3; //[0.3:0.05:1]
 light_pole_dist = _light_pole_dist*cfu;
 //Diamètre des feux principaux (en mm)
 traffic_light_diam = 200; // [200,300]
-//Distance entre le rond-point et la piste cyclable (m)
-_roundabout_space = 6; //[5:0.5:12]
-roundabout_space = _roundabout_space*cfu;
 
 /*[Hidden]*/
 //What follow is legacy of former island design, but it have effect on bike light and protection pavement. To be deprecated or at least revised
@@ -739,8 +745,8 @@ Wmain_start = Wroad_start-Wpark_lane-Wcycle_lane;
 //echo(Wpav_alley=Wpav_alley ,Wroad_start=Wroad_start);
 //-------------------------------
 //??? check
-XBr_lane_arrows = XAr_lane_arrows;
-YBr_lane_arrows = YAr_lane_arrows;
+//XBr_lane_arrows = XAr_lane_arrows;
+//YBr_lane_arrows = YAr_lane_arrows;
 
 Wlane_arrows = [[XAr_lane_arrows,XBr_lane_arrows],[YAr_lane_arrows,YBr_lane_arrows]];
 //echo (Wlane_arrows);
@@ -956,7 +962,6 @@ module cutcorner (a, b, bottom=-100, ht=500, extent=true) {
 	bopp= oppbranch(b);
 	wayang = way_ang(a,b);
 	wayangp = way_ang(ap,bp);
-	bprev = prevbranch(a,b);
 	
 	total = totwidth[a][b];
 	border = min(cr_border1(a,b),cr_border2(a,b));
@@ -1418,7 +1423,8 @@ module bikeway_cross (a,b) {// a(xis), b(ranch)
 	if(priority && disp_road)
 		color(color_cycle) {
 			//bends
-			t(strshift) { //internal bends have same radius
+			if(cycle_priority)
+				t(strshift,cwo) { //internal bends have same radius
 				dmirrorx() 
 					t(-lgstrseg/2,border,-4)
 						mirrory() 
@@ -1532,12 +1538,13 @@ module bikeway_cross (a,b) {// a(xis), b(ranch)
 		} 
 	}//white()
 	//------------------------------	
-	// priority triangle marking 
-	t(-Waxis_shift(ap,bp,vright)-devp,border-way_tot/2) {
-		teeth(-way_tot/2-cycle_cross_line-cycle_triangle_dist, signal, false);
+	// priority triangle marking
+	if(cycle_priority)
+		t(-Waxis_shift(ap,bp,vright)-devp,border-way_tot/2) {
+			teeth(-way_tot/2-cycle_cross_line-cycle_triangle_dist, signal, false);
 			if(priority)
 				teeth(way_tot/2+cycle_cross_line+cycle_triangle_dist, -signal2, true);
-	}
+		}
 } //bikeway_cross() 
 //---------------------------------
 // next module for turns between bike ways required when double path	
@@ -1884,6 +1891,9 @@ module island (axis,branch) {
 	waypl = Wcycle_wd(axisp,branchp,vleft);
 	wayprev = Wcycle_wd(axisp,prevbranch,vright);
 	dblprev = Wcycle_double[axisp][prevbranch][vright];
+	//approx central way width
+	way_wd = max(Wcycle_wd(axis,branch,vright),Wcycle_wd(axis,branch,vleft));
+	way_tot = way_wd+cycle_wd_extent_crossing;
 	//way stop line length
 	linelg = (wayr+cycle_wd_extent_crossing+400)/(cydouble?2:1)+450; 
 	dev = isdev(axis,branch);	
@@ -1932,6 +1942,8 @@ module island (axis,branch) {
 					t(borderx,bordery) rotz(180)
 						quart_shape(truck_radius,xext,yext,xext/3,pavht,-800);
 					//:::::::::
+					//cut internal round - hack
+					//pav_corner2(axis, branch,way_tot); // ??? infinite loop - why ?
 					cutcorner(axis,branch);
 					cut_diag();
 				}
@@ -1940,6 +1952,8 @@ module island (axis,branch) {
 				t(borderx,bordery) rotz(180)
 					quart_shape(car_radius,xext,yext,xext/2.5,pavcarht,diag=quart_bias);
 				//::::::::::
+				//cut internal round - hack
+				//pav_corner2(axis, branch,way_tot); // ??? infinite loop - why ?
 				cutcorner(axis,branch);
 				if (quart_bias) {
 					// cut internal cylinder
@@ -2026,7 +2040,7 @@ module bikelight (angline=-25,stopline=100, linang=0, linelength=1000, axis=vX, 
 				}
 		}
 		// stop line 
-		noprio = road_priority==0?false:axis?(road_priority==2?false:true):(road_priority==1?false:true);
+		noprio = cycle_priority?(road_priority==0?false:axis?(road_priority==2?false:true):(road_priority==1?false:true)):true;
 		//no marking line if there is priority
 		if(traffic_light || noprio)
 			white() // bikeway stop line
@@ -2040,7 +2054,8 @@ module bikelight (angline=-25,stopline=100, linang=0, linelength=1000, axis=vX, 
 					}
 }//bikelight
 
-module pav_corner2 (a,b) {
+module pav_corner2 (a,b, pathwd=0) {
+	htp = pathwd?300:pavht;
 	ap = paxis(a);
 	bp = pbranch(a,b);
 	ang_x = way_ang(a,b);
@@ -2052,36 +2067,48 @@ module pav_corner2 (a,b) {
   radius = radius1[a][b];
 	radiusx = rturn(radius,ang_x);
 	radiusy = rturn(radius,ang_y);
+	//corner pole
 	gray() cylz(50,1000, px,py,0,6);
+	//corner pavement
 	color(color_pavement)
 		diff(){
 			u(){
 				t(cx-radius*.35355,	cy-radius*.35355)
 					diff(){
-						cylz(radius,pavht+3,0,0,-3,48);
+						cylz(radius+2*pathwd,htp+3, 0,0,-3, 48);
+						//:::::::::::
+						if(pathwd)
+							cylz(radius,htp+50, 0,0,-10, 48);
 						rotz(ang_y-1)
-							cubey(40000,20000,500, 0,0,100);
+							cubey(40000,20000,500, 0,0,230);
 						rotz(-ang_x+1)
-							cubex(20000,40000,500, 0,0,100);
+							cubex(20000,40000,500, 0,0,230);
 					}
-				t(cx+dec_x(radius,ang_x),	cy+dec_y(radius,ang_x))
+				t(cx+dec_x(radius,ang_x),cy+dec_y(radius,ang_x))
 					diff(){
-						cylz(radiusx*2,pavht+3,0,0,-3,48);
+						cylz(radiusx*2+2*pathwd,htp+3, 0,0,-3, 48);
+						//::::::::::::::::::::
+						if(pathwd)
+							cylz(radiusx*2,htp+100, 0,0,-10, 48);
 						rotz(-ang_x)
-							cubex(-30000,60000,500, 0,0,100);
-						cubex(30000,60000,500, 0,0,100);
+							cubex(-30000,60000,500, 0,0,230);
+						cubex(30000,60000,500, 0,0,230);
 					}
 				t(cx+dec_y(radius,ang_y),	cy+dec_x(radius,ang_y))
 					diff(){
-						cylz(radiusy*2,pavht+3,0,0,-3,48);
+						cylz(radiusy*2+2*pathwd,pavht+3,0,0,-3,48);
+						//:::::::::::::::
+						if(pathwd)
+							cylz(radiusy*2,htp+100,0,0,-10, 48);
 						rotz(ang_y)
-							cubey(60000,-30000,500, 0,0,100);
-						cubey(60000,30000,500, 0,0,100);
+							cubey(60000,-30000,500, 0,0,230);
+						cubey(60000,30000,500, 0,0,230);
 					}
 			}//::::::::cut internal of corner
-			cubez(20000,20000,400, px+10000,py+10000,-10);
+			cubez(20000,20000,444, px+10000,py+10000,-10);
 		}//diff()
-}
+} //pav_corner2
+
 // Ramp for recess in the pavement for wheelchairs. too steep, adjust depending the pavement width ?? low priority
 module ramp (width = 2000) {
 	r(2.5)
