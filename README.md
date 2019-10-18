@@ -14,4 +14,7 @@ Run on OpenSCAD with Customizer activated (see details in Readme_first for downl
 English and french version, 
 use a Libre Office Macro as preprocessor for creating the french translated version
 
+To install OpenSCAD applications, see http://rouzeau.net/Print3D/OpenSCADApplications
+
+Pour installer les applications OpenSCAD, voir http://rouzeau.net/OpenSCAD/Applications
 
