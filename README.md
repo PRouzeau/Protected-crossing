@@ -18,3 +18,5 @@ To install OpenSCAD applications, see http://rouzeau.net/Print3D/OpenSCADApplica
 
 Pour installer les applications OpenSCAD, voir http://rouzeau.net/OpenSCAD/Applications
 
+![Presentation image](Example_viewed_in_3D.png?raw=true "Example viewed in 3D")
+
