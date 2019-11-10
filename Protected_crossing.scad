@@ -2819,6 +2819,6 @@ module disp_signature(sc=50) {
 	color(clr)
 		scale([sc,sc,1])
 			linear_extrude(height=ht, center=false, convexity=10)
-				t(-10,-10,0)
+				t(-60,-60,0)
 					import(file="signature_PRZ_cut.dxf");
 }
